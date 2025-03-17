@@ -51,7 +51,7 @@
             <nav class="flex-1">
                 <ul class="space-y-2">
                     <li>
-                        <a href="#" class="nav-link flex items-center px-4 py-3 rounded-lg bg-white bg-opacity-10">
+                        <a href="{{Route('components.admin.dashboard')}}" class="nav-link flex items-center px-4 py-3 rounded-lg bg-white bg-opacity-10">
                             <i class="fas fa-tachometer-alt w-5 h-5 mr-3"></i>
                             <span>Dashboard</span>
                         </a>
@@ -63,13 +63,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link flex items-center px-4 py-3 rounded-lg">
+                        <a href="{{Route('components.admin.EventManagement')}}" class="nav-link flex items-center px-4 py-3 rounded-lg">
                             <i class="fas fa-calendar-check w-5 h-5 mr-3"></i>
                             <span>Event Management</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link flex items-center px-4 py-3 rounded-lg">
+                        <a href="" class="nav-link flex items-center px-4 py-3 rounded-lg">
                             <i class="fas fa-box-open w-5 h-5 mr-3"></i>
                             <span> Packages</span>
                         </a>

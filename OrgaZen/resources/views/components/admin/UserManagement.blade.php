@@ -83,7 +83,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="" class="nav-link flex items-center px-4 py-3 rounded-lg">
+                        <a href="{{Route('components.admin.EventManagement')}}" class="nav-link flex items-center px-4 py-3 rounded-lg">
                             <i class="fas fa-calendar-check w-5 h-5 mr-3"></i>
                             <span>Event Management</span>
                         </a>

@@ -13,4 +13,8 @@ class AdminController extends Controller
     public function usersManagement(){
         return view('components.admin.UserManagement');
     }
+
+    public function events(){
+        return view('components.admin.EventManagement');
+    }
 }
