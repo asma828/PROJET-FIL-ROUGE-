@@ -19,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::get('/',[AdminController::class,'index'])->name('components.admin.dashboard');
+Route::get('/users',[AdminController::class,'usersManagement'])->name('components.admin.UserManagement');

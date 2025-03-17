@@ -10,5 +10,7 @@ class AdminController extends Controller
         return view('components.admin.dashboard');
     }
 
-   
+    public function usersManagement(){
+        return view('components.admin.UserManagement');
+    }
 }
