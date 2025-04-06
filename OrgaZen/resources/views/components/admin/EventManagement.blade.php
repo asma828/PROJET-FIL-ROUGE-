@@ -16,7 +16,7 @@
             background-color: #f8f9fc;
         }
         .sidebar {
-            background: #5E60CE;
+            background: #A0522D;
             box-shadow: 4px 0 10px rgba(0, 0, 0, 0.05);
         }
         .nav-link {
@@ -83,19 +83,19 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link flex items-center px-4 py-3 rounded-lg">
+                        <a href="{{Route('components.admin.CategoryManagement')}}" class="nav-link flex items-center px-4 py-3 rounded-lg">
                             <i class="fas fa-box-open w-5 h-5 mr-3"></i>
-                            <span>Packages</span>
+                            <span>Events Categories</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link flex items-center px-4 py-3 rounded-lg">
+                        <a href="{{Route('components.admin.serviceProvider')}}" class="nav-link flex items-center px-4 py-3 rounded-lg">
                             <i class="fas fa-building w-5 h-5 mr-3"></i>
                             <span>Service Providers</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link flex items-center px-4 py-3 rounded-lg">
+                        <a href="{{Route('components.admin.Payment')}}" class="nav-link flex items-center px-4 py-3 rounded-lg">
                             <i class="fas fa-credit-card w-5 h-5 mr-3"></i>
                             <span>Payment & Finance</span>
                         </a>
