@@ -16,7 +16,7 @@
             background-color: #f8f9fc;
         }
         .sidebar {
-            background: #5E60CE;
+            background: #A0522D;
             box-shadow: 4px 0 10px rgba(0, 0, 0, 0.05);
         }
         .nav-link {
@@ -69,29 +69,23 @@
                         </a>
                     </li>
                     <li>
-                        <a href="" class="nav-link flex items-center px-4 py-3 rounded-lg">
+                        <a href="{{Route('components.admin.CategoryManagement')}}" class="nav-link flex items-center px-4 py-3 rounded-lg">
                             <i class="fas fa-box-open w-5 h-5 mr-3"></i>
-                            <span> Packages</span>
+                            <span>Events Categories</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link flex items-center px-4 py-3 rounded-lg">
+                        <a href="{{Route('components.admin.serviceProvider')}}" class="nav-link flex items-center px-4 py-3 rounded-lg">
                             <i class="fas fa-building w-5 h-5 mr-3"></i>
                             <span>Service Providers</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link flex items-center px-4 py-3 rounded-lg">
+                        <a href="{{Route('components.admin.Payment')}}" class="nav-link flex items-center px-4 py-3 rounded-lg">
                             <i class="fas fa-credit-card w-5 h-5 mr-3"></i>
                             <span>Payment & Finance</span>
                         </a>
                     </li>
-                    {{-- <li>
-                        <a href="#" class="nav-link flex items-center px-4 py-3 rounded-lg">
-                            <i class="fas fa-chart-line w-5 h-5 mr-3"></i>
-                            <span>Statistics & Reports</span>
-                        </a>
-                    </li> --}}
                 </ul>
             </nav>
             
@@ -307,7 +301,7 @@
                             <li class="flex items-center">
                                 <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Provider" class="w-10 h-10 rounded-full mr-3">
                                 <div class="flex-1">
-                                    <h4 class="text-sm font-medium text-gray-900">Ahmed-Photography</h4>
+                                    <h4 class="text-sm font-medium text-gray-900">Ahmed sami</h4>
                                     <div class="flex items-center">
                                         <div class="flex">
                                             <i class="fas fa-star text-yellow-400 text-xs"></i>
@@ -324,7 +318,7 @@
                             <li class="flex items-center">
                                 <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Provider" class="w-10 h-10 rounded-full mr-3">
                                 <div class="flex-1">
-                                    <h4 class="text-sm font-medium text-gray-900">Ayoub-Photography</h4>
+                                    <h4 class="text-sm font-medium text-gray-900">Ayoub ahnou</h4>
                                     <div class="flex items-center">
                                         <div class="flex">
                                             <i class="fas fa-star text-yellow-400 text-xs"></i>
@@ -341,7 +335,7 @@
                             <li class="flex items-center">
                                 <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Provider" class="w-10 h-10 rounded-full mr-3">
                                 <div class="flex-1">
-                                    <h4 class="text-sm font-medium text-gray-900">Houssam-Designs</h4>
+                                    <h4 class="text-sm font-medium text-gray-900">Houssam bensltana</h4>
                                     <div class="flex items-center">
                                         <div class="flex">
                                             <i class="fas fa-star text-yellow-400 text-xs"></i>
@@ -358,7 +352,7 @@
                             <li class="flex items-center">
                                 <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Provider" class="w-10 h-10 rounded-full mr-3">
                                 <div class="flex-1">
-                                    <h4 class="text-sm font-medium text-gray-900">Hamza-Sound & Light</h4>
+                                    <h4 class="text-sm font-medium text-gray-900">Hamza lhadouchi</h4>
                                     <div class="flex items-center">
                                         <div class="flex">
                                             <i class="fas fa-star text-yellow-400 text-xs"></i>
@@ -420,7 +414,7 @@
                             </li>
                             <li class="flex items-center justify-between pb-3 border-b border-gray-100">
                                 <div>
-                                    <h4 class="text-sm font-medium text-gray-900">New Package</h4>
+                                    <h4 class="text-sm font-medium text-gray-900">New client</h4>
                                 </div>
                                 <div class="flex space-x-2">
                                     <button class="p-1 text-green-500 hover:text-green-700">
@@ -473,6 +467,16 @@
                             <li class="flex items-center justify-between pb-3 border-b border-gray-100">
                                 <div>
                                     <h4 class="text-sm font-medium text-gray-900">Day events</h4>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <div class="p-1 text-green-500 hover:text-green-700">
+                                        <span class="text-indigo-600 text-sm font-medium">0</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="flex items-center justify-between pb-3 border-b border-gray-100">
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-900">Childern party</h4>
                                 </div>
                                 <div class="flex space-x-2">
                                     <div class="p-1 text-green-500 hover:text-green-700">
