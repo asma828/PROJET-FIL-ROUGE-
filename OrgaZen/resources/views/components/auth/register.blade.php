@@ -134,17 +134,6 @@
                             </div>
                         </div>
 
-                        <div>
-                            <label for="phone" class="block text-sm font-medium text-gray-700">Phone number</label>
-                            <div class="mt-1 relative rounded-md shadow-sm">
-                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <i class="fas fa-phone text-gray-400"></i>
-                                </div>
-                                <input id="phone" name="phone" type="tel" required 
-                                    class="input-field pl-10 focus:ring-0 focus:outline-none block w-full sm:text-sm rounded-lg py-3" 
-                                    placeholder="+212 234339807">
-                            </div>
-                        </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
