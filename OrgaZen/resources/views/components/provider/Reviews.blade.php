@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orgazen - Service Provider Reviews</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fc;
+        }
+        .sidebar {
+            background: #A0522D;
+            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.05);
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+        .card {
+            transition: all 0.3s ease;
+        }
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+        }
+        .review-card:hover {
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="sidebar w-64 text-white py-6 px-4 flex flex-col">
+            <div class="mb-10 flex items-center justify-center">
+                <h1 class="text-2xl font-bold">Orgazen</h1>
+            </div>
+            
+            <nav class="flex-1">
+                <ul class="space-y-2">
+                    <li>
+                        <a href="{{Route('components.provider.dashboard')}}" class="nav-link flex items-center px-4 py-3 rounded-lg">
+                            <i class="fas fa-tachometer-alt w-5 h-5 mr-3"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{Route('components.provider.BookingManagement')}}" class="nav-link flex items-center px-4 py-3 rounded-lg">
+                            <i class="fas fa-calendar-check w-5 h-5 mr-3"></i>
+                            <span>My Bookings</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{Route('components.provider.Chat')}}" class="nav-link flex items-center px-4 py-3 rounded-lg">
+                            <i class="fas fa-comment-alt w-5 h-5 mr-3"></i>
+                            <span>Live Chat</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{Route('components.provider.MyService')}}" class="nav-link flex items-center px-4 py-3 rounded-lg">
+                            <i class="fas fa-store w-5 h-5 mr-3"></i>
+                            <span>My Services</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{Route('components.provider.Reviews')}}" class="nav-link flex items-center px-4 py-3 rounded-lg bg-white bg-opacity-10">
+                            <i class="fas fa-star w-5 h-5 mr-3"></i>
+                            <span>Reviews</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{Route('components.provider.Profile')}}" class="nav-link flex items-center px-4 py-3 rounded-lg">
+                            <i class="fas fa-user-cog w-5 h-5 mr-3"></i>
+                            <span>Profile Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="mt-auto">
+                <a href="#" class="nav-link flex items-center px-4 py-3 rounded-lg">
+                    <i class="fas fa-sign-out-alt w-5 h-5 mr-3"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="flex-1 overflow-y-auto">
+            <!-- Top Navigation -->
+            <div class="bg-white shadow-sm">
+                <div class="flex justify-between items-center px-8 py-4">
+                    <div>
+                        <h2 class="text-xl font-semibold text-gray-800">Reviews & Ratings</h2>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <button class="p-2 text-gray-500 hover:text-gray-700 relative">
+                                <i class="fas fa-bell"></i>
+                                <span class="notification-badge flex items-center justify-center w-5 h-5 bg-red-500 text-white text-xs rounded-full">3</span>
+                            </button>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="" class="w-10 h-10 rounded-full">
+                            <div>
+                                <p class="text-sm font-medium text-gray-700">Ahmed Sami</p>
+                                <p class="text-xs text-gray-500">Wedding Planner</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Reviews Content -->
+            <div class="p-8">
+
+                
+                <!-- Reviews List -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Review Card 1 -->
+                    <div class="review-card bg-white rounded-xl shadow-sm p-6 transition-all duration-300">
+                        <div class="flex items-start mb-4">
+                            <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
+                            <div class="flex-1">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h4 class="text-md font-medium text-gray-900">Amal & Hassan</h4>
+                                        <p class="text-xs text-gray-500">Wedding Ceremony • March 10, 2025</p>
+                                    </div>
+                                    <div class="flex">
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"Ahmed did an amazing job with our wedding planning! Everything was perfect from start to finish. The venue was beautifully decorated, the food was delicious, and the music was exactly what we wanted. All of our guests had a great time. We cannot thank Ahmed enough for making our special day so memorable."</p>
+                        
+                        <div class="border-t border-gray-100 pt-4">
+                          
+                        </div>
+                        
+                        <div class="mt-4 border-t border-gray-100 pt-4">
+                            <div class="flex justify-between">
+                                <span class="text-xs text-gray-500">1 week ago</span>
+                                <div>
+                                    <button class="text-sm text-indigo-600 hover:text-indigo-800 mr-4">Reply</button>
+                                    <button class="text-sm text-gray-500 hover:text-gray-700">
+                                        <i class="fas fa-flag"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Review Card 2 -->
+                    <div class="review-card bg-white rounded-xl shadow-sm p-6 transition-all duration-300">
+                        <div class="flex items-start mb-4">
+                            <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
+                            <div class="flex-1">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h4 class="text-md font-medium text-gray-900">Youssef & Maryam</h4>
+                                        <p class="text-xs text-gray-500">Wedding Reception • February 25, 2025</p>
+                                    </div>
+                                    <div class="flex">
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star-half-alt text-yellow-400"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"Very professional service. Our guests were impressed with the arrangements. Ahmed was attentive to our needs and responsive to our requests. The only small issue was that the DJ arrived a bit late, but everything else ran smoothly. Would recommend to other couples planning their wedding."</p>
+                        
+                        <div class="mt-4 border-t border-gray-100 pt-4">
+                            <div class="flex justify-between">
+                                <span class="text-xs text-gray-500">2 weeks ago</span>
+                                <div>
+                                    <button class="text-sm text-indigo-600 hover:text-indigo-800 mr-4">Reply</button>
+                                    <button class="text-sm text-gray-500 hover:text-gray-700">
+                                        <i class="fas fa-flag"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Review Card 3 -->
+                    <div class="review-card bg-white rounded-xl shadow-sm p-6 transition-all duration-300">
+                        <div class="flex items-start mb-4">
+                            <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
+                            <div class="flex-1">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h4 class="text-md font-medium text-gray-900">Leila & Karim</h4>
+                                        <p class="text-xs text-gray-500">Engagement Party • February 15, 2025</p>
+                                    </div>
+                                    <div class="flex">
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"Best wedding planner in the city! Ahmed took care of everything. We were able to enjoy our engagement party without worrying about any details. The venue decoration exceeded our expectations and the coordination of events was flawless. Highly recommended!"</p>
+                        
+                        <div class="border-t border-gray-100 pt-4">
+                          
+                        </div>
+                        
+                        <div class="mt-4 border-t border-gray-100 pt-4">
+                            <div class="flex justify-between">
+                                <span class="text-xs text-gray-500">1 month ago</span>
+                                <div>
+                                    <button class="text-sm text-indigo-600 hover:text-indigo-800 mr-4">Reply</button>
+                                    <button class="text-sm text-gray-500 hover:text-gray-700">
+                                        <i class="fas fa-flag"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Review Card 4 -->
+                    <div class="review-card bg-white rounded-xl shadow-sm p-6 transition-all duration-300">
+                        <div class="flex items-start mb-4">
+                            <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
+                            <div class="flex-1">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h4 class="text-md font-medium text-gray-900">Samir & Nora</h4>
+                                        <p class="text-xs text-gray-500">Wedding Ceremony • January 30, 2025</p>
+                                    </div>
+                                    <div class="flex">
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="far fa-star text-yellow-400"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"Great service overall. Small issues with timing but otherwise perfect. Ahmed was accommodating with our last-minute changes and always available when we had questions. The catering was excellent and our guests were very happy with the event. Would use his services again for future events."</p>
+                        
+                        <div class="mt-4 border-t border-gray-100 pt-4">
+                            <div class="flex justify-between">
+                                <span class="text-xs text-gray-500">2 months ago</span>
+                                <div>
+                                    <button class="text-sm text-indigo-600 hover:text-indigo-800 mr-4">Reply</button>
+                                    <button class="text-sm text-gray-500 hover:text-gray-700">
+                                        <i class="fas fa-flag"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- More review cards can be added here -->
+                </div>
+                
+                <!-- Pagination -->
+                <div class="flex justify-center mt-8">
+                    <nav class="inline-flex rounded-md shadow">
+                        <a href="#" class="py-2 px-4 bg-white border border-gray-300 text-sm font-medium text-gray-500 hover:bg-gray-50 rounded-l-md">
+                            Previous
+                        </a>
+                        <a href="#" class="py-2 px-4 bg-indigo-600 border border-indigo-600 text-sm font-medium text-white rounded-none">
+                            1
+                        </a>
+                        <a href="#" class="py-2 px-4 bg-white border border-gray-300 text-sm font-medium text-gray-500 hover:bg-gray-50 rounded-none">
+                            2
+                        </a>
+                        <a href="#" class="py-2 px-4 bg-white border border-gray-300 text-sm font-medium text-gray-500 hover:bg-gray-50 rounded-none">
+                            3
+                        </a>
+                        <a href="#" class="py-2 px-4 bg-white border border-gray-300 text-sm font-medium text-gray-500 hover:bg-gray-50 rounded-r-md">
+                            Next
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
