@@ -17,4 +17,16 @@ class AdminController extends Controller
     public function events(){
         return view('components.admin.EventManagement');
     }
+
+    public function category(){
+        return view('components.admin.CategoryManagement');
+    }
+
+    public function service(){
+        return view('components.admin.serviceProvider');
+    }
+
+    public function Payment(){
+        return view('components.admin.Payment');
+    }
 }
