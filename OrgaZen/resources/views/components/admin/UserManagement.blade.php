@@ -16,7 +16,7 @@
             background-color: #f8f9fc;
         }
         .sidebar {
-            background: #5E60CE;
+            background: #A0522D;
             box-shadow: 4px 0 10px rgba(0, 0, 0, 0.05);
         }
         .nav-link {
@@ -89,29 +89,23 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link flex items-center px-4 py-3 rounded-lg">
+                        <a href="{{Route('components.admin.CategoryManagement')}}" class="nav-link flex items-center px-4 py-3 rounded-lg">
                             <i class="fas fa-box-open w-5 h-5 mr-3"></i>
-                            <span> Packages</span>
+                            <span>Events Categories</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link flex items-center px-4 py-3 rounded-lg">
+                        <a href="{{Route('components.admin.serviceProvider')}}" class="nav-link flex items-center px-4 py-3 rounded-lg">
                             <i class="fas fa-building w-5 h-5 mr-3"></i>
                             <span>Service Providers</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link flex items-center px-4 py-3 rounded-lg">
+                        <a href="{{Route('components.admin.Payment')}}" class="nav-link flex items-center px-4 py-3 rounded-lg">
                             <i class="fas fa-credit-card w-5 h-5 mr-3"></i>
                             <span>Payment & Finance</span>
                         </a>
                     </li>
-                    {{-- <li>
-                        <a href="#" class="nav-link flex items-center px-4 py-3 rounded-lg">
-                            <i class="fas fa-chart-line w-5 h-5 mr-3"></i>
-                            <span>Statistics & Reports</span>
-                        </a>
-                    </li> --}}
                 </ul>
             </nav>
             
@@ -130,7 +124,7 @@
             <div class="bg-white shadow-sm">
                 <div class="flex justify-between items-center px-8 py-4">
                     <div>
-                        <h2 class="text-xl font-semibold text-gray-800">Dashboard</h2>
+                        <h2 class="text-xl font-semibold text-gray-800">User Management</h2>
                     </div>
                     <div class="flex items-center space-x-4">
                         <div class="relative">
@@ -152,11 +146,12 @@
             
             <!-- User Management Content -->
             <div class="p-8">
-                <!-- Tabs and Search -->
-                    <div class="flex space-x-6 mb-4 lg:mb-0">
-                        <button class="tab-button active px-2 py-2 text-indigo-600 font-medium">All Users</button>                      
-                    </div>
-                
+                <div class="flex space-x-6 mb-4 lg:mb-0">
+                    <p class="px-2 py-2 text-indigo-600 font-medium border-b-2 border-indigo-600 w-fit">
+                        All Users
+                    </p>
+                </div>
+                     
                 <!-- Users Table -->
                 <div class="card bg-white rounded-xl shadow-sm p-6 mb-8">
                     <div class="overflow-x-auto">
