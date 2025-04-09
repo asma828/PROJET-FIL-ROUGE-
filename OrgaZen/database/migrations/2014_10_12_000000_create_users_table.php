@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('service_type')->nullable();
             $table->rememberToken();
             $table->timestamps();
-        });
+        }); 
     }
 
     /**
