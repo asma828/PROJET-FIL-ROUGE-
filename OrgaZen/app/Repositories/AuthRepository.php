@@ -19,16 +19,22 @@ class AuthRepository implements AuthRepositoryInterface
             'role_id'    => $data['role_id'],
         ]);
 
-        Auth::login($user);
-        return $user;
+        return $user->createToken('auth_token')->plainTextToken;
     }
 
     public function login(array $credentials)
     {
-        if (Auth::attempt($credentials)) {
-            return Auth::user();
+        if (!Auth::attempt($credentials)) {
+            return false;
         }
 
-        return false;
+        $user = Auth::user();
+        return $user->createToken('auth_token')->plainTextToken;
+    }
+
+    public function logout()
+    {
+        auth()->user()->tokens()->delete();
     }
 }
+
