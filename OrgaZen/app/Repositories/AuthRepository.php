@@ -11,13 +11,7 @@ class AuthRepository implements AuthRepositoryInterface
 {
     public function register(array $data)
     {
-        $user = User::create([
-            'first_name' => $data['first_name'],
-            'last_name'  => $data['last_name'],
-            'email'      => $data['email'],
-            'password'   => Hash::make($data['password']),
-            'role_id'    => $data['role_id'],
-        ]);
+        $user = User::create($data);
 
         return $user->createToken('auth_token')->plainTextToken;
     }
@@ -32,9 +26,16 @@ class AuthRepository implements AuthRepositoryInterface
         return $user->createToken('auth_token')->plainTextToken;
     }
 
-    public function logout()
-    {
+public function logout()
+{
+    Auth::logout();
+    session()->invalidate();
+    
+    session()->regenerateToken();
+    
+    if (auth()->check()) {
         auth()->user()->tokens()->delete();
     }
+}
 }
 
