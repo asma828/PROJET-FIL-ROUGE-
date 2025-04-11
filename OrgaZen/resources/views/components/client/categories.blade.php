@@ -308,88 +308,20 @@
             
             <div class="categories-grid">
                 <!-- Wedding Category -->
+                @foreach ($categories as $categorie)
                 <div class="category-card">
                     <div class="category-img">
-                        <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="Wedding Events">
+                        <img src={{$categorie->image}} alt="Wedding Events">
                     </div>
                     <div class="category-info">
-                        <h3>Wedding</h3>
-                        <p>From intimate ceremonies to grand celebrations, find the perfect wedding planner to make your dream day come true.</p>
+                        <h3>{{$categorie->name}}</h3>
+                        <p>{{$categorie->description}}</p>
                         <div class="category-cta">
                             <a href="#" class="btn btn-primary">Create Wedding Event</a>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Birthday Category -->
-                <div class="category-card">
-                    <div class="category-img">
-                        <img src="https://i.pinimg.com/736x/15/35/a7/1535a7412263d5bead2511465a733642.jpg" alt="Birthday Events">
-                    </div>
-                    <div class="category-info">
-                        <h3>Birthday</h3>
-                        <p>Celebrate birthdays with unforgettable parties tailored to all ages and styles. Let's make memories!</p>
-                        <div class="category-cta">
-                            <a href="#" class="btn btn-primary">Create Birthday Event</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Corporate Category -->
-                <div class="category-card">
-                    <div class="category-img">
-                        <img src="https://i.pinimg.com/736x/60/7e/66/607e66305ee9a8f67a3ecd1858af43a4.jpg" alt="Corporate Events">
-                    </div>
-                    <div class="category-info">
-                        <h3>Corporate</h3>
-                        <p>Professional event planning for conferences, team-building, product launches, and company celebrations.</p>
-                        <div class="category-cta">
-                            <a href="#" class="btn btn-primary">Create Corporate Event</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Festival Category -->
-                <div class="category-card">
-                    <div class="category-img">
-                        <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="Festival Events">
-                    </div>
-                    <div class="category-info">
-                        <h3>Festival</h3>
-                        <p>Organize vibrant and exciting festivals with comprehensive event management services.</p>
-                        <div class="category-cta">
-                            <a href="#" class="btn btn-primary">Create Festival Event</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Private Party Category -->
-                <div class="category-card">
-                    <div class="category-img">
-                        <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="Private Party Events">
-                    </div>
-                    <div class="category-info">
-                        <h3>Private Party</h3>
-                        <p>Curate intimate and personalized gatherings with our specialized private party event planners.</p>
-                        <div class="category-cta">
-                            <a href="#" class="btn btn-primary">Create Private Party</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Graduation Category -->
-                <div class="category-card">
-                    <div class="category-img">
-                        <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="Graduation Events">
-                    </div>
-                    <div class="category-info">
-                        <h3>Graduation</h3>
-                        <p>Celebrate academic achievements with memorable graduation ceremonies and parties.</p>
-                        <div class="category-cta">
-                            <a href="#" class="btn btn-primary">Create Graduation Event</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
