@@ -78,8 +78,14 @@
         <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-md">
             <div class="login-container rounded-xl overflow-hidden shadow-xl">
                 <div class="auth-form py-8 px-6 rounded-xl">
-                    <form class="space-y-6" action="#" method="POST">
+                    <form class="space-y-6" action="{{route('login')}}" method="POST">
+                        @csrf
                         <div>
+                            @if (session('success'))
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+                           {{ session('success') }}
+                    </div>
+                                 @endif
                             <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
                             <div class="mt-1 relative rounded-md shadow-sm">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -125,7 +131,7 @@
                     <div class="mt-6 text-center">
                         <p class="text-sm text-gray-600">
                             Don't have an account?
-                            <a href="{{Route('components.auth.register')}}" class="link-accent font-medium">
+                            <a href="{{Route('show.register')}}" class="link-accent font-medium">
                                 Register now
                             </a>
                         </p>
