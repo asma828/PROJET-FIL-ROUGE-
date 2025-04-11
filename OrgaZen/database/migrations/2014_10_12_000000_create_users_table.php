@@ -20,8 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->foreignId('role_id')->constrained('roles')->onDelete('cascade');
             $table->string('business_name')->nullable();
-            $table->string('service_type')->nullable();
-            $table->rememberToken();
+            $table->foreignId('event_category_id')->nullable()->constrained('event_categories')->onDelete('set null');            $table->rememberToken();
             $table->timestamps();
         }); 
     }
