@@ -35,25 +35,38 @@ class AuthController extends Controller
     }
 
     public function login(Request $request)
-    {
-        $validated = $request->validate([
-            'email'    => 'required|email',
-            'password' => 'required',
-        ]);
+{
+    // dd($request);
+    $validated = $request->validate([
+        'email'    => 'required|email',
+        'password' => 'required',
+    ]);
 
-        $token = $this->authRepo->login($validated);
+    $token = $this->authRepo->login($validated);
 
-        if (!$token) {
-            return back()->withErrors(['email' => 'Invalid credentials']);
-        }
-
-        return redirect()->route('dashboard')->with('token', $token);
+    if (!$token) {
+        return back()->withErrors(['email' => 'Invalid credentials']);
     }
 
-    public function logout()
+    $user = Auth::user();
+
+    switch ($user->role_id) {
+        case 1:
+            return redirect()->route('components.admin.dashboard')->with('token', $token);
+        case 2:
+            return redirect()->route('components.client.home')->with('token', $token);
+        case 3:
+            return redirect()->route('components.provider.dashboard')->with('token', $token);
+        default:
+            Auth::logout();
+            return redirect()->route('login')->withErrors(['role' => 'Unauthorized role.']);
+    }
+}
+
+    public function logout(Request $request)
     {
         $this->authRepo->logout();
 
-        return redirect()->route('login')->with('success', 'Logged out successfully');
+        return redirect()->route('components.auth.login')->with('success', 'Logged out successfully');
     }
 }
