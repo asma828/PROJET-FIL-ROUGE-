@@ -57,6 +57,24 @@
         .btn-secondary:hover {
             background-color: #5A6268;
         }
+        .category-image {
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .file-upload-container {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+        .file-upload-container input[type=file] {
+            position: absolute;
+            font-size: 100px;
+            right: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -154,236 +172,234 @@
                 <!-- Categories Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                     <!-- Category Card -->
-                    <div class="category-card bg-white rounded-xl shadow-sm p-6">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center">
+                    <div class="category-card bg-white rounded-xl shadow-sm overflow-hidden">
+                        <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Wedding" class="category-image w-full">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
                                 <div>
                                     <h3 class="text-lg font-semibold text-gray-700">Weddings</h3>
                                     <p class="text-sm text-gray-500">12 Service Providers</p>
                                 </div>
-                            </div>
-                            <div class="dropdown relative">
-                                <button class="text-gray-400 hover:text-gray-600 focus:outline-none">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </button>
-                                <div class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden">
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
-                                    <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Delete</a>
+                                <div class="dropdown relative">
+                                    <button class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden z-10">
+                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
+                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Delete</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="pt-4 border-t border-gray-100">
-                            <p class="text-sm text-gray-600">A wedding is a joyful celebration of love and commitment</p>
-                        </div>
-                        <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
-                          
-                            <div class="text-sm text-gray-500">
-                                <i class="fas fa-calendar-check text-green-500 mr-1"></i>
-                                45 Bookings
+                            <div class="pt-4 border-t border-gray-100">
+                                <p class="text-sm text-gray-600">A wedding is a joyful celebration of love and commitment</p>
+                            </div>
+                            <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
+                                <div class="text-sm text-gray-500">
+                                    <i class="fas fa-calendar-check text-green-500 mr-1"></i>
+                                    45 Bookings
+                                </div>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Category Card -->
-                    <div class="category-card bg-white rounded-xl shadow-sm p-6">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center">
+                    <div class="category-card bg-white rounded-xl shadow-sm overflow-hidden">
+                        <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Birthday" class="category-image w-full">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
                                 <div>
                                     <h3 class="text-lg font-semibold text-gray-700">Birthdays</h3>
                                     <p class="text-sm text-gray-500">8 Service Providers</p>
                                 </div>
-                            </div>
-                            <div class="dropdown relative">
-                                <button class="text-gray-400 hover:text-gray-600 focus:outline-none">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </button>
-                                <div class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden">
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
-                                    <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Delete</a>
+                                <div class="dropdown relative">
+                                    <button class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden z-10">
+                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
+                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Delete</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="pt-4 border-t border-gray-100">
-                            <p class="text-sm text-gray-600">A birthday is a special celebration marking another year of life, filled with joy.</p>
-                        </div>
-                        <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
-                            
-                            <div class="text-sm text-gray-500">
-                                <i class="fas fa-calendar-check text-green-500 mr-1"></i>
-                                32 Bookings
+                            <div class="pt-4 border-t border-gray-100">
+                                <p class="text-sm text-gray-600">A birthday is a special celebration marking another year of life, filled with joy.</p>
+                            </div>
+                            <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
+                                <div class="text-sm text-gray-500">
+                                    <i class="fas fa-calendar-check text-green-500 mr-1"></i>
+                                    32 Bookings
+                                </div>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Category Card -->
-                    <div class="category-card bg-white rounded-xl shadow-sm p-6">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center">
+                    <div class="category-card bg-white rounded-xl shadow-sm overflow-hidden">
+                        <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Festival" class="category-image w-full">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
                                 <div>
                                     <h3 class="text-lg font-semibold text-gray-700">Festivals</h3>
                                     <p class="text-sm text-gray-500">10 Service Providers</p>
                                 </div>
-                            </div>
-                            <div class="dropdown relative">
-                                <button class="text-gray-400 hover:text-gray-600 focus:outline-none">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </button>
-                                <div class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden">
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
-                                    <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Delete</a>
+                                <div class="dropdown relative">
+                                    <button class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden z-10">
+                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
+                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Delete</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="pt-4 border-t border-gray-100">
-                            <p class="text-sm text-gray-600">A festival is a vibrant celebration of culture, tradition, and community.</p>
-                        </div>
-                        <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
-                            <div class="text-sm text-gray-500">
-                                <i class="fas fa-calendar-check text-green-500 mr-1"></i>
-                                38 Bookings
+                            <div class="pt-4 border-t border-gray-100">
+                                <p class="text-sm text-gray-600">A festival is a vibrant celebration of culture, tradition, and community.</p>
+                            </div>
+                            <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
+                                <div class="text-sm text-gray-500">
+                                    <i class="fas fa-calendar-check text-green-500 mr-1"></i>
+                                    38 Bookings
+                                </div>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Category Card -->
-                    <div class="category-card bg-white rounded-xl shadow-sm p-6">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center">
+                    <div class="category-card bg-white rounded-xl shadow-sm overflow-hidden">
+                        <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Corporate Event" class="category-image w-full">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
                                 <div>
                                     <h3 class="text-lg font-semibold text-gray-700">Corporate Events</h3>
                                     <p class="text-sm text-gray-500">6 Service Providers</p>
                                 </div>
-                            </div>
-                            <div class="dropdown relative">
-                                <button class="text-gray-400 hover:text-gray-600 focus:outline-none">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </button>
-                                <div class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden">
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
-                                    <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Delete</a>
+                                <div class="dropdown relative">
+                                    <button class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden z-10">
+                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
+                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Delete</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="pt-4 border-t border-gray-100">
-                            <p class="text-sm text-gray-600">A corporate event is a professional gathering designed to foster networking, collaboration.</p>
-                        </div>
-                        <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
-                           
-                            <div class="text-sm text-gray-500">
-                                <i class="fas fa-calendar-check text-green-500 mr-1"></i>
-                                28 Bookings
+                            <div class="pt-4 border-t border-gray-100">
+                                <p class="text-sm text-gray-600">A corporate event is a professional gathering designed to foster networking, collaboration.</p>
+                            </div>
+                            <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
+                                <div class="text-sm text-gray-500">
+                                    <i class="fas fa-calendar-check text-green-500 mr-1"></i>
+                                    28 Bookings
+                                </div>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Category Card -->
-                    <div class="category-card bg-white rounded-xl shadow-sm p-6">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center">
-                               
+                    <div class="category-card bg-white rounded-xl shadow-sm overflow-hidden">
+                        <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Children Party" class="category-image w-full">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
                                 <div>
-                                    <h3 class="text-lg font-semibold text-gray-700">Childern party</h3>
+                                    <h3 class="text-lg font-semibold text-gray-700">Children Party</h3>
                                     <p class="text-sm text-gray-500">5 Service Providers</p>
                                 </div>
-                            </div>
-                            <div class="dropdown relative">
-                                <button class="text-gray-400 hover:text-gray-600 focus:outline-none">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </button>
-                                <div class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden">
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
-                                    <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Delete</a>
+                                <div class="dropdown relative">
+                                    <button class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden z-10">
+                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
+                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Delete</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="pt-4 border-t border-gray-100">
-                            <p class="text-sm text-gray-600">A children's party is a fun-filled celebration with games, decorations, and treats.</p>
-                        </div>
-                        <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
-                            <div class="text-sm text-gray-500">
-                                <i class="fas fa-calendar-check text-green-500 mr-1"></i>
-                                24 Bookings
+                            <div class="pt-4 border-t border-gray-100">
+                                <p class="text-sm text-gray-600">A children's party is a fun-filled celebration with games, decorations, and treats.</p>
+                            </div>
+                            <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
+                                <div class="text-sm text-gray-500">
+                                    <i class="fas fa-calendar-check text-green-500 mr-1"></i>
+                                    24 Bookings
+                                </div>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Category Card -->
-                    <div class="category-card bg-white rounded-xl shadow-sm p-6">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center">
+                    <div class="category-card bg-white rounded-xl shadow-sm overflow-hidden">
+                        <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Luxury Private Dinner" class="category-image w-full">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
                                 <div>
                                     <h3 class="text-lg font-semibold text-gray-700">Luxury Private Dinners</h3>
                                     <p class="text-sm text-gray-500">9 Service Providers</p>
                                 </div>
-                            </div>
-                            <div class="dropdown relative">
-                                <button class="text-gray-400 hover:text-gray-600 focus:outline-none">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </button>
-                                <div class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden">
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
-                                    <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Delete</a>
+                                <div class="dropdown relative">
+                                    <button class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden z-10">
+                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
+                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Delete</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="pt-4 border-t border-gray-100">
-                            <p class="text-sm text-gray-600">A luxury private dinner is an exclusive dining experience featuring gourmet cuisine, elegant ambiance.</p>
-                        </div>
-                        <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
-                            <div class="text-sm text-gray-500">
-                                <i class="fas fa-calendar-check text-green-500 mr-1"></i>
-                                36 Bookings
+                            <div class="pt-4 border-t border-gray-100">
+                                <p class="text-sm text-gray-600">A luxury private dinner is an exclusive dining experience featuring gourmet cuisine, elegant ambiance.</p>
+                            </div>
+                            <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
+                                <div class="text-sm text-gray-500">
+                                    <i class="fas fa-calendar-check text-green-500 mr-1"></i>
+                                    36 Bookings
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-    <!-- Add Category Modal -->
-    <div id="addCategoryModal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-        <div class="modal-content bg-white rounded-xl shadow-lg w-full max-w-md mx-4 transform transition-all">
-            <div class="flex justify-between items-center border-b border-gray-200 px-6 py-4">
-                <h3 class="text-xl font-semibold text-gray-800">Add New Category</h3>
-                <button onclick="closeAddCategoryModal()" class="text-gray-400 hover:text-gray-600">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="p-6">
-                <form>
-                    <div class="mb-4">
-                        <label for="categoryName" class="block text-sm font-medium text-gray-700 mb-2">Category Name</label>
-                        <input type="text" id="categoryName" name="categoryName" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                    </div>
-                    <div class="mb-4">
-                        <label for="categoryIcon" class="block text-sm font-medium text-gray-700 mb-2">Category Icon</label>
-                        <div class="flex items-center">
-                            <button type="button" class="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-md mr-2">
-                                <i class="fas fa-plus text-gray-600"></i>
-                            </button>
-                            <select id="categoryIcon" name="categoryIcon" class="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                                <option value="camera">select category</option>
-                                <option value="utensils"></option>
-                                <option value="palette"></option>
-                                <option value="music"></option>
-                                <option value="birthday-cake"></option>
-                                <option value="location-arrow"></option>
-                                <option value="gift"></option>
-                                <option value="tshirt"></option>
-                                <option value="lightbulb"></option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="mb-4">
-                        <label for="categoryDescription" class="block text-sm font-medium text-gray-700 mb-2">Description</label>
-                        <textarea id="categoryDescription" name="categoryDescription" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
-                    </div>
-                    <div class="flex justify-end space-x-3 mt-6">
-                        <button type="button" onclick="closeAddCategoryModal()" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200">Cancel</button>
-                        <button type="submit" class="btn-primary px-4 py-2 text-white rounded-md">Save Category</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
+
+    <!-- Add Category Modal -->
+<div id="addCategoryModal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden overflow-auto">
+    <div class="modal-content bg-white rounded-xl shadow-lg w-full max-w-md mx-4 transform transition-all">
+        <div class="flex justify-between items-center border-b border-gray-200 px-6 py-4">
+            <h3 class="text-xl font-semibold text-gray-800">Add New Category</h3>
+            <button onclick="closeAddCategoryModal()" class="text-gray-400 hover:text-gray-600">
+                <i class="fas fa-times"></i>
+            </a>
+        </div>
+        <div class="p-6">
+            <form method="post" action="" enctype="multipart/form-data">
+                <div class="mb-4">
+                    <label for="categoryName" class="block text-sm font-medium text-gray-700 mb-2">Category Name</label>
+                    <input type="text" id="categoryName" name="categoryName" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+                <div class="mb-4">
+                    <label for="categoryImage" class="block text-sm font-medium text-gray-700 mb-2">Category Image</label>
+                    <div class="mt-1 flex items-center">
+                        <label class="cursor-pointer flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm text-sm text-gray-700 hover:bg-gray-50">
+                            <i class="fas fa-upload mr-2"></i>
+                            <span>Upload Image</span>
+                            <input type="file" id="categoryImage" name="categoryImage" accept="image/*" class="hidden">
+                        </label>
+                        <p class="ml-3 text-xs text-gray-500">JPEG, PNG, or GIF. Max 2MB.</p>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="categoryDescription" class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                    <textarea id="categoryDescription" name="categoryDescription" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+                </div>
+                <div class="flex justify-end space-x-3 mt-6">
+                    <button type="button" onclick="closeAddCategoryModal()" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200">Cancel</button>
+                    <button type="submit" class="btn-primary px-4 py-2 text-white rounded-md">Save Category</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
     
     <script>
         function openAddCategoryModal() {
@@ -394,9 +410,8 @@
             document.getElementById('addCategoryModal').classList.add('hidden');
         }
         
-      
-        
         document.addEventListener('DOMContentLoaded', function() {
+            // Handle dropdown toggle
             const dropdownButtons = document.querySelectorAll('.dropdown button');
             
             dropdownButtons.forEach(button => {
