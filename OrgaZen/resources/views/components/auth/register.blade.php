@@ -86,16 +86,24 @@
             <div class="register-container rounded-xl overflow-hidden shadow-xl">
                 <div class="auth-form py-6 px-6 rounded-xl">
                     <!-- User Type Tabs -->
-                    <div class="flex border-b border-gray-200 mb-6">
-                        <button class="tab flex-1 py-3 px-4 text-center font-medium border-b-2 border-transparent text-gray-500 active" id="client-tab">
-                            <i class="fas fa-user mr-2"></i>Client
-                        </button>
-                        <button class="tab flex-1 py-3 px-4 text-center font-medium border-b-2 border-transparent text-gray-500" id="provider-tab">
-                            <i class="fas fa-building mr-2"></i>Service Provider
-                        </button>
-                    </div>
+                    <form id="registrationId"  class="space-y-4" action="{{route('register')}}" method="POST">
+                        @csrf
+                        <div class="flex border-b border-gray-200 mb-6 justify-center">
+                            <div>
+                                <label for="client-tab-input" class="tab flex-1 py-3 px-4 text-center font-medium border-b-2 border-transparent text-gray-500 active" id="client-tab">
+                                    <i class="fas fa-user mr-2"></i>Client
+                                </input>
+                                <input type="radio" name="role_id" value="2"  id="client-tab-input" class="hidden" checked>
+                            </div>
 
-                    <form class="space-y-4" action="#" method="POST">
+                            <div>
+                                <label for="provider-tab-input" class="tab flex-1 py-3 px-4 text-center font-medium border-b-2 border-transparent text-gray-500" id="provider-tab">
+                                <i class="fas fa-building mr-2"></i>Service Provider
+                            </input>
+                            <input type="radio" name="role_id" value="3" id="provider-tab-input" class="hidden"> 
+                            </div>
+                        </div>
+
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label for="first_name" class="block text-sm font-medium text-gray-700">First name</label>
@@ -154,14 +162,14 @@
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <i class="fas fa-lock text-gray-400"></i>
                                     </div>
-                                    <input id="confirm_password" name="confirm_password" type="password" required 
-                                        class="input-field pl-10 focus:ring-0 focus:outline-none block w-full sm:text-sm rounded-lg py-3" 
-                                        placeholder="••••••••">
+                                    <input id="confirm_password" name="password_confirmation" type="password" required 
+                                     class="input-field pl-10 focus:ring-0 focus:outline-none block w-full sm:text-sm rounded-lg py-3" 
+                                    placeholder="••••••••">
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Service Provider Fields (hidden by default) -->
+                        <!-- Service Provider Fields-->
                         <div id="provider-fields" class="hidden space-y-4">
                             <div>
                                 <label for="business_name" class="block text-sm font-medium text-gray-700">Business name</label>
@@ -181,14 +189,12 @@
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <i class="fas fa-briefcase text-gray-400"></i>
                                     </div>
-                                    <select id="service_type" name="service_type" 
-                                        class="input-field pl-10 focus:ring-0 focus:outline-none block w-full sm:text-sm rounded-lg py-3">
-                                        <option value="">Select event type</option>
-                                        <option value="photography">Weddings</option>
-                                        <option value="catering">Birthdays</option>
-                                        <option value="decoration">Corporate Events</option>
-                                        <option value="music">Festivals</option>
-                                        <option value="venue">Childern party</option>
+                                    <select id="event_category_id" name="event_category_id" 
+                                    class="input-field pl-10 focus:ring-0 focus:outline-none block w-full sm:text-sm rounded-lg py-3">
+                                       <option value="">Select event type</option>
+                                     @foreach(\App\Models\EventCategory::all() as $category)
+                                       <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                     @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -202,9 +208,6 @@
                             </button>
                         </div>
                     </form>
-
-                    
-                    
                     <div class="mt-6 text-center">
                         <p class="text-sm text-gray-600">
                             Already have an account?
@@ -231,6 +234,8 @@
             document.getElementById('client-tab').classList.remove('active');
             document.getElementById('provider-fields').classList.remove('hidden');
         });
+
+
     </script>
 </body>
 </html>
