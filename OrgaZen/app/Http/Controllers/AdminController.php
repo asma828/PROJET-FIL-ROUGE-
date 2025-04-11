@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EventCategory;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -19,7 +20,8 @@ class AdminController extends Controller
     }
 
     public function category(){
-        return view('components.admin.CategoryManagement');
+        $categories=EventCategory::with('user')->get();
+        return view('components.admin.CategoryManagement',compact('categories'));
     }
 
     public function service(){
