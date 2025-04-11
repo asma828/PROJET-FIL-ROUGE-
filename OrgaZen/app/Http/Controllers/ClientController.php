@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EventCategory;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -19,7 +20,8 @@ class ClientController extends Controller
     }
 
     public function categories(){
-        return view('components.client.categories');
+        $categories=EventCategory::with('user')->get();
+        return view('components.client.categories',compact('categories'));
     }
 
     public function createvent(){
