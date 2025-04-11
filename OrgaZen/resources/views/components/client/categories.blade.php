@@ -292,8 +292,7 @@
                 </ul>
                 
                 <div class="cta-buttons">
-                    <a href="#" class="login-btn">Log In</a>
-                    <a href="#" class="btn btn-primary">Sign Up</a>
+                    <a href="{{Route('logout')}}" class="btn btn-primary">logout</a>
                 </div>
             </nav>
         </div>
