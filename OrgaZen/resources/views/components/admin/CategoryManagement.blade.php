@@ -172,12 +172,13 @@
                 <!-- Categories Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                     <!-- Category Card -->
+                    @foreach($categories as $categorie)
                     <div class="category-card bg-white rounded-xl shadow-sm overflow-hidden">
-                        <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Wedding" class="category-image w-full">
+                        <img src="{{$categorie->image}}" alt="Wedding" class="category-image w-full">
                         <div class="p-6">
                             <div class="flex items-center justify-between mb-4">
                                 <div>
-                                    <h3 class="text-lg font-semibold text-gray-700">Weddings</h3>
+                                    <h3 class="text-lg font-semibold text-gray-700">{{$categorie->name}}</h3>
                                     <p class="text-sm text-gray-500">12 Service Providers</p>
                                 </div>
                                 <div class="dropdown relative">
@@ -191,7 +192,7 @@
                                 </div>
                             </div>
                             <div class="pt-4 border-t border-gray-100">
-                                <p class="text-sm text-gray-600">A wedding is a joyful celebration of love and commitment</p>
+                                <p class="text-sm text-gray-600">{{$categorie->description}}</p>
                             </div>
                             <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
                                 <div class="text-sm text-gray-500">
@@ -201,161 +202,8 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Category Card -->
-                    <div class="category-card bg-white rounded-xl shadow-sm overflow-hidden">
-                        <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Birthday" class="category-image w-full">
-                        <div class="p-6">
-                            <div class="flex items-center justify-between mb-4">
-                                <div>
-                                    <h3 class="text-lg font-semibold text-gray-700">Birthdays</h3>
-                                    <p class="text-sm text-gray-500">8 Service Providers</p>
-                                </div>
-                                <div class="dropdown relative">
-                                    <button class="text-gray-400 hover:text-gray-600 focus:outline-none">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </button>
-                                    <div class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden z-10">
-                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
-                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Delete</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="pt-4 border-t border-gray-100">
-                                <p class="text-sm text-gray-600">A birthday is a special celebration marking another year of life, filled with joy.</p>
-                            </div>
-                            <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
-                                <div class="text-sm text-gray-500">
-                                    <i class="fas fa-calendar-check text-green-500 mr-1"></i>
-                                    32 Bookings
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Category Card -->
-                    <div class="category-card bg-white rounded-xl shadow-sm overflow-hidden">
-                        <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Festival" class="category-image w-full">
-                        <div class="p-6">
-                            <div class="flex items-center justify-between mb-4">
-                                <div>
-                                    <h3 class="text-lg font-semibold text-gray-700">Festivals</h3>
-                                    <p class="text-sm text-gray-500">10 Service Providers</p>
-                                </div>
-                                <div class="dropdown relative">
-                                    <button class="text-gray-400 hover:text-gray-600 focus:outline-none">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </button>
-                                    <div class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden z-10">
-                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
-                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Delete</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="pt-4 border-t border-gray-100">
-                                <p class="text-sm text-gray-600">A festival is a vibrant celebration of culture, tradition, and community.</p>
-                            </div>
-                            <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
-                                <div class="text-sm text-gray-500">
-                                    <i class="fas fa-calendar-check text-green-500 mr-1"></i>
-                                    38 Bookings
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Category Card -->
-                    <div class="category-card bg-white rounded-xl shadow-sm overflow-hidden">
-                        <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Corporate Event" class="category-image w-full">
-                        <div class="p-6">
-                            <div class="flex items-center justify-between mb-4">
-                                <div>
-                                    <h3 class="text-lg font-semibold text-gray-700">Corporate Events</h3>
-                                    <p class="text-sm text-gray-500">6 Service Providers</p>
-                                </div>
-                                <div class="dropdown relative">
-                                    <button class="text-gray-400 hover:text-gray-600 focus:outline-none">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </button>
-                                    <div class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden z-10">
-                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
-                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Delete</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="pt-4 border-t border-gray-100">
-                                <p class="text-sm text-gray-600">A corporate event is a professional gathering designed to foster networking, collaboration.</p>
-                            </div>
-                            <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
-                                <div class="text-sm text-gray-500">
-                                    <i class="fas fa-calendar-check text-green-500 mr-1"></i>
-                                    28 Bookings
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Category Card -->
-                    <div class="category-card bg-white rounded-xl shadow-sm overflow-hidden">
-                        <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Children Party" class="category-image w-full">
-                        <div class="p-6">
-                            <div class="flex items-center justify-between mb-4">
-                                <div>
-                                    <h3 class="text-lg font-semibold text-gray-700">Children Party</h3>
-                                    <p class="text-sm text-gray-500">5 Service Providers</p>
-                                </div>
-                                <div class="dropdown relative">
-                                    <button class="text-gray-400 hover:text-gray-600 focus:outline-none">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </button>
-                                    <div class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden z-10">
-                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
-                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Delete</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="pt-4 border-t border-gray-100">
-                                <p class="text-sm text-gray-600">A children's party is a fun-filled celebration with games, decorations, and treats.</p>
-                            </div>
-                            <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
-                                <div class="text-sm text-gray-500">
-                                    <i class="fas fa-calendar-check text-green-500 mr-1"></i>
-                                    24 Bookings
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Category Card -->
-                    <div class="category-card bg-white rounded-xl shadow-sm overflow-hidden">
-                        <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Luxury Private Dinner" class="category-image w-full">
-                        <div class="p-6">
-                            <div class="flex items-center justify-between mb-4">
-                                <div>
-                                    <h3 class="text-lg font-semibold text-gray-700">Luxury Private Dinners</h3>
-                                    <p class="text-sm text-gray-500">9 Service Providers</p>
-                                </div>
-                                <div class="dropdown relative">
-                                    <button class="text-gray-400 hover:text-gray-600 focus:outline-none">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </button>
-                                    <div class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden z-10">
-                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
-                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Delete</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="pt-4 border-t border-gray-100">
-                                <p class="text-sm text-gray-600">A luxury private dinner is an exclusive dining experience featuring gourmet cuisine, elegant ambiance.</p>
-                            </div>
-                            <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
-                                <div class="text-sm text-gray-500">
-                                    <i class="fas fa-calendar-check text-green-500 mr-1"></i>
-                                    36 Bookings
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+
                 </div>
             </div>
         </div>
