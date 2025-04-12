@@ -739,7 +739,7 @@
                 </a>
                 
                 <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
+                    <li><a href="{{Route('components.client.home')}}">Home</a></li>
                     <li><a href="{{Route('components.client.categories')}}">Events</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="{{Route('components.client.providers')}}">Service Providers</a></li>
