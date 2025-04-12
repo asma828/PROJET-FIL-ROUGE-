@@ -119,47 +119,84 @@
          
                 
                 
-                <!-- Service Details -->
-                <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Service Information</h3>
-                    
-                    <div class="mb-6">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Service Category</label>
-                        <div class="flex items-center bg-gray-100 rounded-lg p-3">
-                            <i class="fas fa-heart text-pink-500 mr-3"></i>
-                            <span class="text-gray-800">Wedding Planning</span>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-6">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Service Description</label>
-                        <textarea class="w-full border border-gray-300 rounded-lg p-3 text-gray-700 text-sm resize-none h-32" readonly>We provide comprehensive wedding planning services for couples looking to create their dream wedding day. From venue selection to decoration, catering, entertainment, and more, we handle all aspects of your special day with meticulous attention to detail. Our team of experienced wedding planners will work closely with you to ensure your vision becomes reality.</textarea>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Service Area</label>
-                            <div class="flex items-center bg-gray-100 rounded-lg p-3">
-                                <i class="fas fa-map-marker-alt text-indigo-500 mr-3"></i>
-                                <span class="text-gray-800">Casablanca, Rabat, Marrakech</span>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Experience Level</label>
-                            <div class="flex items-center bg-gray-100 rounded-lg p-3">
-                                <i class="fas fa-medal text-amber-500 mr-3"></i>
-                                <span class="text-gray-800">5+ years of experience</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex justify-end">
-                        <button class="px-4 py-2 bg-indigo-600 text-white rounded-md text-sm hover:bg-indigo-700 transition">
-                            Edit Service Information
-                        </button>
-                    </div>
+             <!-- Service Information Form -->
+<div class="card bg-white rounded-xl shadow-sm overflow-hidden">
+    <div class="border-b border-gray-200">
+        <div class="flex">
+            <button class="px-6 py-3 text-orange-700 border-b-2 border-orange-700 font-medium">Service Information</button>
+        </div>
+    </div>
+    
+    <div class="p-6">
+        <!-- Service Information Form -->
+        <form>
+            <div class="mb-6">
+                <label for="service_category" class="block text-sm font-medium text-gray-700 mb-1">Service Category</label>
+                <div class="flex items-center">
+                    <i class="fas fa-heart text-pink-500 mr-3"></i>
+                    <input type="text" id="service_category" value="Wedding Planning" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
                 </div>
+            </div>
+            
+            <div class="mb-6">
+                <label for="service_description" class="block text-sm font-medium text-gray-700 mb-1">Service Description</label>
+                <textarea id="service_description" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">We provide comprehensive wedding planning services for couples looking to create their dream wedding day. From venue selection to decoration, catering, entertainment, and more, we handle all aspects of your special day with meticulous attention to detail. Our team of experienced wedding planners will work closely with you to ensure your vision becomes reality.</textarea>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <label for="service_area" class="block text-sm font-medium text-gray-700 mb-1">Service Area</label>
+                    <input type="text" id="service_area" value="Casablanca, Rabat, Marrakech" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+                <div>
+                    <label for="experience_level" class="block text-sm font-medium text-gray-700 mb-1">Experience Level</label>
+                    <input type="text" id="experience_level" value="5+ years of experience" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+            </div>
+            
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Service Features</label>
+                <div class="flex flex-wrap gap-2 mb-2">
+                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm flex items-center">
+                        Full Planning
+                        <button class="ml-1 text-indigo-500 hover:text-indigo-700">
+                            <i class="fas fa-times-circle"></i>
+                        </button>
+                    </span>
+                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm flex items-center">
+                        Day Coordination
+                        <button class="ml-1 text-indigo-500 hover:text-indigo-700">
+                            <i class="fas fa-times-circle"></i>
+                        </button>
+                    </span>
+                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm flex items-center">
+                        Vendor Referrals
+                        <button class="ml-1 text-indigo-500 hover:text-indigo-700">
+                            <i class="fas fa-times-circle"></i>
+                        </button>
+                    </span>
+                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm flex items-center">
+                        Budget Management
+                        <button class="ml-1 text-indigo-500 hover:text-indigo-700">
+                            <i class="fas fa-times-circle"></i>
+                        </button>
+                    </span>
+                </div>
+                <div class="flex">
+                    <input type="text" placeholder="Add a feature" class="flex-1 px-4 py-2 border border-gray-300 rounded-l-lg focus:ring-indigo-500 focus:border-indigo-500">
+                    <button type="button" class="bg-indigo-600 text-white px-4 py-2 rounded-r-lg hover:bg-indigo-700">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="flex justify-end space-x-3">
+                <button type="button" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
+                <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
                 
                 <!-- Gallery -->
                 <div class="bg-white rounded-xl shadow-sm p-6">
