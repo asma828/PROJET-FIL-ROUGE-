@@ -344,7 +344,10 @@
                 </ul>
                 
                 <div class="cta-buttons">
-                    <a href="{{Route('logout')}}" class="btn btn-primary">logout</a>
+                    <form action="{{ route('logout') }}" method="POST" class="inline">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Logout</button>
+                    </form>
                 </div>
             </nav>
         </div>
