@@ -19,11 +19,6 @@ class AdminController extends Controller
         return view('components.admin.EventManagement');
     }
 
-    public function category(){
-        $categories=EventCategory::with('user')->get();
-        return view('components.admin.CategoryManagement',compact('categories'));
-    }
-
     public function service(){
         return view('components.admin.serviceProvider');
     }
