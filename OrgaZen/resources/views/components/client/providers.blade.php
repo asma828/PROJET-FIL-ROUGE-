@@ -281,6 +281,19 @@
             color: var(--primary);
         }
         
+        .filter-dropdown .dropdown-menu {
+    display: none; 
+    position: absolute; 
+    background-color: #fff; 
+    border: 1px solid #ccc; 
+    width: 200px; 
+    z-index: 1000; 
+}
+
+.filter-dropdown:hover .dropdown-menu {
+    display: block; 
+}
+
         /* Providers Grid */
         .providers-section {
             padding: 80px 0;
