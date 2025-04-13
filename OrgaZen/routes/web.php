@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\EventCategoryController;
 use App\Http\Controllers\ProviderController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
@@ -26,7 +28,7 @@ Route::middleware(['auth','role:admin'])->group(function () {
 Route::get('/dashboard',[AdminController::class,'index'])->name('components.admin.dashboard');
 Route::get('/users',[AdminController::class,'usersManagement'])->name('components.admin.UserManagement');
 Route::get('/events',[AdminController::class,'events'])->name('components.admin.EventManagement');
-Route::get('/category',[AdminController::class,'category'])->name('components.admin.CategoryManagement');
+Route::get('/category',[EventCategoryController::class,'category'])->name('components.admin.CategoryManagement');
 Route::get('/service',[AdminController::class,'service'])->name('components.admin.serviceProvider');
 Route::get('/Payment',[AdminController::class,'Payment'])->name('components.admin.Payment');
 });
@@ -36,6 +38,7 @@ Route::get('/providerDashboard',[ProviderController::class,'dashboard'])->name('
 Route::get('/Booking',[ProviderController::class,'Booking'])->name('components.provider.BookingManagement');
 Route::get('/LiveChat',[ProviderController::class,'Chat'])->name('components.provider.Chat');
 Route::get('/MyServices',[ProviderController::class,'services'])->name('components.provider.MyService');
+Route::post('services',[ServiceController::class,'store'])->name('services');
 Route::get('/Reviews',[ProviderController::class,'Reviews'])->name('components.provider.Reviews');
 Route::get('/Profile',[ProviderController::class,'Profile'])->name('components.provider.Profile');
 });
