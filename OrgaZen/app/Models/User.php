@@ -15,7 +15,7 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
-    
+
     /**
      * The attributes that are mass assignable.
      *
