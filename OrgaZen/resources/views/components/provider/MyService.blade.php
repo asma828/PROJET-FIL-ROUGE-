@@ -86,7 +86,7 @@
                     @csrf
                     <i class="fas fa-sign-out-alt w-5 h-5 mr-3"></i>
                     <button>Logout</button>
-                </a>
+                </form>
             </div>
         </div>
         
@@ -129,66 +129,43 @@
     
     <div class="p-6">
         <!-- Service Information Form -->
-        <form>
+        <form action="{{route('services')}}" method="POST">
+            @csrf
             <div class="mb-6">
-                <label for="service_category" class="block text-sm font-medium text-gray-700 mb-1">Service Category</label>
+                <label for="service_category"  class="block text-sm font-medium text-gray-700 mb-1">Service</label>
                 <div class="flex items-center">
                     <i class="fas fa-heart text-pink-500 mr-3"></i>
-                    <input type="text" id="service_category" value="Wedding Planning" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                    <input type="text" id="service_category" name='name' value="Wedding Planning" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
                 </div>
             </div>
-            
+            <input type="hidden" name="provider_id" value="{{ auth()->id() }}">
             <div class="mb-6">
                 <label for="service_description" class="block text-sm font-medium text-gray-700 mb-1">Service Description</label>
-                <textarea id="service_description" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">We provide comprehensive wedding planning services for couples looking to create their dream wedding day. From venue selection to decoration, catering, entertainment, and more, we handle all aspects of your special day with meticulous attention to detail. Our team of experienced wedding planners will work closely with you to ensure your vision becomes reality.</textarea>
+                <textarea id="service_description" name='description' rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"></textarea>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
                     <label for="service_area" class="block text-sm font-medium text-gray-700 mb-1">Service Area</label>
-                    <input type="text" id="service_area" value="Casablanca, Rabat, Marrakech" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                    <input type="text" id="service_area" name="service_area"  value="Casablanca, Rabat, Marrakech" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
                 </div>
                 <div>
                     <label for="experience_level" class="block text-sm font-medium text-gray-700 mb-1">Experience Level</label>
-                    <input type="text" id="experience_level" value="5+ years of experience" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                    <input type="text" id="experience_level" name="experience_level" value="5+ years of experience" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
                 </div>
             </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <label for="price" class="block text-sm font-medium text-gray-700 mb-1">Base Price ($)</label>
+                    <input type="number" id="price" name="price" value="20" step="0.01" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+                <div>
+                    <label for="guest_count" class="block text-sm font-medium text-gray-700 mb-1">For How Many Guests</label>
+                    <input type="number" id="guest_count" name="guest_count" value="30" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+            </div>
+           
             
-            <div class="mb-6">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Service Features</label>
-                <div class="flex flex-wrap gap-2 mb-2">
-                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm flex items-center">
-                        Full Planning
-                        <button class="ml-1 text-indigo-500 hover:text-indigo-700">
-                            <i class="fas fa-times-circle"></i>
-                        </button>
-                    </span>
-                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm flex items-center">
-                        Day Coordination
-                        <button class="ml-1 text-indigo-500 hover:text-indigo-700">
-                            <i class="fas fa-times-circle"></i>
-                        </button>
-                    </span>
-                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm flex items-center">
-                        Vendor Referrals
-                        <button class="ml-1 text-indigo-500 hover:text-indigo-700">
-                            <i class="fas fa-times-circle"></i>
-                        </button>
-                    </span>
-                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm flex items-center">
-                        Budget Management
-                        <button class="ml-1 text-indigo-500 hover:text-indigo-700">
-                            <i class="fas fa-times-circle"></i>
-                        </button>
-                    </span>
-                </div>
-                <div class="flex">
-                    <input type="text" placeholder="Add a feature" class="flex-1 px-4 py-2 border border-gray-300 rounded-l-lg focus:ring-indigo-500 focus:border-indigo-500">
-                    <button type="button" class="bg-indigo-600 text-white px-4 py-2 rounded-r-lg hover:bg-indigo-700">
-                        <i class="fas fa-plus"></i>
-                    </button>
-                </div>
-            </div>
             
             <div class="flex justify-end space-x-3">
                 <button type="button" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
