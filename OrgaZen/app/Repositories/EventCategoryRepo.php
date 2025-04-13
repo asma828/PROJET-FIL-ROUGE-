@@ -2,7 +2,6 @@
 namespace App\Repositories;
 
 use App\Models\EventCategory;
-use App\Models\Plant;
 use App\Repositories\Interfaces\EventCategoryInterface;
 
 class EventCategoryRepo implements EventCategoryInterface
