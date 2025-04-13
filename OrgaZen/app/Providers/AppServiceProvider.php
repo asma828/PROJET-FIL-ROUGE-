@@ -7,6 +7,8 @@ use App\Repositories\AuthRepository;
 use App\Repositories\EventCategoryRepo;
 use App\Repositories\Interfaces\AuthRepositoryInterface;
 use App\Repositories\Interfaces\EventCategoryInterface;
+use App\Repositories\Interfaces\ServiceInterface;
+use App\Repositories\ServiceRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -18,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(AuthRepositoryInterface::class, AuthRepository::class);  
         $this->app->bind(EventCategoryInterface::class,EventCategoryRepo::class);
+        $this->app->bind(ServiceInterface::class,ServiceRepository::class);
     }
 
     /**
