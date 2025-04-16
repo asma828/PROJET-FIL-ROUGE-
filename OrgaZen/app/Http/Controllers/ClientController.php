@@ -31,4 +31,8 @@ class ClientController extends Controller
     public function selectProvider(){
         return view('components.client.serviceProviderSelect');
     }
+
+    public function history(){
+        return view('components.client.EventHistory');
+    }
 }
