@@ -413,13 +413,13 @@
         <div class="container">
             <nav>
                 <a href="#" class="logo">
-                    <i class="fas fa-calendar-alt"></i> Orgazen
+                    <i class=""></i> Orgazen
                 </a>
                 
                 <ul class="nav-links">
                     <li><a href="#">Home</a></li>
                     <li><a href="#" class="active">Events</a></li>
-                    <li><a href="#">Services</a></li>
+                    <li><a href="{{Route('components.client.EventHistory')}}">History</a></li>
                     <li><a href="#">Service Providers</a></li>
                 </ul>
                 
@@ -444,15 +444,7 @@
             <!-- Filter Options -->
             <div class="filter-options">
                 <div class="filter-group">
-                    <div class="filter-select-group">
-                        <span class="filter-label">Status:</span>
-                        <select class="filter-select">
-                            <option value="all">All Events</option>
-                            <option value="upcoming">Upcoming</option>
-                            <option value="completed">Completed</option>
-                            <option value="cancelled">Cancelled</option>
-                        </select>
-                    </div>
+                   
                     
                     <div class="filter-select-group">
                         <span class="filter-label">Type:</span>
@@ -480,7 +472,6 @@
                 <div class="event-card">
                     <div class="event-img">
                         <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="Sarah & Michael's Wedding">
-                        <div class="event-status status-upcoming">Upcoming</div>
                     </div>
                     <div class="event-details">
                         <div class="event-title">
@@ -506,10 +497,8 @@
                             </div>
                         </div>
                         <div class="event-actions">
-                            <span class="booking-id">ID: WED-2025061501</span>
                             <div class="action-buttons">
-                                <a href="#" class="btn btn-outline btn-small">Details</a>
-                                <a href="#" class="btn btn-primary btn-small">Manage</a>
+                              
                             </div>
                         </div>
                     </div>
@@ -519,7 +508,6 @@
                 <div class="event-card">
                     <div class="event-img">
                         <img src="https://i.pinimg.com/736x/15/35/a7/1535a7412263d5bead2511465a733642.jpg" alt="Emma's 30th Birthday">
-                        <div class="event-status status-upcoming">Upcoming</div>
                     </div>
                     <div class="event-details">
                         <div class="event-title">
@@ -545,10 +533,8 @@
                             </div>
                         </div>
                         <div class="event-actions">
-                            <span class="booking-id">ID: BIR-2025052201</span>
                             <div class="action-buttons">
-                                <a href="#" class="btn btn-outline btn-small">Details</a>
-                                <a href="#" class="btn btn-primary btn-small">Manage</a>
+                              
                             </div>
                         </div>
                     </div>
@@ -558,7 +544,6 @@
                 <div class="event-card">
                     <div class="event-img">
                         <img src="https://i.pinimg.com/736x/60/7e/66/607e66305ee9a8f67a3ecd1858af43a4.jpg" alt="Annual Company Conference">
-                        <div class="event-status status-completed">Completed</div>
                     </div>
                     <div class="event-details">
                         <div class="event-title">
@@ -584,10 +569,8 @@
                             </div>
                         </div>
                         <div class="event-actions">
-                            <span class="booking-id">ID: COR-2025021001</span>
                             <div class="action-buttons">
-                                <a href="#" class="btn btn-outline btn-small">Report</a>
-                                <a href="#" class="btn btn-primary btn-small">Review</a>
+                            
                             </div>
                         </div>
                     </div>
@@ -597,7 +580,6 @@
                 <div class="event-card">
                     <div class="event-img">
                         <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="Summer Charity Gala">
-                        <div class="event-status status-cancelled">Cancelled</div>
                     </div>
                     <div class="event-details">
                         <div class="event-title">
@@ -623,10 +605,8 @@
                             </div>
                         </div>
                         <div class="event-actions">
-                            <span class="booking-id">ID: FES-2025030501</span>
                             <div class="action-buttons">
-                                <a href="#" class="btn btn-outline btn-small">Details</a>
-                                <a href="#" class="btn btn-primary btn-small">Reschedule</a>
+                 
                             </div>
                         </div>
                     </div>
@@ -636,7 +616,6 @@
                 <div class="event-card">
                     <div class="event-img">
                         <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="John's Graduation Party">
-                        <div class="event-status status-upcoming">Upcoming</div>
                     </div>
                     <div class="event-details">
                         <div class="event-title">
@@ -662,10 +641,8 @@
                             </div>
                         </div>
                         <div class="event-actions">
-                            <span class="booking-id">ID: GRA-2025062801</span>
                             <div class="action-buttons">
-                                <a href="#" class="btn btn-outline btn-small">Details</a>
-                                <a href="#" class="btn btn-primary btn-small">Manage</a>
+                              
                             </div>
                         </div>
                     </div>
@@ -675,7 +652,6 @@
                 <div class="event-card">
                     <div class="event-img">
                         <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="New Year's House Party">
-                        <div class="event-status status-completed">Completed</div>
                     </div>
                     <div class="event-details">
                         <div class="event-title">
@@ -701,10 +677,8 @@
                             </div>
                         </div>
                         <div class="event-actions">
-                            <span class="booking-id">ID: PRI-2024123101</span>
                             <div class="action-buttons">
-                                <a href="#" class="btn btn-outline btn-small">Report</a>
-                                <a href="#" class="btn btn-primary btn-small">Review</a>
+                            
                             </div>
                         </div>
                     </div>

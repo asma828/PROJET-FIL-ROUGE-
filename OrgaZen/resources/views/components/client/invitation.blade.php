@@ -453,13 +453,13 @@
         <div class="container">
             <nav>
                 <a href="#" class="logo">
-                    <i class="fas fa-calendar-alt"></i> Orgazen
+                    <i class=""></i> Orgazen
                 </a>
                 
                 <ul class="nav-links">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Events</a></li>
-                    <li><a href="#">Services</a></li>
+                    <li><a href="{{Route('components.client.EventHistory')}}">History</a></li>
                     <li><a href="#">Service Providers</a></li>
                 </ul>
                 
@@ -576,7 +576,7 @@
                     
                     <div class="form-actions">
                         <a href="event-creation-step2.html" class="btn-back">Back</a>
-                        <a href="event-creation-step4.html" class="btn-next">Next: Payment</a>
+                        <a href="{{Route('components.client.payement')}}" class="btn-next">Next: Payment</a>
                     </div>
                 </form>
             </div>

@@ -281,13 +281,13 @@
         <div class="container">
             <nav>
                 <a href="#" class="logo">
-                    <i class="fas fa-calendar-star"></i> Orgazen
+                    <i class=""></i> Orgazen
                 </a>
                 
                 <ul class="nav-links">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Events</a></li>
-                    <li><a href="#">Services</a></li>
+                    <li><a href="{{Route('components.client.EventHistory')}}">History</a></li>
                     <li><a href="#">Service Providers</a></li>
                 </ul>
                 
@@ -320,7 +320,7 @@
                         <h3>{{$categorie->name}}</h3>
                         <p>{{$categorie->description}}</p>
                         <div class="category-cta">
-                            <a href="#" class="btn btn-primary">Create Wedding Event</a>
+                            <a href="{{Route('components.client.eventdetails')}}" class="btn btn-primary">Create Wedding Event</a>
                         </div>
                     </div>
                 </div>

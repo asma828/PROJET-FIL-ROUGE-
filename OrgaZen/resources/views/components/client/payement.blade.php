@@ -433,13 +433,13 @@
         <div class="container">
             <nav>
                 <a href="#" class="logo">
-                    <i class="fas fa-calendar-alt"></i> Orgazen
+                    <i class=""></i> Orgazen
                 </a>
                 
                 <ul class="nav-links">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Events</a></li>
-                    <li><a href="#">Services</a></li>
+                    <li><a href="{{Route('components.client.EventHistory')}}">History</a></li>
                     <li><a href="#">Service Providers</a></li>
                 </ul>
                 

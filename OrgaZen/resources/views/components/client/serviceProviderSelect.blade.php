@@ -401,7 +401,7 @@
                 <ul class="nav-links">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Events</a></li>
-                    <li><a href="#">Services</a></li>
+                    <li><a href="{{Route('components.client.EventHistory')}}">History</a></li>
                     <li><a href="#">Service Providers</a></li>
                 </ul>
                 
@@ -648,7 +648,7 @@
                     
                     <div class="form-actions">
                         <a href="event-creation-step1.html" class="btn-back">Back</a>
-                        <a href="event-creation-step3.html" class="btn-next">Next: Guest Invitations</a>
+                        <a href="{{Route('components.client.invitation')}}" class="btn-next">Next: Guest Invitations</a>
                     </div>
                 </form>
             </div>
