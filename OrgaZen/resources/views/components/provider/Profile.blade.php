@@ -203,32 +203,7 @@
                             
                             <div class="mb-6">
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Expertise & Skills</label>
-                                <div class="flex flex-wrap gap-2 mb-2">
-                                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm flex items-center">
-                                        Wedding Design
-                                        <button class="ml-1 text-bg-orange-700 hover:text-indigo-700">
-                                            <i class="fas fa-times-circle"></i>
-                                        </button>
-                                    </span>
-                                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm flex items-center">
-                                        Venue Selection
-                                        <button class="ml-1 text-indigo-500 hover:text-indigo-700">
-                                            <i class="fas fa-times-circle"></i>
-                                        </button>
-                                    </span>
-                                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm flex items-center">
-                                        Day Coordination
-                                        <button class="ml-1 text-indigo-500 hover:text-indigo-700">
-                                            <i class="fas fa-times-circle"></i>
-                                        </button>
-                                    </span>
-                                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm flex items-center">
-                                        Vendor Management
-                                        <button class="ml-1 text-indigo-500 hover:text-indigo-700">
-                                            <i class="fas fa-times-circle"></i>
-                                        </button>
-                                    </span>
-                                </div>
+
                                 <div class="flex">
                                     <input type="text" placeholder="Add a skill" class="flex-1 px-4 py-2 border border-gray-300 rounded-l-lg focus:ring-indigo-500 focus:border-indigo-500">
                                     <button type="button" class="bg-indigo-600 text-white px-4 py-2 rounded-r-lg hover:bg-indigo-700">
@@ -236,9 +211,6 @@
                                     </button>
                                 </div>
                             </div>
-                            
-                         
-                            
                             <div class="flex justify-end space-x-3">
                                 <button type="button" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
                                 <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">Save Changes</button>
