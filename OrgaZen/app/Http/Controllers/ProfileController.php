@@ -46,5 +46,19 @@ class ProfileController extends Controller
 
     }
 
+    public function updateProfileImage(Request $request)
+{
+    $request->validate([
+        'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
 
+    $user = auth()->user();
+
+    $path = $request->file('profile_image')->store('profile_images', 'public');
+    $user->update([
+        'image' => $path
+    ]);
+
+    return redirect()->back()->with('success', 'Profile image updated!');
+}
 }
