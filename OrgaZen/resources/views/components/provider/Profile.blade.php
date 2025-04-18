@@ -108,8 +108,8 @@
                         <div class="flex items-center space-x-3">
                             <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="" class="w-10 h-10 rounded-full">
                             <div>
-                                <p class="text-sm font-medium text-gray-700">Ahmed Sami</p>
-                                <p class="text-xs text-gray-500">Wedding Planner</p>
+                                <p class="text-sm font-medium text-gray-700">{{ $user->first_name }} {{ $user->last_name }}</p>
+                                <p class="text-xs text-gray-500">{{ $user->services->first()->name}}</p>
                             </div>
                         </div>
                     </div>
@@ -123,18 +123,25 @@
                     <div class="md:flex items-start">
                         <div class="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
                             <div class="relative">
-                                <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Profile" class="w-32 h-32 rounded-full object-cover border-4 border-indigo-100">
-                                <label for="profile-upload" class="absolute bottom-0 right-0 bg-indigo-600 text-white p-2 rounded-full cursor-pointer hover:bg-indigo-700">
-                                    <i class="fas fa-camera"></i>
-                                    <input id="profile-upload" type="file" class="hidden">
-                                </label>
+                                <img src="{{ $user->image ? asset('storage/' . $user->image) : 'https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg' }}"
+                                    alt="Profile"
+                                    class="w-32 h-32 rounded-full object-cover border-4 border-indigo-100">
+                                    
+                                <form action="{{Route('updateProfileImage')}}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <label for="profile-upload"
+                                        class="absolute bottom-0 right-0 bg-indigo-600 text-white p-2 rounded-full cursor-pointer hover:bg-indigo-700">
+                                        <i class="fas fa-camera"></i>
+                                        <input id="profile-upload" name="profile_image" type="file" class="hidden" onchange="this.form.submit()">
+                                    </label>
+                                </form>
                             </div>
                         </div>
                         <div class="flex-1">
                             <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                                 <div>
-                                    <h3 class="text-2xl font-bold text-gray-800">Ahmed Sami</h3>
-                                    <p class="text-orange-700 font-medium">Wedding Planner</p>
+                                    <h3 class="text-2xl font-bold text-gray-800">{{ $user->first_name }} {{ $user->last_name }}</h3>
+                                    <p class="text-orange-700 font-medium">{{ $user->services->first()->name ?? 'No service listed' }}</p>
                                 </div>
                                 <div class="flex items-center mt-3 md:mt-0">
                                     <div class="flex items-center mr-4">
@@ -154,18 +161,19 @@
                                 </div>
                             </div>
                             <div class="mb-4">
-                                <p class="text-gray-600">Expert wedding planner with 8+ years of experience organizing luxury weddings across Morocco. Specializing in creating memorable, stress-free celebrations that reflect each couple's unique love story.</p>
+                                <p class="text-gray-600">{{ $user->services->first()->description ?? 'No description available' }}</p>
                             </div>
                             <div class="flex flex-wrap gap-3">
-                                <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm">Wedding Design</span>
-                                <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm">Venue Selection</span>
-                                <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm">Day Coordination</span>
-                                <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm">Vendor Management</span>
+                                @foreach ($user->tags as $tag)
+                                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm">
+                                        {{ $tag->name }}
+                                    </span>
+                                @endforeach
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Profile Tabs and Content -->
                 <div class="card bg-white rounded-xl shadow-sm overflow-hidden">
                     <div class="border-b border-gray-200">
@@ -173,47 +181,67 @@
                             <button class="px-6 py-3 text-orange-700 border-b-2 border-orange-700 font-medium">Personal Information</button>
                         </div>
                     </div>
-                    
+
                     <div class="p-6">
                         <!-- Personal Information Form -->
-                        <form>
+                        <form action="{{Route('editProfile')}}" method="POST" enctype="multipart/form-data">
+                            @csrf
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                                 <div>
                                     <label for="first_name" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
-                                    <input type="text" id="first_name" value="Ahmed" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="text" id="first_name" name="first_name" value="{{ $user->first_name }}"
+                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
                                 </div>
                                 <div>
                                     <label for="last_name" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
-                                    <input type="text" id="last_name" value="Sami" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="text" id="last_name" name="last_name" value="{{ $user->last_name }}"
+                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
                                 </div>
                                 <div>
                                     <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                                    <input type="email" id="email" value="ahmed.sami@example.com" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="email" id="email" name="email" value="{{ $user->email }}"
+                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
                                 </div>
                                 <div>
                                     <label for="city" class="block text-sm font-medium text-gray-700 mb-1">City</label>
-                                    <input type="text" id="city" value="Casablanca" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="text" id="city" name="service_area" value="{{ $user->services->first()->service_area ?? '' }}"
+                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
                                 </div>
                             </div>
-                            
+
                             <div class="mb-6">
                                 <label for="bio" class="block text-sm font-medium text-gray-700 mb-1">Biography</label>
-                                <textarea id="bio" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">Expert wedding planner with 8+ years of experience organizing luxury weddings across Morocco. Specializing in creating memorable, stress-free celebrations that reflect each couple's unique love story. I work closely with top vendors to ensure every detail is perfect, from venue selection to final send-off.</textarea>
+                                <textarea id="bio" rows="4" name="description"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">{{ $user->services->first()->description ?? '' }}</textarea>
                             </div>
-                            
+
                             <div class="mb-6">
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Expertise & Skills</label>
-
-                                <div class="flex">
-                                    <input type="text" placeholder="Add a skill" class="flex-1 px-4 py-2 border border-gray-300 rounded-l-lg focus:ring-indigo-500 focus:border-indigo-500">
-                                    <button type="button" class="bg-indigo-600 text-white px-4 py-2 rounded-r-lg hover:bg-indigo-700">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
+                                <select name="tags[]" multiple class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500">
+                                    @foreach($allTags as $tag)
+                                        <option value="{{ $tag->id }}" {{ $user->tags->contains($tag->id) ? 'selected' : '' }}>
+                                            {{ $tag->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                
+                                <!-- Display tags -->
+                                <div class="flex flex-wrap gap-2 mt-3">
+                                    @foreach ($user->tags as $tag)
+                                        <div class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm flex items-center">
+                                            {{ $tag->name }}
+                                            <button type="submit" name="remove_tag" value="{{ $tag->id }}" class="ml-2 text-red-500 hover:text-red-700">
+                                                </button>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
+
                             <div class="flex justify-end space-x-3">
-                                <button type="button" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
-                                <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">Save Changes</button>
+                                <button type="button"
+                                        class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
+                                <button type="submit"
+                                        class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">Save Changes</button>
                             </div>
                         </form>
                     </div>
