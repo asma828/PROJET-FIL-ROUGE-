@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\EventCategoryController;
 use App\Http\Controllers\ProviderController;
@@ -40,7 +41,9 @@ Route::get('/LiveChat',[ProviderController::class,'Chat'])->name('components.pro
 Route::get('/MyServices',[ProviderController::class,'services'])->name('components.provider.MyService');
 Route::post('services',[ServiceController::class,'store'])->name('services');
 Route::get('/Reviews',[ProviderController::class,'Reviews'])->name('components.provider.Reviews');
-Route::get('/Profile',[ProviderController::class,'Profile'])->name('components.provider.Profile');
+Route::get('/profile', [ProfileController::class, 'show'])->name('components.provider.Profile');
+Route::post('/profile', [ProfileController::class, 'update'])->name('editProfile');
+Route::post('/profile/update-image', [ProfileController::class, 'updateProfileImage'])->name('updateProfileImage');
 });
 //authentification route
 Route::get('/',[AuthController::class,'showRegister'])->name('show.register');
