@@ -25,4 +25,8 @@ class service extends Model
     public function provider(){
         return $this->belongsTo(User::class,'provider_id');
     }
+
+    public function images(){
+        return $this->hasMany(ServiceImage::class);
+    }
 }
