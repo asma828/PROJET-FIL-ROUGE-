@@ -177,46 +177,34 @@
                 <div class="bg-white rounded-xl shadow-sm p-6">
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-lg font-semibold text-gray-800">Service Gallery</h3>
-                        <button class="px-4 py-2 bg-indigo-600 text-white rounded-md text-sm hover:bg-indigo-700 transition">
-                            <i class="fas fa-upload mr-2"></i>Add Photos
-                        </button>
+                
+                        <!-- Upload Button / Form -->
+                        <form action="{{ route('service.images.store', $service->id) }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <label class="px-4 py-2 bg-indigo-600 text-white rounded-md text-sm hover:bg-indigo-700 transition cursor-pointer">
+                                <i class="fas fa-upload mr-2"></i>Add Photos
+                                <input type="file" name="images[]" multiple class="hidden" onchange="this.form.submit()">
+                            </label>
+                        </form>
                     </div>
                     
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div class="relative group">
-                            <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Gallery Image" class="w-full h-32 object-cover rounded-lg">
-                            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition rounded-lg">
-                                <button class="p-1 bg-white rounded-full text-red-500 mr-2">
+                    @foreach($service->images as $image)
+                    <div class="relative group mb-4 mr-4 inline-block w-48">
+                        <img src="{{ asset('storage/' . $image->image_path) }}" 
+                             alt="Gallery Image" 
+                             class="w-full h-32 object-cover rounded-lg shadow-sm">
+                        
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition rounded-lg">
+                            <form action="{{ route('service.images.destroy', $image->id) }}" method="POST" onsubmit="return confirm('Delete this image?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="p-2 bg-white rounded-full text-red-500 hover:bg-red-100 transition">
                                     <i class="fas fa-trash"></i>
                                 </button>
-                            </div>
-                        </div>
-                        <div class="relative group">
-                            <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Gallery Image" class="w-full h-32 object-cover rounded-lg">
-                            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition rounded-lg">
-                                <button class="p-1 bg-white rounded-full text-red-500 mr-2">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="relative group">
-                            <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Gallery Image" class="w-full h-32 object-cover rounded-lg">
-                            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition rounded-lg">
-                                <button class="p-1 bg-white rounded-full text-red-500 mr-2">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="relative group">
-                            <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Gallery Image" class="w-full h-32 object-cover rounded-lg">
-                            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition rounded-lg">
-                                <button class="p-1 bg-white rounded-full text-red-500 mr-2">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
+                            </form>
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
