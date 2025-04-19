@@ -38,8 +38,8 @@ Route::middleware(['auth', 'role:provider'])->group(function () {
 Route::get('/providerDashboard',[ProviderController::class,'dashboard'])->name('components.provider.dashboard');
 Route::get('/Booking',[ProviderController::class,'Booking'])->name('components.provider.BookingManagement');
 Route::get('/LiveChat',[ProviderController::class,'Chat'])->name('components.provider.Chat');
-Route::get('/MyServices',[ProviderController::class,'services'])->name('components.provider.MyService');
-Route::post('services',[ServiceController::class,'store'])->name('services');
+Route::get('/my-service', [ServiceController::class, 'show'])->name('components.provider.MyService');
+Route::post('/services', [ServiceController::class, 'store'])->name('services');
 Route::get('/Reviews',[ProviderController::class,'Reviews'])->name('components.provider.Reviews');
 Route::get('/profile', [ProfileController::class, 'show'])->name('components.provider.Profile');
 Route::post('/profile', [ProfileController::class, 'update'])->name('editProfile');
