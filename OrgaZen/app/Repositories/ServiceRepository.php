@@ -13,4 +13,17 @@ class ServiceRepository implements ServiceInterface
     {
   return service::create($data);
     }
+
+    public function update($id, array $data)
+    {
+        $service = service::findOrFail($id);
+        $service->update($data);
+        return $service;
+    }
+
+    public function find($id)
+    {
+        return service::findOrFail($id);
+    }
+
 }
