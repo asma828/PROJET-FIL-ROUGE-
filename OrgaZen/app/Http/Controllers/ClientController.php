@@ -3,16 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\EventCategory;
+use App\Repositories\Interfaces\UserInterface;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
+    protected $userRepo;
+     public function __construct(UserInterface $userRepo) {
+        $this->userRepo= $userRepo;
+    }
     public function home(){
         return view('components.client.home');
     }
 
-    public function listingProviders(){
-        return view('components.client.providers');
+    public function listingProviders(){  
+        $providers= $this->userRepo->getAllProviders(); 
+        return view('components.client.providers',compact('providers'));
     }
 
     public function details(){
