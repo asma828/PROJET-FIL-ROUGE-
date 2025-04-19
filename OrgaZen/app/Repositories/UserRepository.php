@@ -1,6 +1,8 @@
 <?php
 namespace App\Repositories;
 
+use App\Models\tag;
+use App\Models\User;
 use App\Repositories\Interfaces\UserInterface;
 use Auth;
 
@@ -31,4 +33,13 @@ class UserRepository implements UserInterface{
 
         return $user->load(['tags', 'services']);
      }
+
+     public function getAllProviders()
+     {
+         return User::where('role_id', 3)
+             ->with(['tags', 'services','eventCategory'])
+             ->get();
+     }
+     
+
 }
