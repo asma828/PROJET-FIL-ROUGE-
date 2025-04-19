@@ -31,5 +31,11 @@ class ServiceImageController extends Controller
         return back()->with('success', 'Images uploaded successfully!');
     }
 
+    public function destroy($id)
+    {
+        $this->serviceImageRepo->delete($id);
+
+        return back()->with('success', 'Image deleted successfully!');
+    }
 }
 
