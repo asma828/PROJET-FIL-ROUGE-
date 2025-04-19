@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\service;
 use App\Repositories\Interfaces\ServiceInterface;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,13 @@ class ServiceController extends Controller
     public function __construct(ServiceInterface $serviceRepo)
     {
         $this->serviceRepo = $serviceRepo;
+    }
+
+    public function show()
+    {
+        $service = service::where('provider_id', auth()->id())->first();
+        
+        return view('components.provider.MyService', compact('service'));
     }
 
     public function store(Request $request){
@@ -27,7 +35,18 @@ class ServiceController extends Controller
         'provider_id' => 'required|exists:users,id',
        ]);
 
-       $this->serviceRepo->store($data);
-       return redirect()->route('components.provider.MyService')->with('success', 'service update successfully');   
-     }
+       // Checking if service already exists for the provider
+       $existingService = service::where('provider_id', auth()->id())->first();
+        
+       if ($existingService) {
+           $this->serviceRepo->update($existingService->id, $data);
+           $message = 'Service updated successfully';
+       } else {
+           $this->serviceRepo->store($data);
+           $message = 'Service created successfully';
+       }
+
+       return redirect()->route('components.provider.MyService')->with('success', $message);
+   }
+
 }
