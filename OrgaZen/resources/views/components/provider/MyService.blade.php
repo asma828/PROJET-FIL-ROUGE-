@@ -189,8 +189,13 @@
                                 <button class="p-1 bg-white rounded-full text-red-500 mr-2">
                                     <i class="fas fa-trash"></i>
                                 </button>
-                                <button class="p-1 bg-white rounded-full text-indigo-500">
-                                    <i class="fas fa-edit"></i>
+                            </div>
+                        </div>
+                        <div class="relative group">
+                            <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Gallery Image" class="w-full h-32 object-cover rounded-lg">
+                            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition rounded-lg">
+                                <button class="p-1 bg-white rounded-full text-red-500 mr-2">
+                                    <i class="fas fa-trash"></i>
                                 </button>
                             </div>
                         </div>
@@ -200,9 +205,6 @@
                                 <button class="p-1 bg-white rounded-full text-red-500 mr-2">
                                     <i class="fas fa-trash"></i>
                                 </button>
-                                <button class="p-1 bg-white rounded-full text-indigo-500">
-                                    <i class="fas fa-edit"></i>
-                                </button>
                             </div>
                         </div>
                         <div class="relative group">
@@ -210,20 +212,6 @@
                             <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition rounded-lg">
                                 <button class="p-1 bg-white rounded-full text-red-500 mr-2">
                                     <i class="fas fa-trash"></i>
-                                </button>
-                                <button class="p-1 bg-white rounded-full text-indigo-500">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="relative group">
-                            <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Gallery Image" class="w-full h-32 object-cover rounded-lg">
-                            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition rounded-lg">
-                                <button class="p-1 bg-white rounded-full text-red-500 mr-2">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                                <button class="p-1 bg-white rounded-full text-indigo-500">
-                                    <i class="fas fa-edit"></i>
                                 </button>
                             </div>
                         </div>
