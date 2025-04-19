@@ -119,7 +119,7 @@
          
                 
                 
-             <!-- Service Information Form -->
+<!-- Service Information Form -->
 <div class="card bg-white rounded-xl shadow-sm overflow-hidden">
     <div class="border-b border-gray-200">
         <div class="flex">
@@ -132,41 +132,39 @@
         <form action="{{route('services')}}" method="POST">
             @csrf
             <div class="mb-6">
-                <label for="service_category"  class="block text-sm font-medium text-gray-700 mb-1">Service</label>
+                <label for="service_category" class="block text-sm font-medium text-gray-700 mb-1">Service</label>
                 <div class="flex items-center">
                     <i class="fas fa-heart text-pink-500 mr-3"></i>
-                    <input type="text" id="service_category" name='name' value="Wedding Planning" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                    <input type="text" id="service_category" name='name' value="{{ $service->name ?? '' }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
                 </div>
             </div>
             <input type="hidden" name="provider_id" value="{{ auth()->id() }}">
             <div class="mb-6">
                 <label for="service_description" class="block text-sm font-medium text-gray-700 mb-1">Service Description</label>
-                <textarea id="service_description" name='description' rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                <textarea id="service_description" name='description' rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">{{ $service->description ?? '' }}</textarea>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
                     <label for="service_area" class="block text-sm font-medium text-gray-700 mb-1">Service Area</label>
-                    <input type="text" id="service_area" name="service_area"  value="Casablanca, Rabat, Marrakech" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                    <input type="text" id="service_area" name="service_area" value="{{ $service->service_area ?? '' }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
                 </div>
                 <div>
                     <label for="experience_level" class="block text-sm font-medium text-gray-700 mb-1">Experience Level</label>
-                    <input type="text" id="experience_level" name="experience_level" value="5+ years of experience" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                    <input type="text" id="experience_level" name="experience_level" value="{{ $service->experience_level ?? '' }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
                 </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
                     <label for="price" class="block text-sm font-medium text-gray-700 mb-1">Base Price ($)</label>
-                    <input type="number" id="price" name="price" value="20" step="0.01" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                    <input type="number" id="price" name="price" value="{{ $service->price ?? '' }}" step="0.01" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
                 </div>
                 <div>
                     <label for="guest_count" class="block text-sm font-medium text-gray-700 mb-1">For How Many Guests</label>
-                    <input type="number" id="guest_count" name="guest_count" value="30" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                    <input type="number" id="guest_count" name="guest_count" value="{{ $service->guest_count ?? '' }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
                 </div>
             </div>
            
-            
-            
             <div class="flex justify-end space-x-3">
                 <button type="button" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
                 <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">Save Changes</button>
