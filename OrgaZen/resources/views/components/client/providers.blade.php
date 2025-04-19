@@ -775,365 +775,66 @@
             </div>
             
             <div class="providers-grid">
-                <!-- Provider 1 -->
-                <div class="provider-card">
-                    <div class="provider-banner">
-                        <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="Wedding Provider">
-                        <span class="provider-category">Wedding</span>
-                        <div class="provider-rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.9</span>
-                        </div>
-                    </div>
-                    <div class="provider-profile">
-                        <div class="provider-avatar">
-                            <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="Wedding Elegance">
-                        </div>
-                        <div class="provider-info">
-                            <h3>Wedding Elegance</h3>
-                            <div class="provider-location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Marrackech</span>
+                <!-- Providers list-->
+                <div class="providers-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+                    <!-- Providers list -->
+                    @foreach ($providers as $provider)
+                    
+                        <div class="provider-card bg-white rounded-lg shadow-md overflow-hidden">
+                            <!-- Provider Banner -->
+                            <div class="provider-banner relative">
+                                <img src="{{ $provider->image ? asset('storage/' . $provider->image) : asset('images/default.jpg') }}" 
+                                alt="Provider Image" class="w-full h-48 object-cover">
+                                <span class="provider-category absolute top-2 left-2 bg-indigo-600 text-white text-xs px-3 py-1 rounded-full">
+                                    {{ $provider->eventCategory->name ?? 'Unknown Category' }}
+                                </span>
+                                <div class="provider-rating absolute top-2 right-2 bg-white text-yellow-500 px-2 py-1 rounded-full text-sm flex items-center">
+                                    <i class="fas fa-star mr-1"></i> 4.9
+                                </div>
+                            </div>
+                
+                            <!-- Provider Profile -->
+                            <div class="provider-profile flex items-center p-4">
+                                <div class="provider-avatar w-14 h-14 rounded-full overflow-hidden mr-4">
+                                    <img src="{{ $provider->image ? asset('storage/' . $provider->image) : asset('images/default.jpg') }}" 
+                                    alt="Provider Image" class="w-full h-48 object-cover">                                </div>
+                                <div class="provider-info">
+                                    <h3 class="text-lg font-semibold">{{ $provider->business_name }}</h3>
+                                    <div class="provider-location text-sm text-gray-500 flex items-center">
+                                        <i class="fas fa-map-marker-alt mr-1"></i>
+                                        <span>{{ $provider->services->service_area ?? 'Unknown' }}</span>                                    </div>
+                                </div>
+                            </div>
+                
+                            <!-- Provider Content -->
+                            <div class="provider-content px-4 pb-4">
+                                <p class="provider-description text-sm text-gray-600 mb-3">
+                                   {{ $provider->services->description ?? 'Unknown'}}
+                                </p>
+                                <!-- Meta -->
+                                <div class="provider-meta flex justify-between text-center text-sm text-gray-700 mb-3">
+                                    <div class="meta-item">
+                                        <div class="meta-value font-semibold">126</div>
+                                        <div class="meta-label">Events</div>
+                                    </div>
+                                    <div class="meta-item">
+                                        <div class="meta-value font-semibold">4.9</div>
+                                        <div class="meta-label">Rating</div>
+                                    </div>
+                                </div>
+                
+                                <!-- Action -->
+                                <div class="provider-actions text-center">
+                                    <a href="{{ route('components.client.provider-details', $provider->id) }}"
+                                       class="btn btn-primary bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-md">
+                                        View Details
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="provider-content">
-                        <p class="provider-description">Luxury wedding planning service specializing in elegant, memorable celebrations. From intimate gatherings to grand celebrations, we create magical moments.</p>
-                        <div class="provider-meta">
-                            <div class="meta-item">
-                                <div class="meta-value">126</div>
-                                <div class="meta-label">Events</div>
-                            </div>
-                            <div class="meta-item">
-                                <div class="meta-value">4.9</div>
-                                <div class="meta-label">Rating</div>
-                            </div>
-                           
-                        </div>
-                        <div class="provider-actions">
-                            <a href="{{Route('components.client.provider-details')}}" class="btn btn-primary">View Details</a>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 
-                <!-- Provider 2 -->
-                <div class="provider-card">
-                    <div class="provider-banner">
-                        <img src="https://i.pinimg.com/736x/15/35/a7/1535a7412263d5bead2511465a733642.jpg" alt="Birthday Provider">
-                        <span class="provider-category">Birthday</span>
-                        <div class="provider-rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.8</span>
-                        </div>
-                    </div>
-                    <div class="provider-profile">
-                        <div class="provider-avatar">
-                            <img src="https://i.pinimg.com/736x/15/35/a7/1535a7412263d5bead2511465a733642.jpg" alt="Celebration Masters">
-                        </div>
-                        <div class="provider-info">
-                            <h3>Celebration Masters</h3>
-                            <div class="provider-location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Casablanca</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="provider-content">
-                        <p class="provider-description">Creating unforgettable birthday experiences for all ages. Themed parties, entertainment, catering, and decoration services tailored to your preferences.</p>
-                        <div class="provider-meta">
-                            <div class="meta-item">
-                                <div class="meta-value">203</div>
-                                <div class="meta-label">Events</div>
-                            </div>
-                            <div class="meta-item">
-                                <div class="meta-value">4.8</div>
-                                <div class="meta-label">Rating</div>
-                            </div>
-                        </div>
-                        <div class="provider-actions">
-                            <a href="#" class="btn btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Provider 3 -->
-                <div class="provider-card">
-                    <div class="provider-banner">
-                        <img src="https://i.pinimg.com/736x/60/7e/66/607e66305ee9a8f67a3ecd1858af43a4.jpg" alt="Corporate Provider">
-                        <span class="provider-category">Corporate</span>
-                        <div class="provider-rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.7</span>
-                        </div>
-                    </div>
-                    <div class="provider-profile">
-                        <div class="provider-avatar">
-                            <img src="https://i.pinimg.com/736x/60/7e/66/607e66305ee9a8f67a3ecd1858af43a4.jpg" alt="Business Events Pro">
-                        </div>
-                        <div class="provider-info">
-                            <h3>Business Events Pro</h3>
-                            <div class="provider-location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Tanger</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="provider-content">
-                        <p class="provider-description">Professional corporate event planning services for conferences, team building, product launches, and business meetings with attention to detail.</p>
-                        <div class="provider-meta">
-                            <div class="meta-item">
-                                <div class="meta-value">157</div>
-                                <div class="meta-label">Events</div>
-                            </div>
-                            <div class="meta-item">
-                                <div class="meta-value">4.7</div>
-                                <div class="meta-label">Rating</div>
-                            </div>
-                           
-                        </div>
-                        <div class="provider-actions">
-                            <a href="#" class="btn btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Provider 4 -->
-                <div class="provider-card">
-                    <div class="provider-banner">
-                        <img src="https://i.pinimg.com/736x/60/7e/66/607e66305ee9a8f67a3ecd1858af43a4.jpg" alt="Corporate Provider">
-                        <span class="provider-category">Corporate</span>
-                        <div class="provider-rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.7</span>
-                        </div>
-                    </div>
-                    <div class="provider-profile">
-                        <div class="provider-avatar">
-                            <img src="https://i.pinimg.com/736x/60/7e/66/607e66305ee9a8f67a3ecd1858af43a4.jpg" alt="Business Events Pro">
-                        </div>
-                        <div class="provider-info">
-                            <h3>Business Events Pro</h3>
-                            <div class="provider-location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Tanger</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="provider-content">
-                        <p class="provider-description">Professional corporate event planning services for conferences, team building, product launches, and business meetings with attention to detail.</p>
-                        <div class="provider-meta">
-                            <div class="meta-item">
-                                <div class="meta-value">157</div>
-                                <div class="meta-label">Events</div>
-                            </div>
-                            <div class="meta-item">
-                                <div class="meta-value">4.7</div>
-                                <div class="meta-label">Rating</div>
-                            </div>
-                           
-                        </div>
-                        <div class="provider-actions">
-                            <a href="#" class="btn btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="provider-card">
-                    <div class="provider-banner">
-                        <img src="https://i.pinimg.com/736x/60/7e/66/607e66305ee9a8f67a3ecd1858af43a4.jpg" alt="Corporate Provider">
-                        <span class="provider-category">Corporate</span>
-                        <div class="provider-rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.7</span>
-                        </div>
-                    </div>
-                    <div class="provider-profile">
-                        <div class="provider-avatar">
-                            <img src="https://i.pinimg.com/736x/60/7e/66/607e66305ee9a8f67a3ecd1858af43a4.jpg" alt="Business Events Pro">
-                        </div>
-                        <div class="provider-info">
-                            <h3>Business Events Pro</h3>
-                            <div class="provider-location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Tanger</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="provider-content">
-                        <p class="provider-description">Professional corporate event planning services for conferences, team building, product launches, and business meetings with attention to detail.</p>
-                        <div class="provider-meta">
-                            <div class="meta-item">
-                                <div class="meta-value">157</div>
-                                <div class="meta-label">Events</div>
-                            </div>
-                            <div class="meta-item">
-                                <div class="meta-value">4.7</div>
-                                <div class="meta-label">Rating</div>
-                            </div>
-                           
-                        </div>
-                        <div class="provider-actions">
-                            <a href="#" class="btn btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="provider-card">
-                    <div class="provider-banner">
-                        <img src="https://i.pinimg.com/736x/60/7e/66/607e66305ee9a8f67a3ecd1858af43a4.jpg" alt="Corporate Provider">
-                        <span class="provider-category">Corporate</span>
-                        <div class="provider-rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.7</span>
-                        </div>
-                    </div>
-                    <div class="provider-profile">
-                        <div class="provider-avatar">
-                            <img src="https://i.pinimg.com/736x/60/7e/66/607e66305ee9a8f67a3ecd1858af43a4.jpg" alt="Business Events Pro">
-                        </div>
-                        <div class="provider-info">
-                            <h3>Business Events Pro</h3>
-                            <div class="provider-location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Tanger</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="provider-content">
-                        <p class="provider-description">Professional corporate event planning services for conferences, team building, product launches, and business meetings with attention to detail.</p>
-                        <div class="provider-meta">
-                            <div class="meta-item">
-                                <div class="meta-value">157</div>
-                                <div class="meta-label">Events</div>
-                            </div>
-                            <div class="meta-item">
-                                <div class="meta-value">4.7</div>
-                                <div class="meta-label">Rating</div>
-                            </div>
-                           
-                        </div>
-                        <div class="provider-actions">
-                            <a href="#" class="btn btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="provider-card">
-                    <div class="provider-banner">
-                        <img src="https://i.pinimg.com/736x/60/7e/66/607e66305ee9a8f67a3ecd1858af43a4.jpg" alt="Corporate Provider">
-                        <span class="provider-category">Corporate</span>
-                        <div class="provider-rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.7</span>
-                        </div>
-                    </div>
-                    <div class="provider-profile">
-                        <div class="provider-avatar">
-                            <img src="https://i.pinimg.com/736x/60/7e/66/607e66305ee9a8f67a3ecd1858af43a4.jpg" alt="Business Events Pro">
-                        </div>
-                        <div class="provider-info">
-                            <h3>Business Events Pro</h3>
-                            <div class="provider-location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Tanger</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="provider-content">
-                        <p class="provider-description">Professional corporate event planning services for conferences, team building, product launches, and business meetings with attention to detail.</p>
-                        <div class="provider-meta">
-                            <div class="meta-item">
-                                <div class="meta-value">157</div>
-                                <div class="meta-label">Events</div>
-                            </div>
-                            <div class="meta-item">
-                                <div class="meta-value">4.7</div>
-                                <div class="meta-label">Rating</div>
-                            </div>
-                           
-                        </div>
-                        <div class="provider-actions">
-                            <a href="#" class="btn btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="provider-card">
-                    <div class="provider-banner">
-                        <img src="https://i.pinimg.com/736x/60/7e/66/607e66305ee9a8f67a3ecd1858af43a4.jpg" alt="Corporate Provider">
-                        <span class="provider-category">Corporate</span>
-                        <div class="provider-rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.7</span>
-                        </div>
-                    </div>
-                    <div class="provider-profile">
-                        <div class="provider-avatar">
-                            <img src="https://i.pinimg.com/736x/60/7e/66/607e66305ee9a8f67a3ecd1858af43a4.jpg" alt="Business Events Pro">
-                        </div>
-                        <div class="provider-info">
-                            <h3>Business Events Pro</h3>
-                            <div class="provider-location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Tanger</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="provider-content">
-                        <p class="provider-description">Professional corporate event planning services for conferences, team building, product launches, and business meetings with attention to detail.</p>
-                        <div class="provider-meta">
-                            <div class="meta-item">
-                                <div class="meta-value">157</div>
-                                <div class="meta-label">Events</div>
-                            </div>
-                            <div class="meta-item">
-                                <div class="meta-value">4.7</div>
-                                <div class="meta-label">Rating</div>
-                            </div>
-                           
-                        </div>
-                        <div class="provider-actions">
-                            <a href="#" class="btn btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="provider-card">
-                    <div class="provider-banner">
-                        <img src="https://i.pinimg.com/736x/60/7e/66/607e66305ee9a8f67a3ecd1858af43a4.jpg" alt="Corporate Provider">
-                        <span class="provider-category">Corporate</span>
-                        <div class="provider-rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.7</span>
-                        </div>
-                    </div>
-                    <div class="provider-profile">
-                        <div class="provider-avatar">
-                            <img src="https://i.pinimg.com/736x/60/7e/66/607e66305ee9a8f67a3ecd1858af43a4.jpg" alt="Business Events Pro">
-                        </div>
-                        <div class="provider-info">
-                            <h3>Business Events Pro</h3>
-                            <div class="provider-location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Tanger</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="provider-content">
-                        <p class="provider-description">Professional corporate event planning services for conferences, team building, product launches, and business meetings with attention to detail.</p>
-                        <div class="provider-meta">
-                            <div class="meta-item">
-                                <div class="meta-value">157</div>
-                                <div class="meta-label">Events</div>
-                            </div>
-                            <div class="meta-item">
-                                <div class="meta-value">4.7</div>
-                                <div class="meta-label">Rating</div>
-                            </div>
-                           
-                        </div>
-                        <div class="provider-actions">
-                            <a href="#" class="btn btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
+    </section>
+</body>
+</html>
