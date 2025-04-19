@@ -20,6 +20,16 @@ class ServiceImageController extends Controller
         return view('components.provider.MyService', compact('images'));
     }
 
- 
+    public function store(Request $request, $id)
+    {
+        $request->validate([
+            'images.*' => 'image|max:2048',
+        ]);
+        
+        $this->serviceImageRepo->store($id, $request->file('images'));
+        
+        return back()->with('success', 'Images uploaded successfully!');
+    }
+
 }
 
