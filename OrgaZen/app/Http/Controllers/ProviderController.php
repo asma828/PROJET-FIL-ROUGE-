@@ -18,10 +18,6 @@ class ProviderController extends Controller
         return view('components.provider.BookingManagement');
     }
 
-    public function services(){
-        return view('components.provider.MyService');
-    }
-
     public function Reviews(){
         return view('components.provider.Reviews');
     }
