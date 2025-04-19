@@ -59,6 +59,10 @@ class User extends Authenticatable
 
 public function services()
 {
-    return $this->hasMany(Service::class, 'provider_id');
+    return $this->hasOne(Service::class, 'provider_id');
+}
+
+public function eventCategory() {
+    return $this->belongsTo(EventCategory::class, 'event_category_id');
 }
 }
