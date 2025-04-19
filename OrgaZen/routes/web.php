@@ -5,6 +5,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\EventCategoryController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ServiceImageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
@@ -40,6 +41,9 @@ Route::get('/Booking',[ProviderController::class,'Booking'])->name('components.p
 Route::get('/LiveChat',[ProviderController::class,'Chat'])->name('components.provider.Chat');
 Route::get('/my-service', [ServiceController::class, 'show'])->name('components.provider.MyService');
 Route::post('/services', [ServiceController::class, 'store'])->name('services');
+Route::post('/service/{id}/images', [ServiceImageController::class, 'store'])->name('service.images.store');
+Route::delete('/service/images/{id}', [ServiceImageController::class, 'destroy'])->name('service.images.destroy');
+
 Route::get('/Reviews',[ProviderController::class,'Reviews'])->name('components.provider.Reviews');
 Route::get('/profile', [ProfileController::class, 'show'])->name('components.provider.Profile');
 Route::post('/profile', [ProfileController::class, 'update'])->name('editProfile');
