@@ -15,12 +15,8 @@ class EventCategoryController extends Controller
 
     public function category(){
         $categories=$this->evenCategoryRepo->getAllCategory();
+        
         return view('components.admin.CategoryManagement',compact('categories'));
     }
-    public function store(Request $request){
-    $request->validate([
-        'name' => 'required|string',
-    ]);
-    
-}
+
 }
