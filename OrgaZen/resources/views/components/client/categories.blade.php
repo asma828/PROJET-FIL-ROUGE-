@@ -320,8 +320,7 @@
                         <h3>{{$categorie->name}}</h3>
                         <p>{{$categorie->description}}</p>
                         <div class="category-cta">
-                            <a href="{{Route('components.client.eventdetails')}}" class="btn btn-primary">Create Wedding Event</a>
-                        </div>
+                            <a href="{{Route('components.client.eventdetails', ['category_id' => $categorie->id])}}" class="btn btn-primary">Create {{$categorie->name}} Event</a>                        </div>
                     </div>
                 </div>
                 @endforeach
