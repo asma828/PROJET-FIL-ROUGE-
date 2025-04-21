@@ -22,7 +22,7 @@ class UserRepository implements UserInterface{
             'image' => $data['image'] ?? $user->image,
         ]);
         if (isset($data['service_area'],$data['description'])) {
-            $user->services()->update([
+            $user->service()->update([
                 'service_area' => $data['service_area'],
                 'description' => $data['description'],
             ]);
