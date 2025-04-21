@@ -329,7 +329,7 @@
             </nav>
         </div>
     </header>
-    
+
     <!-- Create Event Section - Step 1 -->
     <section class="create-event" id="create-event">
         <div class="container">
@@ -360,49 +360,51 @@
             
             <!-- Form Container -->
             <div class="form-container">
-                <form id="eventDetailsForm">
+                <form id="eventDetailsForm" action="{{ route('reservations.store') }}" method="POST">
+                    @csrf
                     <div class="form-group">
+                        <input type="hidden" name="event_category_id" value="{{ $category_id }}">
                         <label for="eventName">Event Name</label>
-                        <input type="text" id="eventName" class="form-control" placeholder="Enter your event name" required>
+                        <input type="text" id="name" name="name"  class="form-control" placeholder="Enter your event name" required>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
                             <label for="eventDate">Event Date</label>
-                            <input type="date" id="eventDate" class="form-control" required>
+                            <input type="date" id="event_date" name="event_date"class="form-control" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="eventTime">Event Time</label>
-                            <input type="time" id="eventTime" class="form-control" required>
+                            <input type="time" id="event_time" name="event_time" class="form-control" required>
                         </div>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
                             <label for="guestCount">Number of Guests</label>
-                            <input type="number" id="guestCount" class="form-control" placeholder="Expected number of guests" min="1" required>
+                            <input type="number" id="guest_count" name="guest_count" class="form-control" placeholder="Expected number of guests" min="1" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="eventDuration">Duration (hours)</label>
-                            <input type="number" id="eventDuration" class="form-control" placeholder="Event duration in hours" min="1" required>
+                            <input type="number" id="duration" name="duration" class="form-control" placeholder="Event duration in hours" min="1" required>
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="eventLocation">Location</label>
-                        <input type="text" id="eventLocation" class="form-control" placeholder="Enter event location or venue" required>
+                        <input type="text" id="location" name="location"class="form-control" placeholder="Enter event location or venue" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="eventDescription">Event Description</label>
-                        <textarea id="eventDescription" class="form-control" rows="4" placeholder="Add details about your event"></textarea>
+                        <textarea id="description" name="description" class="form-control" rows="4" placeholder="Add details about your event"></textarea>
                     </div>
                     
                     <div class="form-actions">
                         <a href="#" class="btn">Cancel</a>
-                        <a href="{{Route('components.client.serviceProviderSelect')}}" class="btn-next">Next: Choose Service Providers</a>
+                        <button type="submit" class="btn-next">Next: Choose Service Providers</a>
                     </div>
                 </form>
             </div>
