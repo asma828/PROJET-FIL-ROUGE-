@@ -172,12 +172,11 @@
         </form>
     </div>
 </div>
-                
+@if(isset($service) && $service)
                 <!-- Gallery -->
                 <div class="bg-white rounded-xl shadow-sm p-6">
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-lg font-semibold text-gray-800">Service Gallery</h3>
-                
                         <!-- Upload Button / Form -->
                         <form action="{{ route('service.images.store', $service->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
@@ -187,7 +186,7 @@
                             </label>
                         </form>
                     </div>
-                    
+                    @if($service->images && count($service->images) > 0)
                     @foreach($service->images as $image)
                     <div class="relative group mb-4 mr-4 inline-block w-48">
                         <img src="{{ asset('storage/' . $image->image_path) }}" 
@@ -205,7 +204,16 @@
                         </div>
                     </div>
                 @endforeach
+                @else
+                <p class="text-gray-500">No images uploaded yet.</p>
+            @endif
             </div>
+            @else
+    <div class="bg-white rounded-xl shadow-sm p-6">
+        <p class="text-gray-500">Please create a service first before adding images.</p>
+        <!-- Maybe add a link to create a service here -->
+    </div>
+@endif
         </div>
     </div>
 </body>
