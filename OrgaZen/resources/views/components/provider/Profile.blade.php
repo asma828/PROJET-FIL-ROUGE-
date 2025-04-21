@@ -109,7 +109,7 @@
                             <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="" class="w-10 h-10 rounded-full">
                             <div>
                                 <p class="text-sm font-medium text-gray-700">{{ $user->first_name }} {{ $user->last_name }}</p>
-                                <p class="text-xs text-gray-500">{{ $user->services->first()->name}}</p>
+                                <p class="text-xs text-gray-500">{{ $user->service->name}}</p>
                             </div>
                         </div>
                     </div>
@@ -141,7 +141,7 @@
                             <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                                 <div>
                                     <h3 class="text-2xl font-bold text-gray-800">{{ $user->first_name }} {{ $user->last_name }}</h3>
-                                    <p class="text-orange-700 font-medium">{{ $user->services->first()->name ?? 'No service listed' }}</p>
+                                    <p class="text-orange-700 font-medium">{{ $user->service->name ?? 'No service listed' }}</p>
                                 </div>
                                 <div class="flex items-center mt-3 md:mt-0">
                                     <div class="flex items-center mr-4">
@@ -161,7 +161,7 @@
                                 </div>
                             </div>
                             <div class="mb-4">
-                                <p class="text-gray-600">{{ $user->services->first()->description ?? 'No description available' }}</p>
+                                <p class="text-gray-600">{{ $user->service->description ?? 'No description available' }}</p>
                             </div>
                             <div class="flex flex-wrap gap-3">
                                 @foreach ($user->tags as $tag)
@@ -204,7 +204,7 @@
                                 </div>
                                 <div>
                                     <label for="city" class="block text-sm font-medium text-gray-700 mb-1">City</label>
-                                    <input type="text" id="city" name="service_area" value="{{ $user->services->first()->service_area ?? '' }}"
+                                    <input type="text" id="city" name="service_area" value="{{ $user->service->service_area ?? '' }}"
                                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
                                 </div>
                             </div>
@@ -212,7 +212,7 @@
                             <div class="mb-6">
                                 <label for="bio" class="block text-sm font-medium text-gray-700 mb-1">Biography</label>
                                 <textarea id="bio" rows="4" name="description"
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">{{ $user->services->first()->description ?? '' }}</textarea>
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">{{ $user->service->description ?? '' }}</textarea>
                             </div>
 
                             <div class="mb-6">
