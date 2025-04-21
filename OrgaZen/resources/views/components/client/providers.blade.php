@@ -774,12 +774,10 @@
                 <p>Browse through our highly-rated event professionals each specializing in their own category</p>
             </div>
             
-            <div class="providers-grid">
                 <!-- Providers list-->
-                <div class="providers-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+                <div class="providers-grid p-6">
                     <!-- Providers list -->
                     @foreach ($providers as $provider)
-                    
                         <div class="provider-card bg-white rounded-lg shadow-md overflow-hidden">
                             <!-- Provider Banner -->
                             <div class="provider-banner relative">
@@ -834,7 +832,8 @@
                         </div>
                     @endforeach
                 </div>
-                
+            </div>
+        </div>
     </section>
 </body>
 </html>
