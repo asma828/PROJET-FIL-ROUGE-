@@ -57,7 +57,7 @@ class User extends Authenticatable
     return $this->belongsToMany(Tag::class, 'user_tag');
 }
 
-public function services()
+public function service()
 {
     return $this->hasOne(Service::class, 'provider_id');
 }
