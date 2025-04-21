@@ -18,8 +18,8 @@ class ServiceController extends Controller
     public function show()
     {
         $service = service::where('provider_id', auth()->id())->first();
-        
-        return view('components.provider.MyService', compact('service'));
+        $hasService = ($service !== null);
+        return view('components.provider.MyService', compact('service', 'hasService'));
     }
 
     public function store(Request $request){
