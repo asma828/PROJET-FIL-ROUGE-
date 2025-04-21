@@ -48,6 +48,19 @@ class ReservationController extends Controller
         return redirect()->route('components.client.serviceProviderSelect', $reservation->id);
     }
 
+    public function assignProvider(Request $request, $reservationId)
+{
+
+    // dd($request->all());
+    $reservation = $this->reservationRepository->findById($reservationId);
+
+    $reservation->update([
+        'provider_id' => $request->provider_id,
+        'status' => 'step2',
+    ]);
+    return redirect()->route('components.client.invitation', $reservationId);
+}
+
 
 
 
