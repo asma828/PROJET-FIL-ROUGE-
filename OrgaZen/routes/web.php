@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\EventCategoryController;
 use App\Http\Controllers\ProviderController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ServiceImageController;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +23,8 @@ use NunoMaduro\Collision\Provider;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -61,11 +65,11 @@ Route::get('/home',[ClientController::class,'home'])->name('components.client.ho
 Route::get('/providers',[ClientController::class,'listingProviders'])->name('components.client.providers');
 Route::get('/details',[ClientController::class,'details'])->name('components.client.provider-details');
 Route::get('/categories',[ClientController::class,'categories'])->name('components.client.categories');
-Route::get('/creatEvent',[ClientController::class,'createvent'])->name('components.client.eventdetails');
-Route::get('/selectProvider',[ClientController::class,'selectProvider'])->name('components.client.serviceProviderSelect');
-Route::get('/invitation',[ClientController::class,'invitation'])->name('components.client.invitation');
-Route::get('/payement',[ClientController::class,'payement'])->name('components.client.payement');
-Route::get('/history',[ClientController::class,'History'])->name('components.client.EventHistory');
+Route::get('/creatEvent/{category_id}',[ClientController::class,'createvent'])->name('components.client.eventdetails');
+
+
+
+
 });
 
 
