@@ -63,6 +63,37 @@ class ReservationController extends Controller
 
 
 
+public function sendInvitations(Request $request, $reservationId)
+{
+    $request->validate([
+        'guest_emails' => 'required|array',
+        'guest_names' => 'required|array',
+        'guest_emails.*' => 'email',
+        'guest_names.*' => 'string|max:255',
+    ]);
+
+    $reservation = $this->reservationRepository->findById($reservationId);
+
+    $emails = $request->guest_emails;
+    $names = $request->guest_names;
+    $personalMessage = $request->personal_message;
+
+    foreach ($emails as $index => $email) {
+        Mail::to($email)->send(new EventInvitationMail(
+            $names[$index],
+            $reservation->name,
+            $reservation->event_date,
+            $reservation->location,
+            $personalMessage
+        ));
+    }
+
+    
+    $reservation->update(['status' => 'step3']);
+
+    return redirect()->route('components.client.payement', $reservationId)->with('success', 'Invitations sent!');
+}
+
 
 
 }
