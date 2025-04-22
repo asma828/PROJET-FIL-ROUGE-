@@ -37,6 +37,7 @@ Route::delete('/user/{id}', [AdminController::class, 'destroy'])->name('user.des
 Route::get('/events',[AdminController::class,'events'])->name('components.admin.EventManagement');
 Route::delete('/event/{id}', [ReservationController::class, 'destroy'])->name('event.delete');
 Route::get('/category',[EventCategoryController::class,'category'])->name('components.admin.CategoryManagement');
+Route::delete('/category/{id}', [EventCategoryController::class, 'destroy'])->name('category.destroy');
 Route::get('/service',[AdminController::class,'service'])->name('components.admin.serviceProvider');
 Route::get('/Payment',[AdminController::class,'Payment'])->name('components.admin.Payment');
 });
