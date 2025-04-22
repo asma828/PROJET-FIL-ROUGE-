@@ -425,6 +425,22 @@
             font-size: 18px;
             color: var(--gray);
         }
+
+
+        .StripeElement {
+            background-color: white;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .StripeElement--focus {
+            border-color: var(--primary);
+        }
+
+        .form-control {
+            margin-bottom: 16px;
+        }
     </style>
 </head>
 <body>
@@ -453,7 +469,7 @@
         </div>
     </header>
     
-    <!-- Create Event Section - Step 4 (Payment) -->
+    <!-- Create Event Section  -->
     <section class="create-event" id="create-event">
         <div class="container">
             <div class="section-title">
@@ -488,115 +504,118 @@
                     <h3 class="summary-title">Order Summary</h3>
                     
                     <div class="summary-item">
-                        <span class="summary-label">Venue Booking Fee</span>
-                        <span class="summary-value">$1,000.00</span>
+                        <span class="summary-label">Event name :</span>
+                        <span class="summary-value"> {{ $reservation['name'] }}</span>
                     </div>
                     
                     <div class="summary-item">
-                        <span class="summary-label">Photography Package</span>
-                        <span class="summary-value">$800.00</span>
+                        <span class="summary-label">Event Date :</span>
+                        <span class="summary-value">{{ $reservation['event_date'] }}</span>
                     </div>
                     
                     <div class="summary-item">
-                        <span class="summary-label">Catering (100 guests)</span>
-                        <span class="summary-value">$3,500.00</span>
+                        <span class="summary-label">Location :</span>
+                        <span class="summary-value">{{ $reservation['location'] }}</span>
                     </div>
                     
                     <div class="summary-item">
-                        <span class="summary-label">Digital Invitations</span>
-                        <span class="summary-value">$150.00</span>
-                    </div>
-                    
-                    <div class="summary-item">
-                        <span class="summary-label">Service Fee</span>
-                        <span class="summary-value">$218.00</span>
+                        <span class="summary-label">Guest</span>
+                        <span class="summary-value"> {{ $reservation['guest_count'] }}</span>
                     </div>
                     
                     <div class="summary-total">
                         <span>Total</span>
-                        <span>$5,668.00</span>
+                        <span>{{ ($service->price / $service->guest_count) * $reservation->guest_count}} MAD</span>
                     </div>
                 </div>
                 
                 <!-- Payment Methods -->
-                <div class="payment-methods">
-                    <h3 class="payment-method-title">Select Payment Method</h3>
-                    
-                    <div class="payment-option selected">
-                        <input type="radio" id="creditCard" name="paymentMethod" checked>
-                        <label for="creditCard">Credit Card</label>
-                        <div class="payment-logo">
-                            <i class="fab fa-cc-visa"></i>
-                            <i class="fab fa-cc-mastercard"></i>
-                            <i class="fab fa-cc-amex"></i>
+                <section class="payment-section">
+                    <div class="payment-methods">
+                        <h3 class="payment-method-title">Pay Your Event Reservation</h3>
+                        @if($errors->any())
+                        <div class="alert alert-danger">
+                            {{ $errors->first() }}
                         </div>
-                    </div>
-                    
-                    <div class="payment-option">
-                        <input type="radio" id="paypal" name="paymentMethod">
-                        <label for="paypal">PayPal</label>
-                        <div class="payment-logo">
-                            <i class="fab fa-paypal"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="payment-option">
-                        <input type="radio" id="bankTransfer" name="paymentMethod">
-                        <label for="bankTransfer">Bank Transfer</label>
-                        <div class="payment-logo">
-                            <i class="fas fa-university"></i>
-                        </div>
-                    </div>
-                    
-                    <!-- Credit Card Details Form -->
-                    <div class="card-details">
-                        <form id="cardPaymentForm">
-                            <div class="form-group">
-                                <label for="cardName">Cardholder Name</label>
-                                <input type="text" id="cardName" class="form-control" placeholder="Name as it appears on your card" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="cardNumber">Card Number <i class="fas fa-lock card-icon"></i></label>
-                                <input type="text" id="cardNumber" class="form-control" placeholder="1234 5678 9012 3456" maxlength="19" required>
-                            </div>
-                            
-                            <div class="form-row">
+                    @endif
+                        <!-- Stripe Elements Payment Form -->
+                        <div class="card-details">
+                            <form id="cardPaymentForm" action="{{ route('stripe.payment') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="reservation_id" value="{{ $reservation->id }}">
+            
                                 <div class="form-group">
-                                    <label for="expiryDate">Expiry Date</label>
-                                    <input type="text" id="expiryDate" class="form-control" placeholder="MM/YY" maxlength="5" required>
+                                    <label for="cardholder-name">Cardholder Name</label>
+                                    <input type="text" id="cardholder-name" class="form-control" placeholder="Name on card" required>
                                 </div>
-                                
+            
                                 <div class="form-group">
-                                    <label for="cvv">CVV <i class="fas fa-question-circle card-icon"></i></label>
-                                    <input type="text" id="cvv" class="form-control" placeholder="123" maxlength="4" required>
+                                    <label for="card-element">Card Details <i class="fas fa-lock card-icon"></i></label>
+                                    <div id="card-element" class="form-control"></div>
                                 </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="billingAddress">Billing Address</label>
-                                <input type="text" id="billingAddress" class="form-control" placeholder="Enter your billing address" required>
-                            </div>
-                        </form>
+            
+                              
+            
+                                <div class="form-actions">
+                                    <a href="{{ route('components.client.invitation', $reservation->id) }}" class="btn-back">
+                                        <i class="fas fa-arrow-left"></i> Back
+                                    </a>
+                                    <button type="submit" class="btn-complete">Complete Payment</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
+                </section>
+                <script src="https://js.stripe.com/v3/"></script>
+                <script>
+                    const stripe = Stripe("{{ env('STRIPE_KEY') }}");
+                    const elements = stripe.elements();
+                    const cardElement = elements.create("card");
+                    cardElement.mount("#card-element");
                 
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" required> I agree to the <a href="#" style="color: var(--primary);">Terms & Conditions</a> and authorize Orgazen to charge my payment method.
-                    </label>
-                </div>
+                    const form = document.getElementById("cardPaymentForm");
+                    form.addEventListener("submit", async (e) => {
+                        e.preventDefault();
+                        
+                        // Disable the submit button to prevent multiple submissions
+                        const submitButton = form.querySelector('button[type="submit"]');
+                        submitButton.disabled = true;
+                        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
                 
-                <div class="form-actions">
-                    <a href="event-creation-step3.html" class="btn-back">
-                        <i class="fas fa-arrow-left"></i> Back
-                    </a>
-                    <button type="submit" class="btn-complete">
-                        Complete Payment <i class="fas fa-check"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
+                        try {
+                            const { paymentMethod, error } = await stripe.createPaymentMethod({
+                                type: 'card',
+                                card: cardElement,
+                                billing_details: {
+                                    name: document.getElementById("cardholder-name").value,
+                                }
+                            });
+                
+                            if (error) {
+                                // Show error to user
+                                alert(error.message);
+                                submitButton.disabled = false;
+                                submitButton.innerHTML = 'Complete Payment';
+                                return;
+                            }
+                
+                            // Add payment method to form
+                            const hiddenInput = document.createElement("input");
+                            hiddenInput.setAttribute("type", "hidden");
+                            hiddenInput.setAttribute("name", "payment_method");
+                            hiddenInput.setAttribute("value", paymentMethod.id);
+                            form.appendChild(hiddenInput);
+                
+                            // Submit form
+                            form.submit();
+                        } catch (err) {
+                            console.error('Error:', err);
+                            alert('An error occurred. Please try again.');
+                            submitButton.disabled = false;
+                            submitButton.innerHTML = 'Complete Payment';
+                        }
+                    });
+                </script>
+
 </body>
 </html>
