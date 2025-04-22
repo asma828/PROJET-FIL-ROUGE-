@@ -12,4 +12,8 @@ class EventCategoryRepo implements EventCategoryInterface
         // dd($categories);
         return $categories;
     }
+public function destroy($id){
+    $category= EventCategory::findOrFail($id);
+    return $category->delete();
+}
 }
