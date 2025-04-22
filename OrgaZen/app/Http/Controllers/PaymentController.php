@@ -24,8 +24,14 @@ class PaymentController extends Controller
     $reservation = Reservation::findOrFail($request->reservation_id);
     $service = Service::where('provider_id', $reservation->provider_id)->first();
 
-    $amount = max(500, ($service->price / $service->guest_count) * $reservation->guest_count * 100); 
+    $totalPrice = ($service->price / $service->guest_count) * $reservation->guest_count;
 
+    // Save total
+    $reservation->total_price = $totalPrice;
+    $reservation->save();
+
+    // Convert to cents for Stripe
+    $amount = max(500, $totalPrice * 100);
 
     try {
         $payment = PaymentIntent::create([
