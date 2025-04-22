@@ -73,6 +73,7 @@ Route::get('/reservation/{reservationId}/invitations',[ClientController::class,'
 Route::get('/payement/{reservationId}',[ClientController::class,'payement'])->name('components.client.payement');
 Route::get('/history',[ClientController::class,'History'])->name('components.client.EventHistory');
 Route::post('/reservation/{reservationId}/send-invitations', [ReservationController::class, 'sendInvitations'])->name('client.sendInvitations');
+Route::post('/pay', [PaymentController::class, 'makePayment'])->name('stripe.payment');
 
 
 
