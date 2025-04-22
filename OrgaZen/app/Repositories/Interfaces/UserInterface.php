@@ -6,4 +6,5 @@ interface UserInterface{
     public function updateProfile(array $data);
     public function getAllProviders();
     public function getProvidersByEventCategory($categoryId);
+    public function getAllUsers();
 }
