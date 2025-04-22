@@ -278,42 +278,7 @@
             gap: 20px;
             margin-bottom: 30px;
         }
-        
-        .template-card {
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .template-card.selected {
-            border-color: var(--primary);
-            background-color: rgba(160, 82, 45, 0.05);
-        }
-        
-        .template-card:hover {
-            border-color: var(--primary);
-        }
-        
-        .template-img {
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .template-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .template-name {
-            padding: 15px;
-            text-align: center;
-            font-weight: 600;
-        }
-        
+
         .select-circle {
             position: absolute;
             top: 15px;
@@ -505,60 +470,21 @@
             
             <!-- Form Container -->
             <div class="form-container">
-                <form id="invitationsForm">
-                    <h3 class="form-section-title">Choose Invitation Template</h3>
-                    
-                    <!-- Invitation Templates -->
-                    <div class="invitation-templates">
-                        <div class="template-card" onclick="selectTemplate(this)">
-                            <div class="select-circle"></div>
-                            <div class="template-img">
-                                <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="Classic Elegance">
-                            </div>
-                            <div class="template-name">Classic Elegance</div>
-                        </div>
-                        
-                        <div class="template-card" onclick="selectTemplate(this)">
-                            <div class="select-circle"></div>
-                            <div class="template-img">
-                                <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="Modern Romance">
-                            </div>
-                            <div class="template-name">Modern Romance</div>
-                        </div>
-                        
-                        <div class="template-card" onclick="selectTemplate(this)">
-                            <div class="select-circle"></div>
-                            <div class="template-img">
-                                <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="Rustic Charm">
-                            </div>
-                            <div class="template-name">Rustic Charm</div>
-                        </div>
-                        
-                        <div class="template-card" onclick="selectTemplate(this)">
-                            <div class="select-circle"></div>
-                            <div class="template-img">
-                                <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="Minimalist">
-                            </div>
-                            <div class="template-name">Minimalist</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Guest List -->
+                <form id="invitationsForm" action="{{ route('client.sendInvitations', $reservation->id) }}" method="POST">
+                    @csrf
+            <!-- Guest List -->
                     <div class="guest-list">
                         <h3 class="guest-list-title">Add Your Guest List</h3>
-                        
                         <div class="guest-inputs" id="guestInputsContainer">
-                            <!-- First Guest Row (Cannot be removed) -->
+                            <!-- First Guest Row -->
                             <div class="guest-input-row">
                                 <div class="form-group">
                                     <label for="guestName1">Guest Name</label>
-                                    <input type="text" id="guestName1" class="form-control" placeholder="Enter guest name">
-                                </div>
+                                    <input type="text" name="guest_names[]" id="guestName1" class="form-control" placeholder="Enter guest name">                                </div>
                                 
                                 <div class="form-group">
                                     <label for="guestEmail1">Email Address</label>
-                                    <input type="email" id="guestEmail1" class="form-control" placeholder="Enter email address">
-                                </div>
+                                    <input type="email" name="guest_emails[]" id="guestEmail1" class="form-control" placeholder="Enter email address">                                </div>
                             </div>
                         </div>
                         
@@ -569,14 +495,14 @@
                     
                     <div class="form-group">
                         <label for="personalMessage">Personal Message (Optional)</label>
-                        <textarea id="personalMessage" class="form-control" rows="4" placeholder="Add a personal message to your invitation"></textarea>
+                        <textarea name="personal_message" id="personalMessage" class="form-control" rows="4" placeholder="Add a personal message to your invitation"></textarea>
                     </div>
                     
                     <p class="skip-text">This step is optional. You can skip to proceed to payment.</p>
                     
                     <div class="form-actions">
                         <a href="event-creation-step2.html" class="btn-back">Back</a>
-                        <a href="{{Route('components.client.payement')}}" class="btn-next">Next: Payment</a>
+                        <button type="submit" class="btn-next">Next: Payment</button>
                     </div>
                 </form>
             </div>
@@ -586,14 +512,6 @@
     <script>
         // Counter for guest rows
         let guestCounter = 1;
-        
-        // Function to select template
-        function selectTemplate(card) {
-            const templates = document.querySelectorAll('.template-card');
-            templates.forEach(t => t.classList.remove('selected'));
-            card.classList.add('selected');
-        }
-        
         // Function to add a new guest row
         function addGuestRow() {
             guestCounter++;
@@ -603,24 +521,22 @@
             const row = document.createElement('div');
             row.className = 'guest-input-row';
             row.innerHTML = `
-                <div class="form-group">
-                    <label for="guestName${guestCounter}">Guest Name</label>
-                    <input type="text" id="guestName${guestCounter}" class="form-control" placeholder="Enter guest name">
-                </div>
-                
-                <div class="form-group">
-                    <label for="guestEmail${guestCounter}">Email Address</label>
-                    <input type="email" id="guestEmail${guestCounter}" class="form-control" placeholder="Enter email address">
-                </div>
-                
-                <div class="remove-guest" onclick="removeGuestRow(this)">
-                    <i class="fas fa-times"></i>
-                </div>
-            `;
-            
+    <div class="form-group">
+        <label for="guestName${guestCounter}">Guest Name</label>
+        <input type="text" name="guest_names[]" id="guestName${guestCounter}" class="form-control" placeholder="Enter guest name">
+    </div>
+    
+    <div class="form-group">
+        <label for="guestEmail${guestCounter}">Email Address</label>
+        <input type="email" name="guest_emails[]" id="guestEmail${guestCounter}" class="form-control" placeholder="Enter email address">
+    </div>
+
+    <div class="remove-guest" onclick="removeGuestRow(this)">
+        <i class="fas fa-times"></i>
+    </div>
+`;  
             container.appendChild(row);
         }
-        
         // Function to remove a guest row
         function removeGuestRow(btn) {
             const row = btn.parentNode;
