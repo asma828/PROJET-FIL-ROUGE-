@@ -21,6 +21,12 @@ public function __construct(UserInterface $userRepo){
         return view('components.admin.UserManagement',compact('users'));
     }
 
+     public function destroy($id){
+        $user=$this->userRepo->destroy($id);
+        return redirect()->back()->with('success', 'Reservation deleted successfully.');
+    }
+
+
     public function events(){
         return view('components.admin.EventManagement');
     }
