@@ -188,7 +188,11 @@
                                     </button>
                                     <div class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden z-10">
                                         <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
-                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Delete</a>
+                                        <form action="{{ route('category.destroy', $categorie->id) }}" method="POST" onsubmit="return confirm('Are you sure?')">
+                                            @csrf
+                                            @method('DELETE')
+                                        <button class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Delete</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
