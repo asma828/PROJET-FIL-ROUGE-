@@ -3,14 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\EventCategory;
+use App\Models\reservation;
+use App\Models\Service;
+use App\Repositories\Interfaces\ReservationInterface;
 use App\Repositories\Interfaces\UserInterface;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
     protected $userRepo;
-     public function __construct(UserInterface $userRepo) {
+    protected $reservationRepo;
+     public function __construct(UserInterface $userRepo, ReservationInterface $reservationRepo) {
         $this->userRepo= $userRepo;
+        $this->reservationRepo=$reservationRepo;
     }
     public function home(){
         return view('components.client.home');
@@ -30,13 +35,26 @@ class ClientController extends Controller
         return view('components.client.categories',compact('categories'));
     }
 
-    public function createvent(){
-        return view('components.client.eventdetails');
+    public function createvent($category_id){
+        return view('components.client.eventdetails', compact('category_id'));
     }
 
-    public function selectProvider(){
-        return view('components.client.serviceProviderSelect');
+public function showProviders($reservationId)
+{
+    $reservation = $this->reservationRepo->findById($reservationId);
+    $categoryId = $reservation->event_category_id;
+
+    // Get the providers based on the event category
+    $providers = $this->userRepo->getProvidersByEventCategory($categoryId);
+    return view('components.client.serviceProviderSelect', compact('reservation', 'providers'));
+}
+
+
+    public function invitation($reservationId){
+        $reservation = $this->reservationRepo->findById($reservationId);
+        return view('components.client.invitation', compact('reservation'));
     }
+
 
     public function history(){
         return view('components.client.EventHistory');
