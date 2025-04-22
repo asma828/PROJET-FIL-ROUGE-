@@ -10,10 +10,12 @@ use App\Repositories\Interfaces\EventCategoryInterface;
 use App\Repositories\Interfaces\ReservationInterface;
 use App\Repositories\Interfaces\ServiceImageInterface;
 use App\Repositories\Interfaces\ServiceInterface;
+use App\Repositories\Interfaces\StatistiqueInterface;
 use App\Repositories\Interfaces\UserInterface;
 use App\Repositories\ReservationRepository;
 use App\Repositories\ServiceImageRepository;
 use App\Repositories\ServiceRepository;
+use App\Repositories\StatistiqueRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,8 +31,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ServiceInterface::class,ServiceRepository::class);
         $this->app->bind(UserInterface::class,UserRepository::class);
         $this->app->bind(ServiceImageInterface::class, ServiceImageRepository::class);
-        $this->app->bind(ReservationInterface::class,ReservationRepository::class
-        );
+        $this->app->bind(ReservationInterface::class,ReservationRepository::class);
+        $this->app->bind(StatistiqueInterface::class,StatistiqueRepository::class);
         
 
     }
