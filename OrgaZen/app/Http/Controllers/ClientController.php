@@ -55,6 +55,11 @@ public function showProviders($reservationId)
         return view('components.client.invitation', compact('reservation'));
     }
 
+    public function payement($reservationId){
+        $reservation = $this->reservationRepo->findById($reservationId);
+        $service =Service::where('provider_id', $reservation->provider_id)->first();
+        return view('components.client.payement',compact('reservation', 'service'));
+    }
 
     public function history(){
         return view('components.client.EventHistory');
