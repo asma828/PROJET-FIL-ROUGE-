@@ -59,5 +59,9 @@ class UserRepository implements UserInterface{
              ->get();
      }
      
-     
+     public function destroy($id){
+        $user = User::findOrFail($id);
+        return $user->delete();
+    }
+
 }
