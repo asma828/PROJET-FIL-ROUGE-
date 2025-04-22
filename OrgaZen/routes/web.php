@@ -33,6 +33,8 @@ Route::get('/', function () {
 Route::middleware(['auth','role:admin'])->group(function () {
 Route::get('/dashboard',[AdminController::class,'index'])->name('components.admin.dashboard');
 Route::get('/users',[AdminController::class,'usersManagement'])->name('components.admin.UserManagement');
+Route::delete('/user/{id}', [AdminController::class, 'destroy'])->name('user.destroy');
+
 Route::get('/events',[AdminController::class,'events'])->name('components.admin.EventManagement');
 Route::get('/category',[EventCategoryController::class,'category'])->name('components.admin.CategoryManagement');
 Route::get('/service',[AdminController::class,'service'])->name('components.admin.serviceProvider');
