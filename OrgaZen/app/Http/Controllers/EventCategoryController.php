@@ -15,8 +15,11 @@ class EventCategoryController extends Controller
 
     public function category(){
         $categories=$this->evenCategoryRepo->getAllCategory();
-        
         return view('components.admin.CategoryManagement',compact('categories'));
     }
 
+    public function destroy($id){
+        $category=$this->evenCategoryRepo->destroy($id);
+        return redirect()->back()->with('Category deleted successfully');
+    }
 }
