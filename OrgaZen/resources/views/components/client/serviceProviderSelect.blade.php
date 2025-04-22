@@ -445,19 +445,24 @@
             
             <!-- Form Container -->
             <div class="form-container">
-                <form id="serviceProvidersForm">
+                <form id="serviceProvidersForm" action="{{ route('client.assignProvider', $reservation->id) }}" method="POST">
+                    @csrf
                     <!-- Venue Category -->
                     <div class="service-categories">
-                        <h3 class="service-category-title">Venue</h3>
+                        @foreach ($providers as $provider)
+                        @if ($provider->event_category_id === $reservation->event_category_id && $provider->service)
+                        <h3 class="service-category-title">{{ $reservation->category->name }}</h3>
                         <div class="service-providers">
+                            <label>
+                            <input type="radio" name="provider_id" value="{{ $provider->id }}" class="hidden" required>
                             <div class="provider-card" onclick="toggleSelection(this)">
                                 <div class="select-box"></div>
                                 <div class="provider-header">
                                     <div class="provider-img">
-                                        <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="Luxury Gardens">
+                                        <img src="{{ $provider->image ? asset('storage/' . $provider->image) : 'https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg' }}">
                                     </div>
                                     <div class="provider-name">
-                                        <h4>Luxury Gardens</h4>
+                                        <h4>{{ $provider->business_name}}</h4>
                                         <div class="provider-rating">
                                             <i class="fas fa-star"></i>
                                             <span>4.8 (124 reviews)</span>
@@ -465,190 +470,20 @@
                                     </div>
                                 </div>
                                 <div class="provider-info">
-                                    <p>Beautiful outdoor garden venue with capacity for up to 300 guests. Full-service amenities included.</p>
+                                    <p>{{ $provider->service->description }}</p>
                                 </div>
                                 <div class="provider-price">
-                                    $2,500 - $5,000
+                                    ${{ number_format($provider->service->price, 2) }} for {{ $provider->service->guest_count }} guests
                                 </div>
                             </div>
-                            
-                            <div class="provider-card" onclick="toggleSelection(this)">
-                                <div class="select-box"></div>
-                                <div class="provider-header">
-                                    <div class="provider-img">
-                                        <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="Grand Ballroom">
-                                    </div>
-                                    <div class="provider-name">
-                                        <h4>Grand Ballroom</h4>
-                                        <div class="provider-rating">
-                                            <i class="fas fa-star"></i>
-                                            <span>4.7 (98 reviews)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="provider-info">
-                                    <p>Elegant indoor venue with crystal chandeliers and marble floors. Capacity for up to 250 guests.</p>
-                                </div>
-                                <div class="provider-price">
-                                    $3,000 - $6,000
-                                </div>
-                            </div>
+                            </label>
                         </div>
+                        @endif
+                        @endforeach
                     </div>
-                    
-                    <!-- Catering Category -->
-                    <div class="service-categories">
-                        <h3 class="service-category-title">Catering</h3>
-                        <div class="service-providers">
-                            <div class="provider-card" onclick="toggleSelection(this)">
-                                <div class="select-box"></div>
-                                <div class="provider-header">
-                                    <div class="provider-img">
-                                        <img src="https://i.pinimg.com/736x/15/35/a7/1535a7412263d5bead2511465a733642.jpg" alt="Gourmet Delights">
-                                    </div>
-                                    <div class="provider-name">
-                                        <h4>Gourmet Delights</h4>
-                                        <div class="provider-rating">
-                                            <i class="fas fa-star"></i>
-                                            <span>4.9 (156 reviews)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="provider-info">
-                                    <p>Award-winning catering service specializing in international cuisine. Includes setup and service staff.</p>
-                                </div>
-                                <div class="provider-price">
-                                    $75 - $150 per person
-                                </div>
-                            </div>
-                            
-                            <div class="provider-card" onclick="toggleSelection(this)">
-                                <div class="select-box"></div>
-                                <div class="provider-header">
-                                    <div class="provider-img">
-                                        <img src="https://i.pinimg.com/736x/15/35/a7/1535a7412263d5bead2511465a733642.jpg" alt="Tasteful Creations">
-                                    </div>
-                                    <div class="provider-name">
-                                        <h4>Tasteful Creations</h4>
-                                        <div class="provider-rating">
-                                            <i class="fas fa-star"></i>
-                                            <span>4.6 (89 reviews)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="provider-info">
-                                    <p>Specialized in buffet-style catering with a variety of options including vegetarian and gluten-free.</p>
-                                </div>
-                                <div class="provider-price">
-                                    $60 - $120 per person
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Photography Category -->
-                    <div class="service-categories">
-                        <h3 class="service-category-title">Photography</h3>
-                        <div class="service-providers">
-                            <div class="provider-card" onclick="toggleSelection(this)">
-                                <div class="select-box"></div>
-                                <div class="provider-header">
-                                    <div class="provider-img">
-                                        <img src="https://i.pinimg.com/736x/60/7e/66/607e66305ee9a8f67a3ecd1858af43a4.jpg" alt="Picture Perfect">
-                                    </div>
-                                    <div class="provider-name">
-                                        <h4>Picture Perfect</h4>
-                                        <div class="provider-rating">
-                                            <i class="fas fa-star"></i>
-                                            <span>4.9 (217 reviews)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="provider-info">
-                                    <p>Award-winning photographers specializing in candid and traditional wedding photography.</p>
-                                </div>
-                                <div class="provider-price">
-                                    $1,800 - $3,500
-                                </div>
-                            </div>
-                            
-                            <div class="provider-card" onclick="toggleSelection(this)">
-                                <div class="select-box"></div>
-                                <div class="provider-header">
-                                    <div class="provider-img">
-                                        <img src="https://i.pinimg.com/736x/60/7e/66/607e66305ee9a8f67a3ecd1858af43a4.jpg" alt="Moments Captured">
-                                    </div>
-                                    <div class="provider-name">
-                                        <h4>Moments Captured</h4>
-                                        <div class="provider-rating">
-                                            <i class="fas fa-star"></i>
-                                            <span>4.7 (142 reviews)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="provider-info">
-                                    <p>Full-service photography and videography team with artistic style and premium editing.</p>
-                                </div>
-                                <div class="provider-price">
-                                    $2,200 - $4,000
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Decoration Category -->
-                    <div class="service-categories">
-                        <h3 class="service-category-title">Decoration</h3>
-                        <div class="service-providers">
-                            <div class="provider-card" onclick="toggleSelection(this)">
-                                <div class="select-box"></div>
-                                <div class="provider-header">
-                                    <div class="provider-img">
-                                        <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="Elegant Designs">
-                                    </div>
-                                    <div class="provider-name">
-                                        <h4>Elegant Designs</h4>
-                                        <div class="provider-rating">
-                                            <i class="fas fa-star"></i>
-                                            <span>4.8 (108 reviews)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="provider-info">
-                                    <p>Luxurious floral arrangements and venue decoration services with personalized themes.</p>
-                                </div>
-                                <div class="provider-price">
-                                    $1,500 - $5,000
-                                </div>
-                            </div>
-                            
-                            <div class="provider-card" onclick="toggleSelection(this)">
-                                <div class="select-box"></div>
-                                <div class="provider-header">
-                                    <div class="provider-img">
-                                        <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="Creative Blooms">
-                                    </div>
-                                    <div class="provider-name">
-                                        <h4>Creative Blooms</h4>
-                                        <div class="provider-rating">
-                                            <i class="fas fa-star"></i>
-                                            <span>4.6 (93 reviews)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="provider-info">
-                                    <p>Specialized in rustic and bohemian decorations with sustainable and eco-friendly options.</p>
-                                </div>
-                                <div class="provider-price">
-                                    $1,200 - $4,000
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
                     <div class="form-actions">
                         <a href="event-creation-step1.html" class="btn-back">Back</a>
-                        <a href="{{Route('components.client.invitation')}}" class="btn-next">Next: Guest Invitations</a>
+                        <button type="submit" class="btn-next">Next: Guest Invitations</button>
                     </div>
                 </form>
             </div>
