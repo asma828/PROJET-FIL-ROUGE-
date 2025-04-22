@@ -37,9 +37,27 @@ class UserRepository implements UserInterface{
 
      public function getAllProviders()
      {
-         return User::where('role_id', 3)
+        $providers = User::where('role_id', 3)
              ->with(['tags', 'service','eventCategory'])
              ->get();
+
+             foreach ($providers as $provider) {
+                $totalEvents = DB::table('reservation')
+                    ->where('provider_id', $provider->id)
+                    ->where('is_paid', true)
+                    ->count();
+        
+                $totalRevenue = DB::table('reservation')
+                    ->join('service', 'reservation.provider_id', '=', 'service.provider_id')
+                    ->where('reservation.provider_id', $provider->id)
+                    ->where('reservation.is_paid', true)
+                    ->sum(DB::raw('(service.price / service.guest_count) * reservation.guest_count'));
+        
+                $provider->total_events = $totalEvents;
+                $provider->total_revenue = $totalRevenue;
+            }
+        
+            return $providers;
      }
      
      public function getProvidersByEventCategory($categoryId)
