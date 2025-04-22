@@ -166,20 +166,23 @@
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200">
+                                @foreach ($users as $user)
                                 <tr class="hover:bg-gray-50">
                                     <td class="px-4 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
-                                            <img class="h-10 w-10 rounded-full mr-3" src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">asma lachhab</div>
+                                            <img class="h-10 w-10 rounded-full mr-3" 
+                                            src="{{ $user->image ? asset('storage/' . $user->image) : asset('images/default-user.png') }}" 
+                                            alt="User Image">
+                                                                                   <div>
+                                                <div class="text-sm font-medium text-gray-900">{{$user-> first_name}} {{$user->last_name}}</div>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="px-4 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">asmalachhab66@gmail.com</div>
+                                        <div class="text-sm text-gray-900">{{$user->email}}</div>
                                     </td>
                                     <td class="px-4 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Client</div>
+                                        <div class="text-sm text-gray-900">{{$user->role->name}}</div>
                                     </td>
                                     <td class="px-4 py-4 whitespace-nowrap">
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-green-800">Active</span>
@@ -191,132 +194,14 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <img class="h-10 w-10 rounded-full mr-3" src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">asma lachhab</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">asmalachhab66@gmail.com</div>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Client</div>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-green-800">Active</span>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
-                                        <div class="flex space-x-2">
-                                            <button class="text-green-600 hover:text-green-900"><i class="fas fa-eye"></i></button>
-                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash-alt"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <img class="h-10 w-10 rounded-full mr-3" src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">asma lachhab</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">asmalachhab66@gmail.com</div>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Service Provider</div>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-green-800">Active</span>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
-                                        <div class="flex space-x-2">
-                                            <button class="text-green-600 hover:text-green-900"><i class="fas fa-eye"></i></button>
-                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash-alt"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <img class="h-10 w-10 rounded-full mr-3" src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">asma lachhab</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">asmalachhab66@gmail.com</div>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Service Provider</div>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Pending</span>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
-                                        <div class="flex space-x-2">
-                                            <button class="text-green-600 hover:text-green-900"><i class="fas fa-eye"></i></button>
-                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash-alt"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <img class="h-10 w-10 rounded-full mr-3" src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">asma lachhab</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">asmalachhab66@gmail.com</div>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Client</div>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-red-800">Inactive</span>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
-                                        <div class="flex space-x-2">
-                                            <button class="text-green-600 hover:text-green-900"><i class="fas fa-eye"></i></button>
-                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash-alt"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <img class="h-10 w-10 rounded-full mr-3" src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">asma lachhab </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">asmalachhab66@gmail.com</div>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Client</div>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-green-800">Active</span>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
-                                        <div class="flex space-x-2">
-                                            <button class="text-green-600 hover:text-green-900"><i class="fas fa-eye"></i></button>
-                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash-alt"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
                
