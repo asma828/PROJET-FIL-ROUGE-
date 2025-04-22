@@ -133,7 +133,7 @@
                             </div>
                             <div>
                                 <h3 class="text-lg font-semibold text-gray-700">Total Revenue</h3>
-                                <p class="text-2xl font-bold text-indigo-600">00.00</p>
+                                <p class="text-2xl font-bold text-indigo-600">{{ $totalRevenus }} MAD</p>
                             </div>
                         </div>
                     </div>
@@ -166,74 +166,24 @@
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200">
+                                    @foreach ($events as $event)
                                     <tr class="hover:bg-gray-50">
                                         <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">#TXN-0001</td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">Mar 15, 2025</td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">Payment</td>
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{{$event->event_date}}</td>
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">Stripe</td>
                                         <td class="px-4 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
-                                                <img class="h-8 w-8 rounded-full mr-2" src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="">
-                                                <div class="text-sm text-gray-900">Sara Boulahia</div>
+                                                <div class="text-sm text-gray-900">{{$event->client->first_name}} {{$event->client->last_name}}</div>
                                             </div>
                                         </td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">Sara Wedding</td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-indigo-600">00.00</td>
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{{$event->name}}</td>
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-indigo-600">{{$event->total_price ?? 100}}</td>
                                         <td class="px-4 py-4 whitespace-nowrap">
                                         </td>
                                         <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
                                         </td>
                                     </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">#TXN-0002</td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">Mar 17, 2025</td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">Commission</td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <img class="h-8 w-8 rounded-full mr-2" src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="">
-                                                <div class="text-sm text-gray-900">Ahmed sami</div>
-                                            </div>
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">Sara Wedding</td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-indigo-600">00.00</td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">#TXN-0003</td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">Mar 18, 2025</td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">Payout</td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <img class="h-8 w-8 rounded-full mr-2" src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="">
-                                                <div class="text-sm text-gray-900">Hamza Lhadouchi</div>
-                                            </div>
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900"> Family Reunion</td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-red-600">00.00</td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">#TXN-0004</td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">Mar 18, 2025</td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">Deposit</td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <img class="h-8 w-8 rounded-full mr-2" src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="">
-                                                <div class="text-sm text-gray-900">Ilyass Anida</div>
-                                            </div>
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">Annual Meeting</td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-indigo-600">00.00</td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
-                                        </td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
