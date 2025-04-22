@@ -15,4 +15,13 @@ class ReservationRepository implements ReservationInterface
     {
         return Reservation::with('service')->find($id);
     }
+
+    public function getAllEvents(){
+        return reservation::with('category','client')->get();
+    }
+
+    public function destroy($id){
+        $user = reservation::findOrFail($id);
+        return $user->delete();
+    }
 }
