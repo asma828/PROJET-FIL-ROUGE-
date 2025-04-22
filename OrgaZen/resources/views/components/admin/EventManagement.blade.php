@@ -108,7 +108,7 @@
                     @csrf
                     <i class="fas fa-sign-out-alt w-5 h-5 mr-3"></i>
                     <button>Logout</button>
-                </logout>
+                </form>
             </div>
         </div>
         
@@ -205,32 +205,28 @@
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Client</th>
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Budget</th>
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200">
+                                @foreach ($events as $event)
                                 <tr class="hover:bg-gray-50">
                                     <td class="px-4 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-900">Sara Wedding</div>
+                                        <div class="text-sm font-medium text-gray-900">{{$event->name}}</div>
                                     </td>
                                         <td class="px-4 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">Wedding</div>
+                                            <div class="text-sm text-gray-900">{{$event->category->name}}</div>
                                         </td>
                                         <td class="px-4 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
-                                                <img class="h-8 w-8 rounded-full mr-2" src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="">
-                                                <div class="text-sm text-gray-900">Sara Boulahia</div>
+                                                <div class="text-sm text-gray-900">{{$event->client->first_name}} {{$event->client->last_name}}</div>
                                             </div>
                                         </td>
                                         <td class="px-4 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">Mar 24, 2025</div>
+                                            <div class="text-sm text-gray-900">{{$event->event_date}}</div>
                                         </td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            <span class="status-pill bg-yellow-100 text-green-800">Confirmed</span>
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">000</td>
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{{$event->total_price ?? 100}}</td>
                                         <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
                                             <div class="flex space-x-2">
                                                 <button class="text-indigo-600 hover:text-indigo-900">
@@ -239,148 +235,16 @@
                                                 <button class="text-blue-600 hover:text-blue-900">
                                                     
                                                 </button>
-                                                <button class="text-red-600 hover:text-red-900">
+                                                <form action="{{ route('event.delete', $event->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')                                                                                                    <button class="text-red-600 hover:text-red-900">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            <div class="text-sm font-medium text-gray-900">TechCorp Annual Meeting</div>
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">Corporate</div>
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <img class="h-8 w-8 rounded-full mr-2" src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="">
-                                                <div class="text-sm text-gray-900">Ilyass Anida</div>
-                                            </div>
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">Mar 28, 2025</div>
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            <span class="status-pill bg-yellow-100 text-yellow-800">Pending</span>
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">000</td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
-                                            <div class="flex space-x-2">
-                                                <button class="text-indigo-600 hover:text-indigo-900">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="text-blue-600 hover:text-blue-900">
-                                                    
-                                                </button>
-                                                <button class="text-red-600 hover:text-red-900">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            <div class="text-sm font-medium text-gray-900">Ahmed's 30th Birthday</div>
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">Birthday</div>
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <img class="h-8 w-8 rounded-full mr-2" src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="">
-                                                <div class="text-sm text-gray-900">Kaoutar Laamiri</div>
-                                            </div>
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">Apr 05, 2025</div>
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            <span class="status-pill bg-yellow-100 text-indigo-800">Upcoming</span>
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">000</td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
-                                            <div class="flex space-x-2">
-                                                <button class="text-indigo-600 hover:text-indigo-900">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="text-blue-600 hover:text-blue-900">
-                                                    
-                                                </button>
-                                                <button class="text-red-600 hover:text-red-900">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            <div class="text-sm font-medium text-gray-900">Taha Family Reunion</div>
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">Family Event</div>
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <img class="h-8 w-8 rounded-full mr-2" src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="">
-                                                <div class="text-sm text-gray-900">Taha Malaiki</div>
-                                            </div>
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">Apr 12, 2025</div>
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            <span class="status-pill bg-yellow-100 text-green-800">Confirmed</span>
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">000</td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
-                                            <div class="flex space-x-2">
-                                                <button class="text-indigo-600 hover:text-indigo-900">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="text-blue-600 hover:text-blue-900">
-                                                    
-                                                </button>
-                                                <button class="text-red-600 hover:text-red-900">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            <div class="text-sm font-medium text-gray-900">Music Festival 2025</div>
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">Festival</div>
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <img class="h-8 w-8 rounded-full mr-2" src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="">
-                                                <div class="text-sm text-gray-900">Younes Bennani</div>
-                                            </div>
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">May 02, 2025</div>
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            <span class="status-pill bg-yellow-100 text-indigo-800">Upcoming</span>
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">000</td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
-                                            <div class="flex space-x-2">
-                                                <button class="text-indigo-600 hover:text-indigo-900">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="text-blue-600 hover:text-blue-900">
-                                                    
-                                                </button>
-                                                <button class="text-red-600 hover:text-red-900">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
