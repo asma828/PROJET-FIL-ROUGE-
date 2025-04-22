@@ -49,5 +49,15 @@ class UserRepository implements UserInterface{
              ->with('service') 
              ->get();
      }
+
+     public function getAllUsers()
+     {
+         return User::with('role')
+             ->whereHas('role', function ($query) {
+                 $query->where('name', '!=', 'admin');
+             })
+             ->get();
+     }
+     
      
 }
