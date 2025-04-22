@@ -1,6 +1,8 @@
 <?php
 namespace App\Repositories;
 
+use App\Models\Comment;
+use App\Models\reservation;
 use App\Models\tag;
 use App\Models\User;
 use App\Repositories\Interfaces\UserInterface;
@@ -67,7 +69,6 @@ class UserRepository implements UserInterface{
              ->with('service') 
              ->get();
      }
-
      public function getAllUsers()
      {
          return User::with('role')
@@ -76,10 +77,28 @@ class UserRepository implements UserInterface{
              })
              ->get();
      }
-     
      public function destroy($id){
         $user = User::findOrFail($id);
         return $user->delete();
     }
 
+    public function getProviderDetails($providerId)
+    {
+        $provider = User::with(['service.images', 'tags', 'eventCategory'])->findOrFail($providerId);
+
+        $comments = Comment::where('provider_id', $providerId)->with('user')->get();
+
+        $canComment = false;
+        if (Auth::check()) {
+            $clientId = Auth::id();
+            $reservation = reservation::where('user_id', $clientId)
+                                      ->where('provider_id', $providerId)
+                                      ->first();
+            if ($reservation) {
+                $canComment = true;
+            }
+        }
+
+        return compact('provider', 'comments', 'canComment');
+    }
 }
