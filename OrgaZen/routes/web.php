@@ -66,7 +66,13 @@ Route::get('/providers',[ClientController::class,'listingProviders'])->name('com
 Route::get('/details',[ClientController::class,'details'])->name('components.client.provider-details');
 Route::get('/categories',[ClientController::class,'categories'])->name('components.client.categories');
 Route::get('/creatEvent/{category_id}',[ClientController::class,'createvent'])->name('components.client.eventdetails');
-
+Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
+Route::get('/reservation/{reservationId}/providers',[ClientController::class,'showProviders'])->name('components.client.serviceProviderSelect');
+Route::post('/reservation/{reservationId}/assign-provider', [ReservationController::class, 'assignProvider'])->name('client.assignProvider');
+Route::get('/reservation/{reservationId}/invitations',[ClientController::class,'invitation'])->name('components.client.invitation');
+Route::get('/payement/{reservationId}',[ClientController::class,'payement'])->name('components.client.payement');
+Route::get('/history',[ClientController::class,'History'])->name('components.client.EventHistory');
+Route::post('/reservation/{reservationId}/send-invitations', [ReservationController::class, 'sendInvitations'])->name('client.sendInvitations');
 
 
 
