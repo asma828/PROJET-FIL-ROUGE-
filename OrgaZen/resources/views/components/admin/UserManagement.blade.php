@@ -190,7 +190,13 @@
                                     <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
                                         <div class="flex space-x-2">
                                             <button class="text-green-600 hover:text-green-900"><i class="fas fa-eye"></i></button>
-                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash-alt"></i></button>
+                                            <form action="{{ route('user.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure?')">
+                                                @csrf
+                                                @method('DELETE')
+                                            <button class="text-red-600 hover:text-red-900">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
