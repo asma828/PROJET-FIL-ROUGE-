@@ -8,5 +8,7 @@ interface UserInterface{
     public function getProvidersByEventCategory($categoryId);
     public function getAllUsers();
     public function destroy($id);
+    public function getProviderDetails($providerId);
+
 
 }
