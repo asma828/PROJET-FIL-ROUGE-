@@ -94,6 +94,10 @@ public function sendInvitations(Request $request, $reservationId)
     return redirect()->route('components.client.payement', $reservationId)->with('success', 'Invitations sent!');
 }
 
+public function destroy($id){
+    $user=$this->reservationRepository->destroy($id);
+    return redirect()->route('components.admin.EventManagement')->with('success', 'Reservation deleted successfully.');
+}
 
 
 }
