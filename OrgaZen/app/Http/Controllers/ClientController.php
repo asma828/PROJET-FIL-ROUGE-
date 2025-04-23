@@ -26,8 +26,9 @@ class ClientController extends Controller
         return view('components.client.providers',compact('providers'));
     }
 
-    public function details(){
-        return view('components.client.provider-details');
+    public function details($providerId){
+        $data = $this->userRepo->getProviderDetails($providerId);
+        return view('components.client.provider-details',$data);
     }
 
     public function categories(){
@@ -61,7 +62,9 @@ public function showProviders($reservationId)
         return view('components.client.payement',compact('reservation', 'service'));
     }
 
-    public function history(){
-        return view('components.client.EventHistory');
+    public function history($clientId){
+        $client = $this->reservationRepo->getClientEvents($clientId);
+
+        return view('components.client.EventHistory',compact('client'));
     }
 }
