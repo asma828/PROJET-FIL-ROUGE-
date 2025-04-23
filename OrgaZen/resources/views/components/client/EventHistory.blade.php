@@ -468,223 +468,46 @@
             
             <!-- Events Grid -->
             <div class="events-grid">
-                <!-- Event 1 -->
+                <!-- Event -->
+                @foreach ($client->events as $event)
                 <div class="event-card">
                     <div class="event-img">
                         <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="Sarah & Michael's Wedding">
                     </div>
                     <div class="event-details">
                         <div class="event-title">
-                            <h3>Sarah & Michael's Wedding</h3>
-                            <span class="event-category">Wedding</span>
+                            <h3>{{$event->name}}</h3>
+                            <span class="event-category">{{ $event->category->name }}</span>
                         </div>
                         <div class="event-info">
                             <div class="event-info-item">
                                 <i class="far fa-calendar"></i>
-                                <span>June 15, 2025</span>
+                                <span>{{ \Carbon\Carbon::parse($event->date)->format('F j, Y') }}</span>
                             </div>
                             <div class="event-info-item">
                                 <i class="far fa-clock"></i>
-                                <span>2:00 PM - 10:00 PM</span>
+                                <span>{{$event->event_time}} Hours</span>
                             </div>
                             <div class="event-info-item">
                                 <i class="fas fa-map-marker-alt"></i>
-                                <span>Crystal Gardens, Chicago</span>
+                                <span>{{$event->location}}</span>
                             </div>
                             <div class="event-info-item">
                                 <i class="fas fa-user-friends"></i>
-                                <span>150 Guests</span>
+                                <span>{{$event->guest_count}} Guests</span>
                             </div>
                         </div>
                         <div class="event-actions">
                             <div class="action-buttons">
                               
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Event 2 -->
-                <div class="event-card">
-                    <div class="event-img">
-                        <img src="https://i.pinimg.com/736x/15/35/a7/1535a7412263d5bead2511465a733642.jpg" alt="Emma's 30th Birthday">
-                    </div>
-                    <div class="event-details">
-                        <div class="event-title">
-                            <h3>Emma's 30th Birthday</h3>
-                            <span class="event-category">Birthday</span>
-                        </div>
-                        <div class="event-info">
-                            <div class="event-info-item">
-                                <i class="far fa-calendar"></i>
-                                <span>May 22, 2025</span>
-                            </div>
-                            <div class="event-info-item">
-                                <i class="far fa-clock"></i>
-                                <span>7:00 PM - 1:00 AM</span>
-                            </div>
-                            <div class="event-info-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Skyline Lounge, New York</span>
-                            </div>
-                            <div class="event-info-item">
-                                <i class="fas fa-user-friends"></i>
-                                <span>50 Guests</span>
-                            </div>
-                        </div>
-                        <div class="event-actions">
-                            <div class="action-buttons">
-                              
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Event 3 -->
-                <div class="event-card">
-                    <div class="event-img">
-                        <img src="https://i.pinimg.com/736x/60/7e/66/607e66305ee9a8f67a3ecd1858af43a4.jpg" alt="Annual Company Conference">
-                    </div>
-                    <div class="event-details">
-                        <div class="event-title">
-                            <h3>Annual Company Conference</h3>
-                            <span class="event-category">Corporate</span>
-                        </div>
-                        <div class="event-info">
-                            <div class="event-info-item">
-                                <i class="far fa-calendar"></i>
-                                <span>February 10, 2025</span>
-                            </div>
-                            <div class="event-info-item">
-                                <i class="far fa-clock"></i>
-                                <span>9:00 AM - 5:00 PM</span>
-                            </div>
-                            <div class="event-info-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Grand Hotel Convention Center</span>
-                            </div>
-                            <div class="event-info-item">
-                                <i class="fas fa-user-friends"></i>
-                                <span>200 Guests</span>
-                            </div>
-                        </div>
-                        <div class="event-actions">
-                            <div class="action-buttons">
-                            
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Event 4 -->
-                <div class="event-card">
-                    <div class="event-img">
-                        <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="Summer Charity Gala">
-                    </div>
-                    <div class="event-details">
-                        <div class="event-title">
-                            <h3>Summer Charity Gala</h3>
-                            <span class="event-category">Festival</span>
-                        </div>
-                        <div class="event-info">
-                            <div class="event-info-item">
-                                <i class="far fa-calendar"></i>
-                                <span>March 05, 2025</span>
-                            </div>
-                            <div class="event-info-item">
-                                <i class="far fa-clock"></i>
-                                <span>6:00 PM - 11:00 PM</span>
-                            </div>
-                            <div class="event-info-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Riverside Gardens, Boston</span>
-                            </div>
-                            <div class="event-info-item">
-                                <i class="fas fa-user-friends"></i>
-                                <span>300 Guests</span>
-                            </div>
-                        </div>
-                        <div class="event-actions">
-                            <div class="action-buttons">
-                 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Event 5 -->
-                <div class="event-card">
-                    <div class="event-img">
-                        <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="John's Graduation Party">
-                    </div>
-                    <div class="event-details">
-                        <div class="event-title">
-                            <h3>John's Graduation Party</h3>
-                            <span class="event-category">Graduation</span>
-                        </div>
-                        <div class="event-info">
-                            <div class="event-info-item">
-                                <i class="far fa-calendar"></i>
-                                <span>June 28, 2025</span>
-                            </div>
-                            <div class="event-info-item">
-                                <i class="far fa-clock"></i>
-                                <span>4:00 PM - 10:00 PM</span>
-                            </div>
-                            <div class="event-info-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Family Backyard, Miami</span>
-                            </div>
-                            <div class="event-info-item">
-                                <i class="fas fa-user-friends"></i>
-                                <span>75 Guests</span>
-                            </div>
-                        </div>
-                        <div class="event-actions">
-                            <div class="action-buttons">
-                              
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Event 6 -->
-                <div class="event-card">
-                    <div class="event-img">
-                        <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="New Year's House Party">
-                    </div>
-                    <div class="event-details">
-                        <div class="event-title">
-                            <h3>New Year's House Party</h3>
-                            <span class="event-category">Private Party</span>
-                        </div>
-                        <div class="event-info">
-                            <div class="event-info-item">
-                                <i class="far fa-calendar"></i>
-                                <span>December 31, 2024</span>
-                            </div>
-                            <div class="event-info-item">
-                                <i class="far fa-clock"></i>
-                                <span>9:00 PM - 3:00 AM</span>
-                            </div>
-                            <div class="event-info-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Lakeview Residence, Los Angeles</span>
-                            </div>
-                            <div class="event-info-item">
-                                <i class="fas fa-user-friends"></i>
-                                <span>40 Guests</span>
-                            </div>
-                        </div>
-                        <div class="event-actions">
-                            <div class="action-buttons">
-                            
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        @endforeach
+
     </section>
 </body>
 </html>
