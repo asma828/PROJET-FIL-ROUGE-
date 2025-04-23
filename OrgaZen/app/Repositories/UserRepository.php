@@ -101,4 +101,20 @@ class UserRepository implements UserInterface{
 
         return compact('provider', 'comments', 'canComment');
     }
+
+public function getAuthenticatedProviderWithComments($perPage = 4){
+$provider = auth()->user();
+
+$comments = $provider->comments()
+    ->with('user')
+    ->latest()
+    ->paginate($perPage);
+
+return [
+    'provider' => $provider,
+    'comments' => $comments
+];
+
+
+}
 }
