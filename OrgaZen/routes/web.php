@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ClientController;
@@ -50,8 +51,8 @@ Route::get('/my-service', [ServiceController::class, 'show'])->name('components.
 Route::post('/services', [ServiceController::class, 'store'])->name('services');
 Route::post('/service/{id}/images', [ServiceImageController::class, 'store'])->name('service.images.store');
 Route::delete('/service/images/{id}', [ServiceImageController::class, 'destroy'])->name('service.images.destroy');
-
-Route::get('/Reviews',[ProviderController::class,'Reviews'])->name('components.provider.Reviews');
+Route::get('/Reviews',[CommentController::class,'Reviews'])->name('components.provider.Reviews');
+Route::delete('/provider/comments/{id}', [CommentController::class, 'destroy'])->name('provider.comments.destroy');
 Route::get('/profile', [ProfileController::class, 'show'])->name('components.provider.Profile');
 Route::post('/profile', [ProfileController::class, 'update'])->name('editProfile');
 Route::post('/profile/update-image', [ProfileController::class, 'updateProfileImage'])->name('updateProfileImage');
@@ -66,7 +67,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware(['auth', 'role:client'])->group(function () {
 Route::get('/home',[ClientController::class,'home'])->name('components.client.home');
 Route::get('/providers',[ClientController::class,'listingProviders'])->name('components.client.providers');
-Route::get('/details',[ClientController::class,'details'])->name('components.client.provider-details');
+Route::get('/details/{providerId}',[ClientController::class,'details'])->name('components.client.provider-details');
+Route::post('/comment',[CommentController::class,'store'])->name('comment.store');
 Route::get('/categories',[ClientController::class,'categories'])->name('components.client.categories');
 Route::get('/creatEvent/{category_id}',[ClientController::class,'createvent'])->name('components.client.eventdetails');
 Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
@@ -74,7 +76,7 @@ Route::get('/reservation/{reservationId}/providers',[ClientController::class,'sh
 Route::post('/reservation/{reservationId}/assign-provider', [ReservationController::class, 'assignProvider'])->name('client.assignProvider');
 Route::get('/reservation/{reservationId}/invitations',[ClientController::class,'invitation'])->name('components.client.invitation');
 Route::get('/payement/{reservationId}',[ClientController::class,'payement'])->name('components.client.payement');
-Route::get('/history',[ClientController::class,'History'])->name('components.client.EventHistory');
+Route::get('/history/{id}',[ClientController::class,'History'])->name('components.client.EventHistory');
 Route::post('/reservation/{reservationId}/send-invitations', [ReservationController::class, 'sendInvitations'])->name('client.sendInvitations');
 Route::post('/pay', [PaymentController::class, 'makePayment'])->name('stripe.payment');
 
