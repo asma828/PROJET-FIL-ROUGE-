@@ -353,124 +353,115 @@
         </div>
     </header>
 
-    <!-- Provider Detail Section -->
-    <div class="provider-detail container">
-        <div class="provider-header">
-            <div class="provider-gallery">
+<!-- Provider Detail Page -->
+<div class="provider-detail container">
+    <div class="provider-header">
+        <!-- Provider Gallery -->
+        <div class="provider-gallery">
+            @foreach($provider->service->images as $image)
                 <div class="gallery-item">
-                    <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="Wedding Setup">
+                    <img src="{{ asset('storage/' . $image->image_path) }}" alt="Provider Image">
                 </div>
-                <div class="gallery-item">
-                    <img src="https://i.pinimg.com/736x/15/35/a7/1535a7412263d5bead2511465a733642.jpg" alt="Wedding Decor">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://i.pinimg.com/736x/60/7e/66/607e66305ee9a8f67a3ecd1858af43a4.jpg" alt="Wedding Celebration">
-                </div>
-            </div>
-            
-            <div class="provider-info">
-                <div class="provider-title">
-                    <h1>Wedding Elegance</h1>
-                    <div class="provider-rating">
-                        <i class="fas fa-star"></i>
-                        <span>4.9</span>
-                    </div>
-                </div>
-                
-                <div class="provider-meta">
-                    <div class="meta-block">
-                        <div class="meta-value">126</div>
-                        <div class="meta-label">Events</div>
-                    </div>
-                    <div class="meta-block">
-                        <div class="meta-value">5+</div>
-                        <div class="meta-label">Years Experience</div>
-                    </div>
-                    <div class="meta-block">
-                        <div class="meta-value">Marrackech</div>
-                        <div class="meta-label">Location</div>
-                    </div>
-                </div>
-                
-                <p class="provider-description">
-                    Expert wedding planner with 5+ years of experience organizing luxury weddings across Morocco. Specializing in creating memorable, stress-free celebrations that reflect each couple's unique love story. I work closely with top vendors to ensure every detail is perfect, from venue selection to final send-off.
-                </p>
-                
-            </div>
+            @endforeach
         </div>
-        
-        <div class="services-offered">
-            <h2 style="text-align: center; margin-bottom: 30px;">Our Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <i class="fas fa-utensils"></i>
-                    <h4>Catering</h4>
-                    <p>Gourmet menu planning and full-service catering for weddings.</p>
+
+        <div class="provider-info">
+            <h1>{{ $provider->first_name}} {{$provider->last_name}}</h1>
+            <div class="provider-rating">
+                <i class="fas fa-star"></i>
+                <span>{{ $provider->rating }}</span>
+            </div>
+
+            <div class="provider-meta">
+                <div class="meta-block">
+                    <div class="meta-value">{{ $provider->events ? $provider->events->count() : 0 }}</div>
+                    <div class="meta-label">Events</div>
                 </div>
-                <div class="service-card">
-                    <i class="fas fa-palette"></i>
-                    <h4>Decoration</h4>
-                    <p>Custom wedding decor and styling to match your unique vision.</p>
+                <div class="meta-block">
+                    <div class="meta-value">{{ $provider->service->experience_level }}</div>
+                    <div class="meta-label">Years Experience</div>
                 </div>
-                <div class="service-card">
-                    <i class="fas fa-music"></i>
-                    <h4>Entertainment</h4>
-                    <p>Professional DJ, live band, and entertainment coordination.</p>
+                <div class="meta-block">
+                    <div class="meta-value">{{ $provider->service->service_area}}</div>
+                    <div class="meta-label">Location</div>
                 </div>
             </div>
+
+            <p>{{ $provider->service->description }}</p>
         </div>
+    </div>
+
+    <!-- Services Offered -->
+    <div class="services-offered">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            @if ($provider->tags && $provider->tags->count())
+            @foreach($provider->tags as $tag)
+                <span class="inline-block bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium mr-2">
+                    {{ $tag->name }}
+                </span>
+            @endforeach
+        @else
+            <p class="text-gray-500">No tags available.</p>
+        @endif
         
-        <div class="reviews-section">
-            <h2 style="text-align: center; margin-bottom: 30px;">Client Reviews</h2>
-            
+        </div>
+    </div>
+        @if(session('success'))
+    <div class="p-4 bg-green-100 text-green-800 rounded-md">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if(session('error'))
+    <div class="p-4 bg-red-100 text-red-800 rounded-md">
+        {{ session('error') }}
+    </div>
+@endif
+
+       <!-- Client Reviews Section -->
+    <div class="reviews-section">
+        <h2>Client Reviews</h2>
+
+        <!-- Review Form -->
+        @if($canComment)
             <div class="review-form">
-                <div class="star-rating">
-                    <i class="fas fa-star" data-rating="1"></i>
-                    <i class="fas fa-star" data-rating="2"></i>
-                    <i class="fas fa-star" data-rating="3"></i>
-                    <i class="fas fa-star" data-rating="4"></i>
-                    <i class="fas fa-star" data-rating="5"></i>
-                </div>
-                <textarea placeholder="Write your review here..."></textarea>
-                <button class="btn btn-primary">Submit Review</button>
+                <form action="{{ route('comment.store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="provider_id" value="{{ $provider->id }}">
+                    <textarea name="comment" placeholder="Write your review here..."></textarea>
+                    <div class="star-rating">
+                        <input type="radio" name="rating" value="1"><i class="fas fa-star"></i>
+                        <input type="radio" name="rating" value="2"><i class="fas fa-star"></i>
+                        <input type="radio" name="rating" value="3"><i class="fas fa-star"></i>
+                        <input type="radio" name="rating" value="4"><i class="fas fa-star"></i>
+                        <input type="radio" name="rating" value="5"><i class="fas fa-star"></i>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                </form>
             </div>
-            
-            <div class="reviews-list">
+        @endif
+
+        <!-- Reviews List -->
+        <div class="reviews-list">
+            @foreach($comments as $comment)
                 <div class="review-card">
                     <div class="review-header">
                         <div class="review-author">
-                            <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="Sarah">
-                            <h4>Sara Boulahia</h4>
+                            <h4>{{ $comment->user->first_name}} {{$comment->user->last_name}}</h4>
                         </div>
-                        <div class="review-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
+                        {{-- <div class="review-rating">
+                            @for($i = 0; $i < $comment->rating; $i++)
+                                <i class="fas fa-star"></i>
+                            @endfor
+                        </div> --}}
                     </div>
-                    <p>Absolutely incredible wedding planning service! Every detail was perfect and they made our day truly magical.</p>
+                    <p>{{ $comment->comment }}</p>
                 </div>
-                
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="review-author">
-                            <img src="https://i.pinimg.com/736x/15/35/a7/1535a7412263d5bead2511465a733642.jpg" alt="Michael">
-                            <h4>Houssam Bensltana</h4>
-                        </div>
-                        <div class="review-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                    </div>
-                    <p>Professional, responsive, and creative. They transformed our wedding venue into a dream come true!</p>
-                </div>
-            </div>
+            @endforeach
         </div>
+    </div>
+</div>
     </div>
 
     <script>
