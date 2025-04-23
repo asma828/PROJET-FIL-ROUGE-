@@ -417,10 +417,10 @@
                 </a>
                 
                 <ul class="nav-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#" class="active">Events</a></li>
-                    <li><a href="{{Route('components.client.EventHistory')}}">History</a></li>
-                    <li><a href="#">Service Providers</a></li>
+                    <li><a href="{{Route('components.client.home')}}">Home</a></li>
+                    <li><a href="{{Route('components.client.categories')}}">Events</a></li>
+                    <li><a href="{{ route('components.client.EventHistory', ['id' => auth()->user()->id]) }}">History</a></li>
+                    <li><a href="{{Route('components.client.providers')}}">Service Providers</a></li>
                 </ul>
                 
                 <div class="cta-buttons">
