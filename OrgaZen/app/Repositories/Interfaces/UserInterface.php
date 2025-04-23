@@ -9,6 +9,8 @@ interface UserInterface{
     public function getAllUsers();
     public function destroy($id);
     public function getProviderDetails($providerId);
+    public function getAuthenticatedProviderWithComments($perPage);
+
 
 
 }
