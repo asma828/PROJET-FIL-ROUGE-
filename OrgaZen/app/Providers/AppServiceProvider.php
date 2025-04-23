@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Models\EventCategory;
 use App\Repositories\AuthRepository;
+use App\Repositories\CommentRepository;
 use App\Repositories\EventCategoryRepo;
 use App\Repositories\Interfaces\AuthRepositoryInterface;
+use App\Repositories\Interfaces\CommentInterface;
 use App\Repositories\Interfaces\EventCategoryInterface;
 use App\Repositories\Interfaces\ReservationInterface;
 use App\Repositories\Interfaces\ServiceImageInterface;
@@ -33,6 +35,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ServiceImageInterface::class, ServiceImageRepository::class);
         $this->app->bind(ReservationInterface::class,ReservationRepository::class);
         $this->app->bind(StatistiqueInterface::class,StatistiqueRepository::class);
+        $this->app->bind(CommentInterface::class,CommentRepository::class);
         
 
     }
