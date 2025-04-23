@@ -65,4 +65,10 @@ public function service()
 public function eventCategory() {
     return $this->belongsTo(EventCategory::class, 'event_category_id');
 }
+
+public function comments()
+{
+    return $this->hasMany(Comment::class, 'provider_id');
+}
+
 }
