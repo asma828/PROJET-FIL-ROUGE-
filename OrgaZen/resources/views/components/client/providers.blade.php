@@ -800,14 +800,14 @@
                                     <h3 class="text-lg font-semibold">{{ $provider->business_name }}</h3>
                                     <div class="provider-location text-sm text-gray-500 flex items-center">
                                         <i class="fas fa-map-marker-alt mr-1"></i>
-                                        <span>{{ $provider->services->service_area ?? 'Unknown' }}</span>                                    </div>
+                                        <span>{{ $provider->service->service_area ?? 'Unknown' }}</span>                                    </div>
                                 </div>
                             </div>
                 
                             <!-- Provider Content -->
                             <div class="provider-content px-4 pb-4">
                                 <p class="provider-description text-sm text-gray-600 mb-3">
-                                   {{ $provider->services->description ?? 'Unknown'}}
+                                   {{ $provider->service->description ?? 'Unknown'}}
                                 </p>
                                 <!-- Meta -->
                                 <div class="provider-meta flex justify-between text-center text-sm text-gray-700 mb-3">
