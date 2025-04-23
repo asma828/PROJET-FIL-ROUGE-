@@ -11,4 +11,9 @@ public function store(array $data)
 {
     return Comment::create($data);
 }
+
+public function destroy($id){
+    $user = Comment::findOrFail($id);
+        return $user->delete();
+}
 }
