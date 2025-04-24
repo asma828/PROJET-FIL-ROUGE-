@@ -22,4 +22,29 @@ class EventCategoryController extends Controller
         $category=$this->evenCategoryRepo->destroy($id);
         return redirect()->back()->with('Category deleted successfully');
     }
+
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'categoryName' => 'required|string|max:255',
+            'categoryDescription' => 'nullable|string',
+            'categoryImage' => 'nullable|image|max:2048',
+        ]);
+
+        if ($request->hasFile('categoryImage')) {
+            $data['image'] = $request->file('categoryImage')->store('categories', 'public');
+        }
+
+        $data['name'] = $data['categoryName'];
+        $data['description'] =$data['categoryDescription'];
+        unset($data['categoryName']);
+
+        $this->evenCategoryRepo->store($data);
+
+        return redirect()->back()->with('success', 'Catégorie ajoutée avec succès.');
+    }
+
+   
 }
+
+    
