@@ -50,7 +50,7 @@
             <nav class="flex-1">
                 <ul class="space-y-2">
                     <li>
-                        <a href="{{Route('components.provider.dashboard')}}" class="nav-link flex items-center px-4 py-3 rounded-lg">
+                        <a href="{{ route('components.provider.dashboard', ['providerId' =>auth()->user()->id]) }}" class="nav-link flex items-center px-4 py-3 rounded-lg">
                             <i class="fas fa-tachometer-alt w-5 h-5 mr-3"></i>
                             <span>Dashboard</span>
                         </a>
@@ -133,9 +133,6 @@
                         </button>
                     </div>
                 </div>
-
-                
-                
                 <!-- Bookings Table -->
                 <div class="bg-white rounded-xl shadow-sm overflow-hidden mb-8">
                     <div class="overflow-x-auto">
@@ -161,6 +158,7 @@
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
                                 <!-- Booking Item 1 -->
+                                @foreach ($bookings->providerBookings as $booking)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
@@ -168,24 +166,21 @@
                                                 <img class="h-10 w-10 rounded-full object-cover" src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Client Image">
                                             </div>
                                             <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">Sara Boulahia</div>
-                                                <div class="text-sm text-gray-500">sarab@example.com</div>
+                                                <div class="text-sm font-medium text-gray-900">{{$booking->client->first_name}} {{$booking->client->last_name}}</div>
+                                                <div class="text-sm text-gray-500">{{$booking->client->email}}</div>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <div class="text-sm font-medium text-gray-900">Wedding Ceremony & Reception</div>
-                                        <div class="text-sm text-gray-500">50 guests • Marrakech Garden</div>
+                                        <div class="text-sm font-medium text-gray-900">{{$booking->name}}</div>
+                                        <div class="text-sm text-gray-500">{{$booking->guest_count}} guests • {{$booking->location}}</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Mar 24, 2025</div>
-                                        <div class="text-sm text-gray-500">2:00 PM - 10:00 PM</div>
+                                        <div class="text-sm text-gray-900">{{ \Carbon\Carbon::parse($booking->event_date)->format('F j, Y') }}</div>
+                                        <div class="text-sm text-gray-500">{{$booking->event_time}} heur</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-900">$3,500</div>
-                                        <div class="text-xs text-gray-500">
-                                            <span class="text-green-600">$1,750 paid</span> •
-                                        </div>
+                                        <div class="text-sm font-medium text-gray-900">{{$booking->price_total ?? 100}}</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         <div class="flex space-x-2">
@@ -198,197 +193,13 @@
                                         </div>
                                     </td>
                                 </tr>
-                                
-                                <!-- Booking Item 2 -->
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="h-10 w-10 flex-shrink-0">
-                                                <img class="h-10 w-10 rounded-full object-cover" src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Client Image">
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">Kaoutar Laamiri</div>
-                                                <div class="text-sm text-gray-500">kaoutar@example.com</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-sm font-medium text-gray-900">Wedding Reception</div>
-                                        <div class="text-sm text-gray-500">120 guests • Royal Palace Hotel</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Apr 15, 2025</div>
-                                        <div class="text-sm text-gray-500">6:00 PM - 12:00 AM</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-900">$5,200</div>
-                                        <div class="text-xs text-gray-500">
-                                            <span class="text-green-600">$1,560 paid</span> • 
-                                        </div>
-                                    </td>
-                            
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <div class="flex space-x-2">
-                                            <button class="p-1 text-indigo-600 hover:text-indigo-900" title="View Details">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button class="p-1 text-blue-600 hover:text-blue-900" title="Message">
-                                                <i class="fas fa-comment"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                
-                                <!-- Booking Item 3 -->
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="h-10 w-10 flex-shrink-0">
-                                                <img class="h-10 w-10 rounded-full object-cover" src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Client Image">
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">Mehdi & Fatima</div>
-                                                <div class="text-sm text-gray-500">mehdi@example.com</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-sm font-medium text-gray-900">Wedding Ceremony</div>
-                                        <div class="text-sm text-gray-500">80 guests • Golden Palace</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Mar 28, 2025</div>
-                                        <div class="text-sm text-gray-500">3:00 PM - 11:00 PM</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-900">$4,200</div>
-                                        <div class="text-xs text-gray-500">
-                                            <span class="text-green-600">$4,200 paid</span> • 
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <div class="flex space-x-2">
-                                            <button class="p-1 text-indigo-600 hover:text-indigo-900" title="View Details">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button class="p-1 text-blue-600 hover:text-blue-900" title="Message">
-                                                <i class="fas fa-comment"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                
-                                <!-- Booking Item 4 -->
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="h-10 w-10 flex-shrink-0">
-                                                <img class="h-10 w-10 rounded-full object-cover" src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Client Image">
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">Omar & Layla</div>
-                                                <div class="text-sm text-gray-500">omar@example.com</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-sm font-medium text-gray-900">Wedding Reception</div>
-                                        <div class="text-sm text-gray-500">100 guests • Atlantic Resort</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Apr 10, 2025</div>
-                                        <div class="text-sm text-gray-500">5:00 PM - 1:00 AM</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-900">$6,500</div>
-                                        <div class="text-xs text-gray-500">
-                                            <span class="text-green-600">$3,250 paid</span> • 
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <div class="flex space-x-2">
-                                            <button class="p-1 text-indigo-600 hover:text-indigo-900" title="View Details">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button class="p-1 text-blue-600 hover:text-blue-900" title="Message">
-                                                <i class="fas fa-comment"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                
-                                <!-- Booking Item 5 -->
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="h-10 w-10 flex-shrink-0">
-                                                <img class="h-10 w-10 rounded-full object-cover" src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Client Image">
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">Amine & Leila</div>
-                                                <div class="text-sm text-gray-500">amine@example.com</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-sm font-medium text-gray-900">Wedding Ceremony & Reception</div>
-                                        <div class="text-sm text-gray-500">150 guests • Luxury Gardens</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Mar 15, 2025</div>
-                                        <div class="text-sm text-gray-500">12:00 PM - 10:00 PM</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-900">$8,900</div>
-                                        <div class="text-xs text-gray-500">
-                                            <span class="text-green-600">$8,900 paid</span> • 
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <div class="flex space-x-2">
-                                            <button class="p-1 text-indigo-600 hover:text-indigo-900" title="View Details">
-                                                <i class="fas fa-eye"></i>
-                                                <button class="p-1 text-blue-600 hover:text-blue-900" title="Message">
-                                                    <i class="fas fa-comment"></i>
-                                                </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                
-                                <!-- Booking Item 6 -->
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="h-10 w-10 flex-shrink-0">
-                                                <img class="h-10 w-10 rounded-full object-cover" src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="Client Image">
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">Taha Malaiki</div>
-                                                <div class="text-sm text-gray-500">taha@example.com</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-sm font-medium text-gray-900">Engagement Party</div>
-                                        <div class="text-sm text-gray-500">75 guests • Seaside Villa</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">May 02, 2025</div>
-                                        <div class="text-sm text-gray-500">7:00 PM - 11:00 PM</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-900">$2,800</div>
-                                        <div class="text-xs text-gray-500">
-                                            <span class="text-gray-600">No payment yet</span> • 
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <div class="flex space-x-2">
-                                            <button class="p-1 text-indigo-600 hover:text-indigo-900" title="View Details">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button class="p-1 text-blue-600 hover:text-blue-900" title="Message">
-                                                <i class="fas fa-comment"></i>
-                                            </button>
-                                        </div>
-                                    </td>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -46,7 +46,7 @@
             <nav class="flex-1">
                 <ul class="space-y-2">
                     <li>
-                        <a href="{{Route('components.provider.dashboard')}}" class="nav-link flex items-center px-4 py-3 rounded-lg">
+                        <a href="{{ route('components.provider.dashboard', ['providerId' =>auth()->user()->id]) }}" class="nav-link flex items-center px-4 py-3 rounded-lg">
                             <i class="fas fa-tachometer-alt w-5 h-5 mr-3"></i>
                             <span>Dashboard</span>
                         </a>

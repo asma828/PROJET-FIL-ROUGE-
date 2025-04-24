@@ -43,7 +43,7 @@
             <nav class="flex-1">
                 <ul class="space-y-2">
                     <li>
-                        <a href="{{Route('components.provider.dashboard')}}" class="nav-link flex items-center px-4 py-3 rounded-lg bg-white bg-opacity-10">
+                        <a href="{{ route('components.provider.dashboard', ['providerId' =>auth()->user()->id]) }}" class="nav-link flex items-center px-4 py-3 rounded-lg">
                             <i class="fas fa-tachometer-alt w-5 h-5 mr-3"></i>
                             <span>Dashboard</span>
                         </a>
@@ -131,6 +131,7 @@
                 
                 <!-- Stats Cards -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <!-- Total Bookings -->
                     <div class="card bg-white rounded-xl shadow-sm p-6">
                         <div class="flex items-center">
                             <div class="rounded-full bg-indigo-100 p-3 mr-4">
@@ -138,11 +139,12 @@
                             </div>
                             <div>
                                 <h3 class="text-lg font-semibold text-gray-700">Total Bookings</h3>
-                                <p class="text-2xl font-bold text-indigo-600">0</p>
+                                <p class="text-2xl font-bold text-indigo-600">{{ $provider->providerBookings->count() }}</p>
                             </div>
                         </div>
                     </div>
-                    
+                
+                    <!-- Pending Requests -->
                     <div class="card bg-white rounded-xl shadow-sm p-6">
                         <div class="flex items-center">
                             <div class="rounded-full bg-pink-100 p-3 mr-4">
@@ -150,11 +152,12 @@
                             </div>
                             <div>
                                 <h3 class="text-lg font-semibold text-gray-700">Pending Requests</h3>
-                                <p class="text-2xl font-bold text-pink-600">0</p>
+                                <p class="text-2xl font-bold text-pink-600">{{ $provider->providerBookings->where('status', 'pending')->count() }}</p>
                             </div>
                         </div>
                     </div>
-                    
+                
+                    <!-- Total Earnings -->
                     <div class="card bg-white rounded-xl shadow-sm p-6">
                         <div class="flex items-center">
                             <div class="rounded-full bg-amber-100 p-3 mr-4">
@@ -162,19 +165,20 @@
                             </div>
                             <div>
                                 <h3 class="text-lg font-semibold text-gray-700">Total Earnings</h3>
-                                <p class="text-2xl font-bold text-amber-600">0</p>
+                                <p class="text-2xl font-bold text-amber-600">${{ $provider->providerBookings->sum('price') }}</p>
                             </div>
                         </div>
                     </div>
-                    
+                
+                    <!-- Total Comments -->
                     <div class="card bg-white rounded-xl shadow-sm p-6">
                         <div class="flex items-center">
                             <div class="rounded-full bg-emerald-100 p-3 mr-4">
                                 <i class="fas fa-star text-emerald-600 text-xl"></i>
                             </div>
                             <div>
-                                <h3 class="text-lg font-semibold text-gray-700">Rating</h3>
-                                <p class="text-2xl font-bold text-emerald-600">0</p>
+                                <h3 class="text-lg font-semibold text-gray-700">Total Comments</h3>
+                                <p class="text-2xl font-bold text-emerald-600">{{ $provider->comments->count() }}</p>
                             </div>
                         </div>
                     </div>
@@ -183,7 +187,7 @@
                 <!-- Recent Booking Requests -->
                 <div class="card bg-white rounded-xl shadow-sm p-6 mb-8">
                     <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-lg font-semibold text-gray-700">Recent Booking </h3>
+                        <h3 class="text-lg font-semibold text-gray-700">Recent Booking</h3>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="min-w-full">
@@ -196,200 +200,48 @@
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200">
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <img class="h-8 w-8 rounded-full mr-2" src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="">
-                                            <div class="text-sm text-gray-900">Sara Boulahia</div>
-                                        </div>
-                                    </td>
-                                    <td class="px-4 py-4">
-                                        <div class="text-sm font-medium text-gray-900">Wedding Ceremony</div>
-                                        <div class="text-xs text-gray-500">50 guests • Marrakech Garden</div>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Mar 24, 2025</div>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">$3,500</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
-                                        <div class="flex space-x-2">
-                                          
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <img class="h-8 w-8 rounded-full mr-2" src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="">
-                                            <div class="text-sm text-gray-900">Kaoutar Laamiri</div>
-                                        </div>
-                                    </td>
-                                    <td class="px-4 py-4">
-                                        <div class="text-sm font-medium text-gray-900">Wedding Reception</div>
-                                        <div class="text-xs text-gray-500">120 guests • Royal Palace Hotel</div>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Apr 15, 2025</div>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">$5,200</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
-                                        <div class="flex space-x-2">
-                                          
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <img class="h-8 w-8 rounded-full mr-2" src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="">
-                                            <div class="text-sm text-gray-900">Taha Malaiki</div>
-                                        </div>
-                                    </td>
-                                    <td class="px-4 py-4">
-                                        <div class="text-sm font-medium text-gray-900">Engagement Party</div>
-                                        <div class="text-xs text-gray-500">75 guests • Seaside Villa</div>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">May 02, 2025</div>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">$2,800</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
-                                        <div class="flex space-x-2">
-                                          
-                                        </div>
-                                    </td>
-                                </tr>
+                                @if($latestReservation)
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="text-sm text-gray-900">{{ $latestReservation->client->first_name }} {{ $latestReservation->client->last_name }}</div>
+                                            </div>
+                                        </td>
+                                        <td class="px-4 py-4">
+                                            <div class="text-sm font-medium text-gray-900">{{ $latestReservation->event_name }}</div>
+                                            <div class="text-xs text-gray-500">{{ $latestReservation->guest_count }} guests • {{ $latestReservation->location }}</div>
+                                        </td>
+                                        <td class="px-4 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-gray-900">{{ \Carbon\Carbon::parse($latestReservation->date)->format('F j, Y') }}</div>
+                                        </td>
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">${{ $latestReservation->price }}</td>
+                                    </tr>
+                                @else
+                                    <tr><td colspan="4" class="text-center text-gray-500">No recent bookings.</td></tr>
+                                @endif
                             </tbody>
                         </table>
                     </div>
                 </div>
                 
-                <!-- Bottom Cards -->
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <!-- Upcoming Events -->
-                    <div class="card bg-white rounded-xl shadow-sm p-6">
-                        <div class="flex justify-between items-center mb-4">
-                            <h3 class="text-lg font-semibold text-gray-700">Upcoming Events</h3>
-                            <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800">View All</a>
-                        </div>
-                        <ul class="space-y-4">
-                            <li class="border-b border-gray-100 pb-3">
-                                <div class="flex justify-between mb-1">
-                                    <h4 class="text-sm font-medium text-gray-900">Mehdi & Fatima Wedding</h4>
-                                    <span class="text-xs text-gray-500">Mar 28</span>
-                                </div>
-                                <div class="flex items-center text-xs text-gray-500">
-                                    <i class="fas fa-map-marker-alt mr-1"></i>
-                                    <span>Golden Palace, Casablanca</span>
-                                </div>
-                            </li>
-                            <li class="border-b border-gray-100 pb-3">
-                                <div class="flex justify-between mb-1">
-                                    <h4 class="text-sm font-medium text-gray-900">Omar & Layla Wedding</h4>
-                                    <span class="text-xs text-gray-500">Apr 10</span>
-                                </div>
-                                <div class="flex items-center text-xs text-gray-500">
-                                    <i class="fas fa-map-marker-alt mr-1"></i>
-                                    <span>Atlantic Resort, Rabat</span>
-                                </div>
-                            </li>
-                            <li class="border-b border-gray-100 pb-3">
-                                <div class="flex justify-between mb-1">
-                                    <h4 class="text-sm font-medium text-gray-900">Yasmin & Khalid Wedding</h4>
-                                    <span class="text-xs text-gray-500">May 05</span>
-                                </div>
-                                <div class="flex items-center text-xs text-gray-500">
-                                    <i class="fas fa-map-marker-alt mr-1"></i>
-                                    <span>Mountain View Hotel, Ifrane</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="flex justify-between mb-1">
-                                    <h4 class="text-sm font-medium text-gray-900">Nadia & Amine Wedding</h4>
-                                    <span class="text-xs text-gray-500">May 18</span>
-                                </div>
-                                <div class="flex items-center text-xs text-gray-500">
-                                    <i class="fas fa-map-marker-alt mr-1"></i>
-                                    <span>Royal Gardens, Marrakech</span>
-                                </div>
-                            </li>
-                        </ul>
+                <!-- Recent Comments -->
+                @if($latestComment)
+                <div class="border-b pb-4">
+                    <div class="flex items-center text-xs text-yellow-400">
+                        @for($i = 0; $i < 5; $i++)
+                            <i class="fas fa-star{{ $i < $latestComment->rating ? '' : '-o' }}"></i>
+                        @endfor
                     </div>
-                    
-                    
-                    
-                    <!-- Recent Reviews -->
-                    <div class="card bg-white rounded-xl shadow-sm p-6">
-                        <div class="flex justify-between items-center mb-4">
-                            <h3 class="text-lg font-semibold text-gray-700">Recent Reviews</h3>
-                            <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800">View All</a>
-                        </div>
-                        <ul class="space-y-4">
-                            <li class="pb-3 border-b border-gray-100">
-                                <div class="flex justify-between mb-1">
-                                    <div class="flex">
-                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
-                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
-                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
-                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
-                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
-                                    </div>
-                                    <span class="text-xs text-gray-500">1 week ago</span>
-                                </div>
-                                <p class="text-xs text-gray-600 mb-1">"Ahmed did an amazing job with our wedding. Everything was perfect!"</p>
-                                <p class="text-xs font-medium text-gray-900">- Amal & Hassan</p>
-                            </li>
-                            <li class="pb-3 border-b border-gray-100">
-                                <div class="flex justify-between mb-1">
-                                    <div class="flex">
-                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
-                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
-                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
-                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
-                                        <i class="fas fa-star-half-alt text-yellow-400 text-xs"></i>
-                                    </div>
-                                    <span class="text-xs text-gray-500">2 weeks ago</span>
-                                </div>
-                                <p class="text-xs text-gray-600 mb-1">"Very professional service. Our guests were impressed with the arrangements."</p>
-                                <p class="text-xs font-medium text-gray-900">- Youssef & Maryam</p>
-                            </li>
-                            <li class="pb-3 border-b border-gray-100">
-                                <div class="flex justify-between mb-1">
-                                    <div class="flex">
-                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
-                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
-                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
-                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
-                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
-                                    </div>
-                                    <span class="text-xs text-gray-500">1 month ago</span>
-                                </div>
-                                <p class="text-xs text-gray-600 mb-1">"Best wedding planner in the city! Ahmed took care of everything."</p>
-                                <p class="text-xs font-medium text-gray-900">- Leila & Karim</p>
-                            </li>
-                            <li>
-                                <div class="flex justify-between mb-1">
-                                    <div class="flex">
-                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
-                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
-                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
-                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
-                                        <i class="far fa-star text-yellow-400 text-xs"></i>
-                                    </div>
-                                    <span class="text-xs text-gray-500">2 months ago</span>
-                                </div>
-                                <p class="text-xs text-gray-600 mb-1">"Great service overall. Small issues with timing but otherwise perfect."</p>
-                                <p class="text-xs font-medium text-gray-900">- Samir & Nora</p>
-                            </li>
-                        </ul>
-                    </div>
+                    <p class="text-xs text-gray-600 mb-1">{{ $latestComment->content }}</p>
+                    <p class="text-xs font-medium text-gray-900">
+                        - {{ optional($latestComment->client)->first_name }} {{ optional($latestComment->client)->last_name }}
+                    </p>
                 </div>
+            @else
+                <div class="text-gray-500">No comments yet.</div>
+            @endif
+            
+                
             </div>
         </div>
     </div>
