@@ -62,12 +62,17 @@ class UserRepository implements UserInterface{
             return $providers;
      }
      
-     public function getProvidersByEventCategory($categoryId)
+     public function getProvidersByEventCategory($categoryId,$eventDate)
      {
          return User::where('role_id', 3)
              ->where('event_category_id', $categoryId)
              ->with('service') 
-             ->get();
+             ->get()
+             ->filter(function ($provider) use ($eventDate) {
+                return !Reservation::where('provider_id', $provider->id)
+                    ->where('event_date', $eventDate)
+                    ->exists();
+            });
      }
      public function getAllUsers()
      {
