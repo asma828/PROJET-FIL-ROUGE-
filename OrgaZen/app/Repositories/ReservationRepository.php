@@ -31,4 +31,12 @@ class ReservationRepository implements ReservationInterface
         $client = User::with(['events.category'])->findOrFail($clientId);
         return $client;
     }
+
+    public function getProviderEvents($providerId){
+        return User::with(['providerBookings.client'])
+        ->findOrFail($providerId);    
+    }
+
+
+
 }
