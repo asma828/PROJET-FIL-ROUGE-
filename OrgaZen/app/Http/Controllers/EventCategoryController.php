@@ -44,7 +44,13 @@ class EventCategoryController extends Controller
         return redirect()->back()->with('success', 'Catégorie ajoutée avec succès.');
     }
 
-   
+    public function edit($id)
+{
+    $category = $this->evenCategoryRepo->findById($id);
+    return view('components.admin.editCategoryModal', compact('category'));
+}
+
+ 
 }
 
     
