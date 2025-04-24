@@ -204,25 +204,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
         
-        .filter-group {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .filter-label {
-            font-weight: 600;
-            color: var(--dark);
-        }
-        
-        .filter-select {
-            padding: 10px 16px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 15px;
-            min-width: 150px;
-        }
-        
+       
         .search-box {
             display: flex;
             align-items: center;
@@ -234,7 +216,7 @@
             border: 2px solid #e0e0e0;
             border-radius: 8px;
             font-size: 15px;
-            width: 250px;
+            width: 500px;
         }
         
         .search-box i {
@@ -442,29 +424,14 @@
             </div>
             
             <!-- Filter Options -->
-            <div class="filter-options">
-                <div class="filter-group">
-                   
-                    
-                    <div class="filter-select-group">
-                        <span class="filter-label">Type:</span>
-                        <select class="filter-select">
-                            <option value="all">All Types</option>
-                            <option value="wedding">Wedding</option>
-                            <option value="birthday">Birthday</option>
-                            <option value="corporate">Corporate</option>
-                            <option value="festival">Festival</option>
-                            <option value="private">Private Party</option>
-                            <option value="graduation">Graduation</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="search-box">
+        <div class="filter-options"> 
+            <div class="search-box">
+                <form method="GET" action="{{ route('client.events') }}">
                     <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Search events...">
-                </div>
+                    <input type="text" placeholder="Search events..." value="{{ request()->input('search') }}">
+                </form>
             </div>
+        </div>
             
             <!-- Events Grid -->
             <div class="events-grid">
@@ -504,9 +471,10 @@
                         </div>
                     </div>
                 </div>
+                @endforeach
+
             </div>
         </div>
-        @endforeach
 
     </section>
 </body>
