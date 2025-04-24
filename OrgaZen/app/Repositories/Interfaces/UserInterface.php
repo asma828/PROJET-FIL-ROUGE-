@@ -10,6 +10,8 @@ interface UserInterface{
     public function destroy($id);
     public function getProviderDetails($providerId);
     public function getAuthenticatedProviderWithComments($perPage);
+    public function getProviderDashboardData($providerId);
+
 
 
 
