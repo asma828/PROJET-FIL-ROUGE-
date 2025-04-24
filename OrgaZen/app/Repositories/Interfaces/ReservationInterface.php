@@ -8,5 +8,5 @@ interface ReservationInterface
     public function getAllEvents();
     public function destroy($id);
     public function getClientEvents($clientId);
-
+    public function getProviderEvents($providerId);
 }
