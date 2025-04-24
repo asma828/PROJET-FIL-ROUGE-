@@ -114,7 +114,20 @@ return [
     'provider' => $provider,
     'comments' => $comments
 ];
-
-
 }
+
+public function getProviderDashboardData($providerId)
+{
+    $provider = User::with([
+        'providerBookings.client',
+        'comments' 
+    ])->findOrFail($providerId);
+
+    $latestReservation = $provider->providerBookings->sortByDesc('created_at')->first();
+    $latestComment = $provider->comments->sortByDesc('created_at')->first();
+
+    return compact('provider', 'latestReservation', 'latestComment');
+}
+
+
 }
