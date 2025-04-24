@@ -24,7 +24,8 @@ public function __construct(UserInterface $userRepo,ReservationInterface $reserv
         $TotalUsers = $this->statiqueRepo->getTotalUsers();
         $TotalProviders = $this->statiqueRepo->getTotalProvider();
         $TotalRevenus = $this->statiqueRepo->getTotalRevenus();
-        return view('components.admin.dashboard',compact('events','TotalEvent','TotalUsers','TotalProviders','TotalRevenus'));
+        $TopProviders = $this->userRepo->getTopProviders();
+        return view('components.admin.dashboard',compact('events','TotalEvent','TotalUsers','TotalProviders','TotalRevenus','TopProviders'));
     }
 
     public function usersManagement(){
