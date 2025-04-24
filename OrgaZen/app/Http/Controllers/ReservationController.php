@@ -99,6 +99,12 @@ public function destroy($id){
     return redirect()->route('components.admin.EventManagement')->with('success', 'Reservation deleted successfully.');
 }
 
+public function Booking(){
+    $providerId = auth()->id(); 
+    $bookings = $this->reservationRepository->getProviderEvents($providerId);
+    return view('components.provider.BookingManagement',compact('bookings'));
+}
+
 
 }
 
