@@ -71,4 +71,15 @@ public function comments()
     return $this->hasMany(Comment::class, 'provider_id');
 }
 
+public function events()
+{
+    return $this->hasMany(reservation::class,'user_id');
+}
+
+public function providerBookings()
+{
+    return $this->hasMany(Reservation::class, 'provider_id');
+}
+
+
 }
