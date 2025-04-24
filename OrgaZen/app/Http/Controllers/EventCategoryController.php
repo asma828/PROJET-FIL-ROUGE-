@@ -50,7 +50,25 @@ class EventCategoryController extends Controller
     return view('components.admin.editCategoryModal', compact('category'));
 }
 
- 
+    public function update(Request $request, $id)
+    {
+        $data = $request->validate([
+            'categoryName' => 'required|string|max:255',
+            'categoryDescription' => 'nullable|string',
+            'categoryImage' => 'nullable|image|max:2048',
+        ]);
+
+        if ($request->hasFile('categoryImage')) {
+            $data['image'] = $request->file('categoryImage')->store('categories', 'public');
+        }
+
+        $data['name'] = $data['categoryName'];
+        unset($data['categoryName']);
+
+        $this->evenCategoryRepo->update($id, $data);
+
+        return redirect()->route('components.admin.CategoryManagement')->with('success', 'Catégorie mise à jour avec succès.');
+    }
 }
 
     
