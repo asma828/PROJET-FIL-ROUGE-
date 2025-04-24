@@ -20,7 +20,11 @@ public function __construct(UserInterface $userRepo,ReservationInterface $reserv
 }
     public function index(){
         $events=$this->reservationRepo->getAllEvents();
-        return view('components.admin.dashboard',compact('events'));
+        $TotalEvent= $this->statiqueRepo->getTotalReservations();
+        $TotalUsers = $this->statiqueRepo->getTotalUsers();
+        $TotalProviders = $this->statiqueRepo->getTotalProvider();
+        $TotalRevenus = $this->statiqueRepo->getTotalRevenus();
+        return view('components.admin.dashboard',compact('events','TotalEvent','TotalUsers','TotalProviders','TotalRevenus'));
     }
 
     public function usersManagement(){
