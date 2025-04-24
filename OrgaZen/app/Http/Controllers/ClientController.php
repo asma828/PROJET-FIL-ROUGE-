@@ -44,10 +44,14 @@ public function showProviders($reservationId)
 {
     $reservation = $this->reservationRepo->findById($reservationId);
     $categoryId = $reservation->event_category_id;
+    $eventDate = $reservation->event_date;
 
     // Get the providers based on the event category
-    $providers = $this->userRepo->getProvidersByEventCategory($categoryId);
-    return view('components.client.serviceProviderSelect', compact('reservation', 'providers'));
+    $providers = $this->userRepo->getProvidersByEventCategory($categoryId, $eventDate);
+    return view('components.client.serviceProviderSelect', [
+        'reservation' => $reservation,
+        'providers' => $providers,
+    ]);
 }
 
 
