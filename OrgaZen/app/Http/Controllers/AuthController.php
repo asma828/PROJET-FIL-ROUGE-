@@ -56,7 +56,7 @@ class AuthController extends Controller
         case 2:
             return redirect()->route('components.client.home')->with('token', $token);
         case 3:
-            return redirect()->route('components.provider.dashboard')->with('token', $token);
+            return redirect()->route('components.provider.dashboard',['providerId' =>auth()->user()->id])->with('token', $token);
         default:
             Auth::logout();
             return redirect()->route('login')->withErrors(['role' => 'Unauthorized role.']);
