@@ -50,7 +50,7 @@ $reservation->update([
             'status' => 'completed',
             'is_paid' => true,
         ]);
-        return redirect()->route('components.client.EventHistory')->with('success', 'Payment successful!');
+        return redirect()->route('components.client.EventHistory', ['id' => auth()->user()->id])->with('success', 'Payment successful!');
     } catch (\Exception $e) {
         \Log::error(' Stripe error: ' . $e->getMessage());
         return back()->withErrors('Stripe error: ' . $e->getMessage());
