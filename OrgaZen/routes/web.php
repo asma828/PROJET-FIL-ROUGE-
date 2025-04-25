@@ -34,6 +34,7 @@ Route::get('/', function () {
 // admin routes
 Route::middleware(['auth','role:admin'])->group(function () {
 Route::get('/dashboard',[AdminController::class,'index'])->name('components.admin.dashboard');
+Route::get('/reservation/detail/{id}',[AdminController::class,'detail'])->name('reservation.detail');
 Route::get('/users',[AdminController::class,'usersManagement'])->name('components.admin.UserManagement');
 Route::delete('/user/{id}', [AdminController::class, 'destroy'])->name('user.destroy');
 Route::get('/events',[AdminController::class,'events'])->name('components.admin.EventManagement');
