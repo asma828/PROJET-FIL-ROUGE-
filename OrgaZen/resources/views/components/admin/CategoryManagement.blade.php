@@ -112,6 +112,12 @@
                         </a>
                     </li>
                     <li>
+                        <li>
+                            <a href="{{Route('components.admin.TagsManagement')}}" class="nav-link flex items-center px-4 py-3 rounded-lg bg-white bg-opacity-10">
+                                <i class="fas fa-hashtag w-5 h-5 mr-3"></i>
+                                <span>Tags Management</span>
+                            </a>
+                        </li>
                         <a href="{{Route('components.admin.serviceProvider')}}" class="nav-link flex items-center px-4 py-3 rounded-lg">
                             <i class="fas fa-building w-5 h-5 mr-3"></i>
                             <span>Service Providers</span>
@@ -175,20 +181,22 @@
                     <!-- Category Card -->
                     @foreach($categories as $categorie)
                     <div class="category-card bg-white rounded-xl shadow-sm overflow-hidden">
-                        <img src="{{$categorie->image}}" alt="Wedding" class="category-image w-full">
+                        <img src="{{ Str::startsWith($categorie->image, 'http') || Str::startsWith($categorie->image, 'images/') ? asset($categorie->image) : asset('storage/' . $categorie->image) }}" alt="Wedding" class="category-image w-full">
                         <div class="p-6">
                             <div class="flex items-center justify-between mb-4">
                                 <div>
                                     <h3 class="text-lg font-semibold text-gray-700">{{$categorie->name}}</h3>
-                                    <p class="text-sm text-gray-500">12 Service Providers</p>
                                 </div>
                                 <div class="dropdown relative">
                                     <button class="text-gray-400 hover:text-gray-600 focus:outline-none">
                                         <i class="fas fa-ellipsis-v"></i>
                                     </button>
                                     <div class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden z-10">
-                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
-                                        <form action="{{ route('category.destroy', $categorie->id) }}" method="POST" onsubmit="return confirm('Are you sure?')">
+                                        <a href="{{ route('category.edit', $categorie->id) }}" 
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                            Edit
+                                         </a>
+                                       <form action="{{ route('category.destroy', $categorie->id) }}" method="POST" onsubmit="return confirm('Are you sure?')">
                                             @csrf
                                             @method('DELETE')
                                         <button class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Delete</button>
@@ -202,7 +210,7 @@
                             <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
                                 <div class="text-sm text-gray-500">
                                     <i class="fas fa-calendar-check text-green-500 mr-1"></i>
-                                    45 Bookings
+                                    {{ $categorie->reservation_count}} Bookings
                                 </div>
                             </div>
                         </div>
@@ -224,8 +232,10 @@
             </a>
         </div>
         <div class="p-6">
-            <form method="post" action="" enctype="multipart/form-data">
+            <form method="post" action="{{ route('category.store') }}" enctype="multipart/form-data">
+                @csrf
                 <div class="mb-4">
+                    <input type="hidden" name="category_id" id="categoryId">
                     <label for="categoryName" class="block text-sm font-medium text-gray-700 mb-2">Category Name</label>
                     <input type="text" id="categoryName" name="categoryName" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
                 </div>
