@@ -7,4 +7,8 @@ class tagRepository implements tagInterface{
     public function getAllTags(){
         return tag::all();
     }
+    public function destroy($id){
+        $tag= tag::findOrFail($id);
+        return $tag->delete();
+    }
 }
