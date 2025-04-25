@@ -31,4 +31,13 @@ public function findById($id)
 {
     return EventCategory::findOrFail($id);
 }
+
+public function getPopularCategories()
+{
+    return EventCategory::withCount('reservation') 
+                         ->orderByDesc('reservation_count')
+                         ->take(5)
+                         ->get();
+}
+
 }
