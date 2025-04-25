@@ -49,6 +49,7 @@ Route::post('/tags/store',[TagController::class,'store'])->name('tags.store');
 Route::get('/tags/{id}/edit', [TagController::class, 'edit'])->name('tag.edit');
 Route::put('/tags/{id}', [TagController::class, 'update'])->name('tag.update');
 Route::get('/service',[AdminController::class,'service'])->name('components.admin.serviceProvider');
+Route::put('/admin/providers/{id}/toggle', [AdminController::class, 'toggleProviderStatus'])->name('admin.providers.toggle');
 Route::get('/Payment',[AdminController::class,'Payment'])->name('components.admin.Payment');
 });
 //Provider routes
