@@ -46,6 +46,8 @@ Route::delete('/category/{id}', [EventCategoryController::class, 'destroy'])->na
 Route::get('tags',[TagController::class,'tags'])->name('components.admin.TagsManagement');
 Route::delete('/tag/{id}',[TagController::class,'destroy'])->name('tag.destroy');
 Route::post('/tags/store',[TagController::class,'store'])->name('tags.store');
+Route::get('/tags/{id}/edit', [TagController::class, 'edit'])->name('tag.edit');
+Route::put('/tags/{id}', [TagController::class, 'update'])->name('tag.update');
 Route::get('/service',[AdminController::class,'service'])->name('components.admin.serviceProvider');
 Route::get('/Payment',[AdminController::class,'Payment'])->name('components.admin.Payment');
 });
