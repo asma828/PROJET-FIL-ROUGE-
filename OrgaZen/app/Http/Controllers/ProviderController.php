@@ -16,6 +16,7 @@ class ProviderController extends Controller
 
      public function dashboard($providerId)
     {
+        
         $provider = $this->userRepository->getProviderDashboardData($providerId);
 
         return view('components.provider.dashboard', [
