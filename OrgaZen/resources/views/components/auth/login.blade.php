@@ -74,7 +74,6 @@
             <h1 class="text-4xl font-extrabold text-center logo-text">Orgazen</h1>
             <h2 class="mt-2 text-center text-lg font-medium text-gray-600">Sign in to your account</h2>
         </div>
-
         <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-md">
             <div class="login-container rounded-xl overflow-hidden shadow-xl">
                 <div class="auth-form py-8 px-6 rounded-xl">
@@ -86,6 +85,12 @@
                            {{ session('success') }}
                     </div>
                                  @endif
+                                 @if ($errors->has('email'))
+                                 <div class="text-red-500 text-sm mb-3">
+                                     {{ $errors->first('email') }}
+                                 </div>
+                             @endif
+                             
                             <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
                             <div class="mt-1 relative rounded-md shadow-sm">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
