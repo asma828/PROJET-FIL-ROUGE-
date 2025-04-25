@@ -142,31 +142,7 @@
             <!-- Event Management Content -->
             <div class="p-8">
                 <!-- Stats Cards -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                    <div class="card bg-white rounded-xl shadow-sm p-6">
-                        <div class="flex items-center">
-                            <div class="rounded-full bg-green-100 p-3 mr-4">
-                                <i class="fas fa-calendar-check text-green-600 text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-semibold text-gray-700">Active Events</h3>
-                                <p class="text-2xl font-bold text-green-600">0</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="card bg-white rounded-xl shadow-sm p-6">
-                        <div class="flex items-center">
-                            <div class="rounded-full bg-yellow-100 p-3 mr-4">
-                                <i class="fas fa-hourglass-half text-yellow-600 text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-semibold text-gray-700">Pending Events</h3>
-                                <p class="text-2xl font-bold text-yellow-600">0</p>
-                            </div>
-                        </div>
-                    </div>
-                    
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">   
                     <div class="card bg-white rounded-xl shadow-sm p-6">
                         <div class="flex items-center">
                             <div class="rounded-full bg-indigo-100 p-3 mr-4">
@@ -231,9 +207,9 @@
                                         <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{{$event->total_price ?? 100}}</td>
                                         <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
                                             <div class="flex space-x-2">
-                                                <button class="text-indigo-600 hover:text-indigo-900">
+                                                <a href="{{Route('reservation.detail',$event->id)}}" class="text-indigo-600 hover:text-indigo-900">
                                                     <i class="fas fa-eye"></i>
-                                                </button>
+                                                </a>
                                                 <button class="text-blue-600 hover:text-blue-900">
                                                     
                                                 </button>
@@ -250,29 +226,3 @@
                                 </tbody>
                             </table>
                         </div>
-                    <!-- Event Detail Modal -->
-                    <div id="eventDetailModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
-                        <div class="bg-white rounded-xl shadow-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto p-6">
-                            <div class="flex justify-between items-center border-b pb-4 mb-4">
-                                <h3 class="text-xl font-semibold text-gray-800">Event Details</h3>
-                                <button id="closeEventModal" class="text-gray-500 hover:text-gray-700">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                            
-                            <!-- Event Details -->
-                            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                                <!-- Left Column -->
-                                <div class="lg:col-span-2">
-                                    <div class="bg-gray-50 rounded-lg p-4 mb-4">
-                                        <h4 class="text-lg font-medium text-gray-800 mb-2">Sara's Wedding</h4>
-                                        <div class="flex items-center mb-2">
-                                            <i class="fas fa-calendar-alt text-indigo-600 mr-2"></i>
-                                            <span class="text-gray-700">March 24, 2025 • 6:00 PM</span>
-                                        </div>
-                                        <div class="flex items-center mb-2">
-                                            <i class="fas fa-map-marker-alt text-indigo-600 mr-2"></i>
-                                            <span class="text-gray-700">Grand Marriott Hotel, Casablanca</span>
-                                        </div>
-                                        <div class="flex items-center">
-                                            <i class
