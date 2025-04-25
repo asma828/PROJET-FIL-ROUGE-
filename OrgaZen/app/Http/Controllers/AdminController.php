@@ -22,7 +22,7 @@ public function __construct(UserInterface $userRepo,ReservationInterface $reserv
     $this->evenCategoryRepo=$evenCategoryRepo;
 }
     public function index(){
-        $events=$this->reservationRepo->getAllEvents();
+        $events=$this->reservationRepo->getLastetEvent();
         $TotalEvent= $this->statiqueRepo->getTotalReservations();
         $TotalUsers = $this->statiqueRepo->getTotalUsers();
         $TotalProviders = $this->statiqueRepo->getTotalProvider();
@@ -62,6 +62,10 @@ public function __construct(UserInterface $userRepo,ReservationInterface $reserv
 {
     $provider = $this->userRepo->toggleStatus($id);
     return redirect()->back()->with('status', 'Provider status updated!');
+}
+public function detail($id){
+    $details = $this->reservationRepo->reservationDetail($id);
+    return view('components.admin.reservationDetail', compact('details'));
 }
 
  
