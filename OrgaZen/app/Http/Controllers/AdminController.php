@@ -58,7 +58,5 @@ public function __construct(UserInterface $userRepo,ReservationInterface $reserv
         $totalRevenus = $this->statiqueRepo->getTotalRevenus();
         return view('components.admin.Payment',compact('events','totalRevenus'));
     }
-    public function Tags(){
-        return view('components.admin.TagsManagement');
-    }
+ 
 }
