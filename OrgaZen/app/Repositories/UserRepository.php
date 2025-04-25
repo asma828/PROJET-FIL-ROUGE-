@@ -144,6 +144,13 @@ public function getTopProviders()
         
     return $topProviders;
 }
+public function toggleStatus($id)
+{
+    $provider = User::findOrFail($id);
+    $provider->is_active = !$provider->is_active;
+    $provider->save();
 
+    return $provider;
+}
 
 }
