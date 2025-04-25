@@ -16,4 +16,15 @@ class tagRepository implements tagInterface{
     public function store(array $data){
         return tag::create($data);
     }
+
+    public function update($id, array $data)
+{
+    $tag = tag::findOrFail($id);
+    $tag->update($data);
+    return $tag;
+}
+public function findById($id)
+{
+    return tag::findOrFail($id);
+}
 }
