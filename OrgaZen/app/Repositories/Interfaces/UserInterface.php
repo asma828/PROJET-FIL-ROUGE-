@@ -11,6 +11,7 @@ interface UserInterface{
     public function getProviderDetails($providerId);
     public function getAuthenticatedProviderWithComments($perPage);
     public function getProviderDashboardData($providerId);
+    public function getTopProviders();
 
 
 
