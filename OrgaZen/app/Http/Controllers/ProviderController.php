@@ -24,7 +24,7 @@ class ProviderController extends Controller
             'latestComment' => $provider['latestComment'],
         ]);
     }
-    
+
     public function chat(){
         return view('components.provider.LiveChat');
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\EventCategory;
+use App\Repositories\Interfaces\EventCategoryInterface;
 use App\Repositories\Interfaces\ReservationInterface;
 use App\Repositories\Interfaces\StatistiqueInterface;
 use App\Repositories\Interfaces\UserInterface;
@@ -13,10 +14,12 @@ class AdminController extends Controller
     protected $userRepo;
     protected $reservationRepo;
     protected $statiqueRepo;
-public function __construct(UserInterface $userRepo,ReservationInterface $reservationRepo,StatistiqueInterface $statiqueRepo){
+    protected $evenCategoryRepo;
+public function __construct(UserInterface $userRepo,ReservationInterface $reservationRepo,StatistiqueInterface $statiqueRepo,EventCategoryInterface $evenCategoryRepo){
     $this->userRepo=$userRepo;
     $this->reservationRepo=$reservationRepo;
     $this->statiqueRepo=$statiqueRepo;
+    $this->evenCategoryRepo=$evenCategoryRepo;
 }
     public function index(){
         $events=$this->reservationRepo->getAllEvents();
@@ -25,7 +28,8 @@ public function __construct(UserInterface $userRepo,ReservationInterface $reserv
         $TotalProviders = $this->statiqueRepo->getTotalProvider();
         $TotalRevenus = $this->statiqueRepo->getTotalRevenus();
         $TopProviders = $this->userRepo->getTopProviders();
-        return view('components.admin.dashboard',compact('events','TotalEvent','TotalUsers','TotalProviders','TotalRevenus','TopProviders'));
+        $popularCategories = $this->evenCategoryRepo->getPopularCategories();
+        return view('components.admin.dashboard',compact('events','TotalEvent','TotalUsers','TotalProviders','TotalRevenus','TopProviders','popularCategories'));
     }
 
     public function usersManagement(){
@@ -53,5 +57,8 @@ public function __construct(UserInterface $userRepo,ReservationInterface $reserv
         $events=$this->reservationRepo->getAllEvents();
         $totalRevenus = $this->statiqueRepo->getTotalRevenus();
         return view('components.admin.Payment',compact('events','totalRevenus'));
+    }
+    public function Tags(){
+        return view('components.admin.TagsManagement');
     }
 }
