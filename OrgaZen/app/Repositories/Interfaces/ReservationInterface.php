@@ -9,4 +9,6 @@ interface ReservationInterface
     public function destroy($id);
     public function getClientEvents($clientId);
     public function getProviderEvents($providerId);
+    public function reservationDetail($id);
+    public function getLastetEvent();
 }
