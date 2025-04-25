@@ -15,4 +15,9 @@ class TagController extends Controller
         $tags=$this->TagRepo->getAllTags();
         return view('components.admin.TagsManagement',compact('tags'));
     }
+    public function destroy($id){
+        $tag=$this->TagRepo->destroy($id);
+        return redirect()->back()->with('Tag deleted successfully');
+
+    }
 }
