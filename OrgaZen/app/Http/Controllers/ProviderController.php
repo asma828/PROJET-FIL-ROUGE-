@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Interfaces\UserInterface;
+use Auth;
 use Illuminate\Http\Request;
 
 class ProviderController extends Controller
@@ -18,7 +19,12 @@ class ProviderController extends Controller
     {
         
         $provider = $this->userRepository->getProviderDashboardData($providerId);
-
+        if (!$provider['provider']->is_active) {
+            Auth::logout();
+            return redirect()->route('components.auth.login')->withErrors([
+                'email' => 'Your account has been banned by the admin.'
+            ]);
+        }
         return view('components.provider.dashboard', [
             'provider' => $provider['provider'],
             'latestReservation' => $provider['latestReservation'],
