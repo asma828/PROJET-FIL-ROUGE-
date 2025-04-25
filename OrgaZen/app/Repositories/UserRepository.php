@@ -134,5 +134,16 @@ public function getProviderDashboardData($providerId)
     return compact('provider', 'latestReservation', 'latestComment');
 }
 
+public function getTopProviders()
+{
+    $topProviders = User::where('role_id', 3) 
+        ->withCount('events') 
+        ->orderByDesc('events_count') 
+        ->limit(4) 
+        ->get();
+        
+    return $topProviders;
+}
+
 
 }
