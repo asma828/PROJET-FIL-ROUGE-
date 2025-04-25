@@ -9,6 +9,7 @@ use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ServiceImageController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
@@ -42,6 +43,7 @@ Route::post('/categories/store', [EventCategoryController::class, 'store'])->nam
 Route::get('/categories/{id}/edit', [EventCategoryController::class, 'edit'])->name('category.edit');
 Route::put('/categories/{id}', [EventCategoryController::class, 'update'])->name('category.update');
 Route::delete('/category/{id}', [EventCategoryController::class, 'destroy'])->name('category.destroy');
+Route::get('tags',[TagController::class,'tags'])->name('components.admin.TagsManagement');
 Route::get('/service',[AdminController::class,'service'])->name('components.admin.serviceProvider');
 Route::get('/Payment',[AdminController::class,'Payment'])->name('components.admin.Payment');
 });
