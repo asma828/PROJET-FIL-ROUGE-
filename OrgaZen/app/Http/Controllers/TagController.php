@@ -20,4 +20,13 @@ class TagController extends Controller
         return redirect()->back()->with('Tag deleted successfully');
 
     }
+    public function store(Request $request){
+        $data = $request->validate([
+            'name'=>'required|string|max:255',
+        ]);
+        $this->TagRepo->store($data);
+        return redirect()->back()->with('success', 'tag ajoutée avec succès.');
+
+
+    }
 }
