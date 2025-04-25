@@ -203,6 +203,7 @@
                 <!-- Tags Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
                     <!-- Tag Card 1 -->
+                    @foreach ($tags as $tag)    
                     <div class="tag-card bg-white rounded-xl shadow-sm overflow-hidden">
                         <div class="p-6">
                             <div class="flex items-center justify-between mb-4">
@@ -210,14 +211,14 @@
                                     <div class="tag-icon mr-3">
                                         <i class="fas fa-hashtag"></i>
                                     </div>
-                                    <h3 class="text-lg font-semibold text-gray-700">Wedding</h3>
+                                    <h3 class="text-lg font-semibold text-gray-700">{{$tag->name}}</h3>
                                 </div>
                                 <div class="dropdown relative">
                                     <div class="flex space-x-2">
                                         <a href="" class="text-gray-400 hover:text-gray-600">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <form action="" method="POST" onsubmit="return confirm('Are you sure?')">
+                                        <form action="{{ route('tag.destroy', $tag->id) }}" method="POST" onsubmit="return confirm('Are you sure?')">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="text-gray-400 hover:text-red-600">
@@ -228,7 +229,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div> 
+                    </div>
+                    @endforeach 
                 </div>
             </div>
         </div>
@@ -245,7 +247,7 @@
                     </button>
                 </div>
                 
-                <form action="" method="POST">
+                <form action="{{route('tags.store')}}" method="POST">
                     @csrf
                     <div class="mb-4">
                         <label for="tag_name" class="block text-sm font-medium text-gray-700 mb-2">Tag Name</label>

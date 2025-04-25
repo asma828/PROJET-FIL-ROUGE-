@@ -60,6 +60,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{Route('components.admin.TagsManagement')}}" class="nav-link flex items-center px-4 py-3 rounded-lg bg-white bg-opacity-10">
+                            <i class="fas fa-hashtag w-5 h-5 mr-3"></i>
+                            <span>Tags Management</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{Route('components.admin.CategoryManagement')}}" class="nav-link flex items-center px-4 py-3 rounded-lg bg-white bg-opacity-10">
                             <i class="fas fa-tags w-5 h-5 mr-3"></i>
                             <span>Events Categories</span>

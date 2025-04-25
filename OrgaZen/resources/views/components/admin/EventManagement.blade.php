@@ -89,6 +89,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{Route('components.admin.TagsManagement')}}" class="nav-link flex items-center px-4 py-3 rounded-lg bg-white bg-opacity-10">
+                            <i class="fas fa-hashtag w-5 h-5 mr-3"></i>
+                            <span>Tags Management</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{Route('components.admin.serviceProvider')}}" class="nav-link flex items-center px-4 py-3 rounded-lg">
                             <i class="fas fa-building w-5 h-5 mr-3"></i>
                             <span>Service Providers</span>
