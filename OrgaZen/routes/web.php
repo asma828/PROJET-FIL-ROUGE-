@@ -38,6 +38,9 @@ Route::delete('/user/{id}', [AdminController::class, 'destroy'])->name('user.des
 Route::get('/events',[AdminController::class,'events'])->name('components.admin.EventManagement');
 Route::delete('/event/{id}', [ReservationController::class, 'destroy'])->name('event.delete');
 Route::get('/category',[EventCategoryController::class,'category'])->name('components.admin.CategoryManagement');
+Route::post('/categories/store', [EventCategoryController::class, 'store'])->name('category.store');
+Route::get('/categories/{id}/edit', [EventCategoryController::class, 'edit'])->name('category.edit');
+Route::put('/categories/{id}', [EventCategoryController::class, 'update'])->name('category.update');
 Route::delete('/category/{id}', [EventCategoryController::class, 'destroy'])->name('category.destroy');
 Route::get('/service',[AdminController::class,'service'])->name('components.admin.serviceProvider');
 Route::get('/Payment',[AdminController::class,'Payment'])->name('components.admin.Payment');
@@ -79,7 +82,6 @@ Route::get('/payement/{reservationId}',[ClientController::class,'payement'])->na
 Route::get('/history/{id}',[ClientController::class,'History'])->name('components.client.EventHistory');
 Route::post('/reservation/{reservationId}/send-invitations', [ReservationController::class, 'sendInvitations'])->name('client.sendInvitations');
 Route::post('/pay', [PaymentController::class, 'makePayment'])->name('stripe.payment');
-
 
 
 });
