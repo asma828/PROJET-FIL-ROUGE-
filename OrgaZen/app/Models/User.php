@@ -24,7 +24,8 @@ class User extends Authenticatable
         'role_id',
         'business_name',
         'event_category_id',
-        'image'
+        'image',
+        'is_active'
     ];
 
     /**
@@ -79,6 +80,10 @@ public function events()
 public function providerBookings()
 {
     return $this->hasMany(Reservation::class, 'provider_id');
+}
+public function isActive()
+{
+    return $this->is_active;
 }
 
 
