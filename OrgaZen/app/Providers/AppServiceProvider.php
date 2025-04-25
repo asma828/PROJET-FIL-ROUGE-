@@ -13,11 +13,13 @@ use App\Repositories\Interfaces\ReservationInterface;
 use App\Repositories\Interfaces\ServiceImageInterface;
 use App\Repositories\Interfaces\ServiceInterface;
 use App\Repositories\Interfaces\StatistiqueInterface;
+use App\Repositories\Interfaces\TagInterface;
 use App\Repositories\Interfaces\UserInterface;
 use App\Repositories\ReservationRepository;
 use App\Repositories\ServiceImageRepository;
 use App\Repositories\ServiceRepository;
 use App\Repositories\StatistiqueRepository;
+use App\Repositories\tagRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -36,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ReservationInterface::class,ReservationRepository::class);
         $this->app->bind(StatistiqueInterface::class,StatistiqueRepository::class);
         $this->app->bind(CommentInterface::class,CommentRepository::class);
+        $this->app->bind(TagInterface::class,tagRepository::class);
         
 
     }
