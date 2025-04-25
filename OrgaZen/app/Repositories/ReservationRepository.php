@@ -18,7 +18,13 @@ class ReservationRepository implements ReservationInterface
     }
 
     public function getAllEvents(){
-        return reservation::with('category','client')->get();
+        return reservation::with('category','client')
+        ->get();
+    }
+    public function getLastetEvent(){
+        return reservation::with('category','client')
+        ->limit(5)
+        ->get();
     }
 
     public function destroy($id){
@@ -37,6 +43,10 @@ class ReservationRepository implements ReservationInterface
         ->findOrFail($providerId);    
     }
 
-
+    public function reservationDetail($id){
+    $event = reservation::with(['category', 'client', 'provider'])->findOrFail($id);
+    return $event;
+}
+    
 
 }
