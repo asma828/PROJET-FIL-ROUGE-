@@ -425,22 +425,25 @@
 
         <!-- Review Form -->
         @if($canComment)
-            <div class="review-form">
-                <form action="{{ route('comment.store') }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="provider_id" value="{{ $provider->id }}">
-                    <textarea name="comment" placeholder="Write your review here..."></textarea>
-                    <div class="star-rating">
-                        <input type="radio" name="rating" value="1"><i class="fas fa-star"></i>
-                        <input type="radio" name="rating" value="2"><i class="fas fa-star"></i>
-                        <input type="radio" name="rating" value="3"><i class="fas fa-star"></i>
-                        <input type="radio" name="rating" value="4"><i class="fas fa-star"></i>
-                        <input type="radio" name="rating" value="5"><i class="fas fa-star"></i>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit Review</button>
-                </form>
-            </div>
-        @endif
+        <div class="review-form">
+            <form action="{{ route('comment.store') }}" method="POST" id="ratingForm">
+                @csrf
+                <input type="hidden" name="provider_id" value="{{ $provider->id }}">
+                <input type="hidden" name="rating" id="ratingValue">
+    
+                <textarea name="comment" placeholder="Write your review here..." class="w-full border rounded p-2 mb-4"></textarea>
+    
+                <div class="star-rating" id="starRating">
+                    @for ($i = 1; $i <= 5; $i++)
+                        <i class="fas fa-star" data-value="{{ $i }}"></i>
+                    @endfor
+                </div>
+    
+                <button type="submit" class="btn btn-primary">Submit Review</button>
+            </form>
+        </div>
+    @endif
+    
 
         <!-- Reviews List -->
         <div class="reviews-list">
@@ -450,11 +453,11 @@
                         <div class="review-author">
                             <h4>{{ $comment->user->first_name}} {{$comment->user->last_name}}</h4>
                         </div>
-                        {{-- <div class="review-rating">
+                        <div class="review-rating">
                             @for($i = 0; $i < $comment->rating; $i++)
                                 <i class="fas fa-star"></i>
                             @endfor
-                        </div> --}}
+                        </div>
                     </div>
                     <p>{{ $comment->comment }}</p>
                 </div>

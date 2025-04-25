@@ -426,7 +426,7 @@
             <!-- Filter Options -->
         <div class="filter-options"> 
             <div class="search-box">
-                <form method="GET" action="{{ route('client.events') }}">
+                {{-- <form method="GET" action="{{ route('client.events') }}"> --}}
                     <i class="fas fa-search"></i>
                     <input type="text" placeholder="Search events..." value="{{ request()->input('search') }}">
                 </form>
