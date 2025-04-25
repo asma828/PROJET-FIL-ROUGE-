@@ -192,13 +192,26 @@
                                         {{$provider->total_revenue}}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                            Active
-                                        </span>
+                                        @if ($provider->is_active)
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                Active
+                                            </span>
+                                        @else
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                                Disabled
+                                            </span>
+                                        @endif
                                     </td>
+                                    
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <a href="#" class="text-red-600 hover:text-red-900">Disable</a>
-                                    </td>
+                                        <form action="{{ route('admin.providers.toggle', $provider->id) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="px-3 py-1 rounded {{ $provider->is_active ? 'bg-red-500' : 'bg-green-500' }} text-white">
+                                                {{ $provider->is_active ? 'Ban' : 'Activate' }}
+                                            </button>
+                                        </form>
+                                         </td>
                                 </tr>  
                                 @endforeach
                             </tbody>
@@ -206,6 +219,8 @@
                     </div>
                    
                 </div>
+             
+                
                 
                 <!-- Pending Verification -->
                 <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
