@@ -215,7 +215,7 @@
                                 </div>
                                 <div class="dropdown relative">
                                     <div class="flex space-x-2">
-                                        <a href="" class="text-gray-400 hover:text-gray-600">
+                                        <a href="{{ route('tag.edit', $tag->id) }}" class="text-gray-400 hover:text-gray-600">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         <form action="{{ route('tag.destroy', $tag->id) }}" method="POST" onsubmit="return confirm('Are you sure?')">
