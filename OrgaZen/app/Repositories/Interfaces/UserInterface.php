@@ -12,6 +12,7 @@ interface UserInterface{
     public function getAuthenticatedProviderWithComments($perPage);
     public function getProviderDashboardData($providerId);
     public function getTopProviders();
+    public function toggleStatus($id);
 
 
 
