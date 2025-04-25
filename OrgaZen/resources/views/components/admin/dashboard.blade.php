@@ -238,8 +238,7 @@
                                             <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
                                                 {{$event->total_price ?? 100}}</td>
                                             <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
-                                                <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-3">View</a>
-                                                <a href="#" class="text-gray-600 hover:text-gray-900">Edit</a>
+                                                <a href="{{Route('reservation.detail',$event->id)}}" class="text-indigo-600 hover:text-indigo-900 mr-3">View</a>
                                             </td>
                                         </tr>
                                     @endforeach
