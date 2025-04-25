@@ -112,11 +112,7 @@
                         <h2 class="text-xl font-semibold text-gray-800">Payment & Finance</h2>
                     </div>
                     <div class="flex items-center space-x-4">
-                        <div class="relative">
-                            <button class="p-2 text-gray-500 hover:text-gray-700">
-                                <i class="fas fa-bell"></i>
-                            </button>
-                        </div>
+                        
                         <div class="flex items-center space-x-3">
                             <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="" class="w-10 h-10 rounded-full">
                             <div>

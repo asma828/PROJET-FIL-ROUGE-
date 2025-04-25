@@ -106,12 +106,7 @@
                         <h2 class="text-xl font-semibold text-gray-800">Service Providers Management</h2>
                     </div>
                     <div class="flex items-center space-x-4">
-                        <div class="relative">
-                            <button class="p-2 text-gray-500 hover:text-gray-700">
-                                <i class="fas fa-bell"></i>
-                                {{-- <span class="notification-badge flex items-center justify-center w-5 h-5 bg-red-500 text-white text-xs rounded-full">3</span> --}}
-                            </button>
-                        </div>
+                        
                         <div class="flex items-center space-x-3">
                             <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="" class="w-10 h-10 rounded-full">
                             <div>
