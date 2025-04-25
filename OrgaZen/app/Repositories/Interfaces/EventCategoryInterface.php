@@ -9,4 +9,6 @@ interface EventCategoryInterface
     public function store(array $data);
     public function update($id, array $data);
     public function findById($id);
+    public function getPopularCategories();
+
 }
