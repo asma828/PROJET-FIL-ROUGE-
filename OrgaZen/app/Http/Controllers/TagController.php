@@ -27,6 +27,24 @@ class TagController extends Controller
         $this->TagRepo->store($data);
         return redirect()->back()->with('success', 'tag ajoutée avec succès.');
 
-
     }
+    public function edit($id)
+{
+    $tag = $this->TagRepo->findById($id);
+    return view('components.admin.editTagModal', compact('tag'));
+}
+
+public function update(Request $request, $id)
+{
+    // dd($request->all());
+    $data = $request->validate([
+        'tagName' => 'required|string|max:255',
+    ]);
+    $data['name'] = $data['tagName'];
+
+    $this->TagRepo->update($id, $data);
+
+    return redirect()->route(route: 'components.admin.TagsManagement')->with('success', 'tag mise à jour avec succès.');
+}
+
 }
