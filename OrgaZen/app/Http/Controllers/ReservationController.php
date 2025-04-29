@@ -6,6 +6,8 @@ use App\Repositories\Interfaces\ReservationInterface;
 use Illuminate\Http\Request;
 use App\Mail\EventInvitationMail;
 use Illuminate\Support\Facades\Mail;
+use App\Notifications\ReservationMade;
+
 
 class ReservationController extends Controller
 {
@@ -58,6 +60,11 @@ class ReservationController extends Controller
         'provider_id' => $request->provider_id,
         'status' => 'step2',
     ]);
+    $provider = \App\Models\User::find($request->provider_id);
+    if ($provider) {
+        $provider->notify(new ReservationMade($reservation));
+    }
+    
     return redirect()->route('components.client.invitation', $reservationId);
 }
 
