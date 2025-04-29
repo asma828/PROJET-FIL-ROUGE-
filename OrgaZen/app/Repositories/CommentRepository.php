@@ -16,4 +16,14 @@ public function destroy($id){
     $user = Comment::findOrFail($id);
         return $user->delete();
 }
+
+public function findById($id)
+{
+    return Comment::find($id);
+}
+
+public function delete($id)
+{
+    return Comment::destroy($id);
+}
 }
