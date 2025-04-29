@@ -80,6 +80,7 @@ Route::get('/home',[ClientController::class,'home'])->name('components.client.ho
 Route::get('/providers',[ClientController::class,'listingProviders'])->name('components.client.providers');
 Route::get('/details/{providerId}',[ClientController::class,'details'])->name('components.client.provider-details');
 Route::post('/comment',[CommentController::class,'store'])->name('comment.store');
+Route::delete('/comments/{comment}', [CommentController::class, 'delete'])->name('comments.destroy');
 Route::get('/categories',[ClientController::class,'categories'])->name('components.client.categories');
 Route::get('/creatEvent/{category_id}',[ClientController::class,'createvent'])->name('components.client.eventdetails');
 Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
