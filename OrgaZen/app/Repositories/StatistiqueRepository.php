@@ -19,4 +19,12 @@ class StatistiqueRepository implements StatistiqueInterface{
         ->where('role_id',3)
         ->count();
     }
+    public function getActiveReservation(){
+        return Reservation::whereIn('status', ['step1', 'step2', 'step3'])->count();
+
+    }
+    public function getCompletedReservation(){
+        return Reservation::where('status', 'completed')->count();
+
+    }
 }
