@@ -150,9 +150,7 @@
                             <div class="mt-4 border-t border-gray-100 pt-4">
                                 <div class="flex justify-between">
                                     <span class="text-xs text-gray-500">{{ $comment->created_at->diffForHumans() }}</span>
-                                    <div class="flex items-center">
-                                        <button class="text-sm text-indigo-600 hover:text-indigo-800 mr-4">Reply</button>
-                                        
+                                    <div class="flex items-center">                                        
                                         <form action="{{ route('provider.comments.destroy', $comment->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this comment?')">
                                             @csrf
                                             @method('DELETE')
@@ -161,7 +159,7 @@
                                             </button>
                                         </form>
                                     </div>
-                                    
+                
                                 </div>
                             </div>
                         </div>
