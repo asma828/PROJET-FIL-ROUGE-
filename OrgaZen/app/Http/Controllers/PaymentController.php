@@ -31,7 +31,7 @@ class PaymentController extends Controller
     $reservation->save();
 
     // Convert to cents for Stripe
-    $amount = max(500, $totalPrice * 100);
+    $amount = max(500, round($totalPrice * 100));
 
     try {
         $payment = PaymentIntent::create([
