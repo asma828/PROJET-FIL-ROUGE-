@@ -53,5 +53,18 @@ class CommentController extends Controller
         $user=$this->commentRepo->destroy($id);
         return redirect()->back()->with('success', 'comment deleted successfully.');
     }
+
+    public function delete($id)
+    {
+        $comment = $this->commentRepo->findById($id);
+
+        if (!$comment || auth()->id() !== $comment->user_id) {
+            abort(403);
+        }
+
+        $this->commentRepo->delete($id);
+
+        return back()->with('success', 'Comment deleted successfully.');
     }
+}
     
