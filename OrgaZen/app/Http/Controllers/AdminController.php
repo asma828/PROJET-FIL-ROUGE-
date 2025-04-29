@@ -44,8 +44,10 @@ public function __construct(UserInterface $userRepo,ReservationInterface $reserv
 
 
     public function events(){
+        $Upcoming = $this->statiqueRepo->getActiveReservation();
+        $CompleteReservation = $this->statiqueRepo->getCompletedReservation();
         $events=$this->reservationRepo->getAllEvents();
-        return view('components.admin.EventManagement',compact('events'));
+        return view('components.admin.EventManagement',compact('events','Upcoming','CompleteReservation'));
     }
 
     public function service(){
