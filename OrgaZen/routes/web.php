@@ -15,6 +15,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use NunoMaduro\Collision\Provider;
+use App\Http\Controllers\NotificationController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -67,6 +69,9 @@ Route::delete('/provider/comments/{id}', [CommentController::class, 'destroy'])-
 Route::get('/profile', [ProfileController::class, 'show'])->name('components.provider.Profile');
 Route::post('/profile', [ProfileController::class, 'update'])->name('editProfile');
 Route::post('/profile/update-image', [ProfileController::class, 'updateProfileImage'])->name('updateProfileImage');
+Route::post('/notifications/mark-all-read', [NotificationController::class, 'markAllRead'])
+    ->name('notifications.markAllRead');
+
 });
 //authentification route
 Route::get('/',[AuthController::class,'showRegister'])->name('show.register');
