@@ -433,12 +433,6 @@
     
                 <textarea name="comment" placeholder="Write your review here..." class="w-full border rounded p-2 mb-4"></textarea>
     
-                <div class="star-rating" id="starRating">
-                    @for ($i = 1; $i <= 5; $i++)
-                        <i class="fas fa-star" data-value="{{ $i }}"></i>
-                    @endfor
-                </div>
-    
                 <button type="submit" class="btn btn-primary">Submit Review</button>
             </form>
         </div>
@@ -449,38 +443,32 @@
         <div class="reviews-list">
             @foreach($comments as $comment)
                 <div class="review-card">
-                    <div class="review-header">
+                    <div class="review-header flex justify-between items-center">
                         <div class="review-author">
-                            <h4>{{ $comment->user->first_name}} {{$comment->user->last_name}}</h4>
+                            <h4>{{ $comment->user->first_name }} {{ $comment->user->last_name }}</h4>
                         </div>
-                        <div class="review-rating">
-                            @for($i = 0; $i < $comment->rating; $i++)
-                                <i class="fas fa-star"></i>
-                            @endfor
-                        </div>
+        
+                        @if(auth()->check() && auth()->id() === $comment->user_id)
+                            <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this comment?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-500 hover:text-red-700">
+                                    🗑️
+                                </button>
+                            </form>
+                        @endif
                     </div>
                     <p>{{ $comment->comment }}</p>
                 </div>
             @endforeach
         </div>
+        
     </div>
 </div>
     </div>
 
     <script>
-        // Star Rating Interaction
-        document.querySelectorAll('.star-rating i').forEach(star => {
-            star.addEventListener('click', function() {
-                const rating = this.getAttribute('data-rating');
-                document.querySelectorAll('.star-rating i').forEach(s => {
-                    if (parseInt(s.getAttribute('data-rating')) <= rating) {
-                        s.classList.add('active');
-                    } else {
-                        s.classList.remove('active');
-                    }
-                });
-            });
-        });
+
     </script>
 </body>
 </html>
