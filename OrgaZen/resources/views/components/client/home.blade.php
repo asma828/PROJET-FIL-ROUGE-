@@ -188,7 +188,6 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(255, 56, 92, 0.8) 100%);
         }
         
         .hero-content {
