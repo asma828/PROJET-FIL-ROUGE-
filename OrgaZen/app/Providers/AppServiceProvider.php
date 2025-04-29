@@ -9,12 +9,14 @@ use App\Repositories\EventCategoryRepo;
 use App\Repositories\Interfaces\AuthRepositoryInterface;
 use App\Repositories\Interfaces\CommentInterface;
 use App\Repositories\Interfaces\EventCategoryInterface;
+use App\Repositories\Interfaces\NotificationInterface;
 use App\Repositories\Interfaces\ReservationInterface;
 use App\Repositories\Interfaces\ServiceImageInterface;
 use App\Repositories\Interfaces\ServiceInterface;
 use App\Repositories\Interfaces\StatistiqueInterface;
 use App\Repositories\Interfaces\TagInterface;
 use App\Repositories\Interfaces\UserInterface;
+use App\Repositories\NotificationRepository;
 use App\Repositories\ReservationRepository;
 use App\Repositories\ServiceImageRepository;
 use App\Repositories\ServiceRepository;
@@ -39,7 +41,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(StatistiqueInterface::class,StatistiqueRepository::class);
         $this->app->bind(CommentInterface::class,CommentRepository::class);
         $this->app->bind(TagInterface::class,tagRepository::class);
-        
+        $this->app->bind(NotificationInterface::class, NotificationRepository::class);
+
 
     }
 
