@@ -61,12 +61,7 @@
                             <span>My Bookings</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{Route('components.provider.Chat')}}" class="nav-link flex items-center px-4 py-3 rounded-lg">
-                            <i class="fas fa-comment-alt w-5 h-5 mr-3"></i>
-                            <span>Live Chat</span>
-                        </a>
-                    </li>
+                  
                     <li>
                         <a href="{{Route('components.provider.MyService')}}" class="nav-link flex items-center px-4 py-3 rounded-lg">
                             <i class="fas fa-store w-5 h-5 mr-3"></i>

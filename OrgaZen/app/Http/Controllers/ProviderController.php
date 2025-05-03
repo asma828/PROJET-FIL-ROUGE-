@@ -32,10 +32,5 @@ class ProviderController extends Controller
         ]);
     }
 
-    public function chat(){
-        return view('components.provider.LiveChat');
-    }
-
-
     
 }

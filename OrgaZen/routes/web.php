@@ -59,7 +59,6 @@ Route::get('/Payment',[AdminController::class,'Payment'])->name('components.admi
 Route::middleware(['auth', 'role:provider'])->group(function () {
 Route::get('/providerDashboard/{providerId}', [ProviderController::class, 'dashboard'])->name('components.provider.dashboard');
 Route::get('/Booking',[ReservationController::class,'Booking'])->name('components.provider.BookingManagement');
-Route::get('/LiveChat',[ProviderController::class,'Chat'])->name('components.provider.Chat');
 Route::get('/my-service', [ServiceController::class, 'show'])->name('components.provider.MyService');
 Route::post('/services', [ServiceController::class, 'store'])->name('services');
 Route::post('/service/{id}/images', [ServiceImageController::class, 'store'])->name('service.images.store');
