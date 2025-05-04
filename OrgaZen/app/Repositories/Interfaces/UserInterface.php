@@ -13,6 +13,8 @@ interface UserInterface{
     public function getProviderDashboardData($providerId);
     public function getTopProviders();
     public function toggleStatus($id);
+    public function getProfile();
+
 
 
 
