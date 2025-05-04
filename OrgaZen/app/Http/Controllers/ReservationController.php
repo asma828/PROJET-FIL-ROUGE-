@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Interfaces\ReservationInterface;
+use App\Repositories\Interfaces\UserInterface;
 use Illuminate\Http\Request;
 use App\Mail\EventInvitationMail;
 use Illuminate\Support\Facades\Mail;
@@ -12,10 +13,12 @@ use App\Notifications\ReservationMade;
 class ReservationController extends Controller
 {
     protected $reservationRepository;
+    protected $userRepository;
 
-    public function __construct(ReservationInterface $reservationRepository)
+    public function __construct(ReservationInterface $reservationRepository ,UserInterface $userRepository)
     {
         $this->reservationRepository = $reservationRepository;
+        $this->userRepository= $userRepository;
     }
 
     public function store(Request $request)
@@ -101,6 +104,15 @@ public function sendInvitations(Request $request, $reservationId)
     return redirect()->route('components.client.payement', $reservationId)->with('success', 'Invitations sent!');
 }
 
+public function skipInvitations($reservationId)
+{
+    $reservation = $this->reservationRepository->findById($reservationId);
+
+    $reservation->update(['status' => 'step3']);
+
+    return redirect()->route('components.client.payement', $reservationId)->with('success', 'Proceeding to payment!');
+}
+
 public function destroy($id){
     $user=$this->reservationRepository->destroy($id);
     return redirect()->route('components.admin.EventManagement')->with('success', 'Reservation deleted successfully.');
@@ -109,9 +121,18 @@ public function destroy($id){
 public function Booking(){
     $providerId = auth()->id(); 
     $bookings = $this->reservationRepository->getProviderEvents($providerId);
-    return view('components.provider.BookingManagement',compact('bookings'));
+    $provider = $this->userRepository->getProfile();
+
+    return view('components.provider.BookingManagement',compact('bookings','provider'));
 }
 
+public function showReservationDetail($id)
+{
+    $providerId = auth()->id();
+    $reservation = $this->reservationRepository->getProviderReservationById($providerId, $id);
+    $provider = $this->userRepository->getProfile();
+    return view('components.provider.Booking detail', compact('reservation','provider'));
+}
 
 }
 
