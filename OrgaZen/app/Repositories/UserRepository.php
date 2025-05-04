@@ -153,4 +153,11 @@ public function toggleStatus($id)
     return $provider;
 }
 
+public function getProfile()
+{
+    $providerProfile = User::with('service')->find(auth()->id());
+    return $providerProfile;
+}
+
+
 }
