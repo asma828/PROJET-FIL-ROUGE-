@@ -29,12 +29,14 @@ public function __construct(UserInterface $userRepo,ReservationInterface $reserv
         $TotalRevenus = $this->statiqueRepo->getTotalRevenus();
         $TopProviders = $this->userRepo->getTopProviders();
         $popularCategories = $this->evenCategoryRepo->getPopularCategories();
-        return view('components.admin.dashboard',compact('events','TotalEvent','TotalUsers','TotalProviders','TotalRevenus','TopProviders','popularCategories'));
+        $profile=$this->userRepo->getProfile();
+        return view('components.admin.dashboard',compact('events','TotalEvent','TotalUsers','TotalProviders','TotalRevenus','TopProviders','popularCategories','profile'));
     }
 
     public function usersManagement(){
         $users=$this->userRepo->getAllUsers();
-        return view('components.admin.UserManagement',compact('users'));
+        $profile=$this->userRepo->getProfile();
+        return view('components.admin.UserManagement',compact('users','profile'));
     }
 
      public function destroy($id){
@@ -47,18 +49,21 @@ public function __construct(UserInterface $userRepo,ReservationInterface $reserv
         $Upcoming = $this->statiqueRepo->getActiveReservation();
         $CompleteReservation = $this->statiqueRepo->getCompletedReservation();
         $events=$this->reservationRepo->getAllEvents();
-        return view('components.admin.EventManagement',compact('events','Upcoming','CompleteReservation'));
+        $profile=$this->userRepo->getProfile();
+        return view('components.admin.EventManagement',compact('events','Upcoming','CompleteReservation','profile'));
     }
 
     public function service(){
         $providers= $this->userRepo->getAllProviders(); 
-        return view('components.admin.serviceProvider',compact('providers'));
+        $profile=$this->userRepo->getProfile();
+        return view('components.admin.serviceProvider',compact('providers','profile'));
     }
  
     public function Payment(){
         $events=$this->reservationRepo->getAllEvents();
         $totalRevenus = $this->statiqueRepo->getTotalRevenus();
-        return view('components.admin.Payment',compact('events','totalRevenus'));
+        $profile=$this->userRepo->getProfile();
+        return view('components.admin.Payment',compact('events','totalRevenus','profile'));
     }
     public function toggleProviderStatus($id)
 {

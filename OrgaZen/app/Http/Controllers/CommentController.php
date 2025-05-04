@@ -43,9 +43,11 @@ class CommentController extends Controller
 
     public function Reviews(){
         $data = $this->userRepo->getAuthenticatedProviderWithComments(4);
+        $provider=$this->userRepo->getProfile();
         return view('components.provider.Reviews',[
             'provider' => $data['provider'],
             'comments' => $data['comments'],
+            'profile'=>$provider
         ]);
     }
 

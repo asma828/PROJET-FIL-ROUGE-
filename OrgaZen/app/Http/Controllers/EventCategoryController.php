@@ -4,18 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\EventCategory;
 use App\Repositories\Interfaces\EventCategoryInterface;
+use App\Repositories\Interfaces\UserInterface;
 use Illuminate\Http\Request;
 
 class EventCategoryController extends Controller
 {
     protected $evenCategoryRepo;
-     public function __construct(EventCategoryInterface $evenCategoryRepo) {
+    protected $userRepo;
+     public function __construct(EventCategoryInterface $evenCategoryRepo,UserInterface $userRepo) {
         $this->evenCategoryRepo= $evenCategoryRepo;
+        $this->userRepo=$userRepo;
     }
 
     public function category(){
         $categories=$this->evenCategoryRepo->getAllCategory();
-        return view('components.admin.CategoryManagement',compact('categories'));
+        $profile=$this->userRepo->getProfile();
+        return view('components.admin.CategoryManagement',compact('categories','profile'));
     }
 
     public function destroy($id){
