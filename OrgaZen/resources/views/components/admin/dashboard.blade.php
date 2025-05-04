@@ -132,8 +132,8 @@
                             <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt=""
                                 class="w-10 h-10 rounded-full">
                             <div>
-                                <p class="text-sm font-medium text-gray-700">Asma Lachhab</p>
-                                <p class="text-xs text-gray-500">Super Admin</p>
+                                <p class="text-sm font-medium text-gray-700">{{$profile->first_name}} {{$profile->last_name}}</p>
+                                <p class="text-xs text-gray-500">Admin</p>
                             </div>
                         </div>
                     </div>

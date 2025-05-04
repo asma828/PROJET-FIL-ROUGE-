@@ -116,8 +116,8 @@
                         <div class="flex items-center space-x-3">
                             <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="" class="w-10 h-10 rounded-full">
                             <div>
-                                <p class="text-sm font-medium text-gray-700">Asma Lachhab</p>
-                                <p class="text-xs text-gray-500">Super Admin</p>
+                                <p class="text-sm font-medium text-gray-700">{{$profile->first_name}} {{$profile->last_name}}</p>
+                                <p class="text-xs text-gray-500">Admin</p>
                             </div>
                         </div>
                     </div>
@@ -159,10 +159,10 @@
                             <table class="min-w-full">
                                 <thead>
                                     <tr class="border-b border-gray-200">
-                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Transaction ID</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event ID</th>
                                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
                                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">From/To</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">From</th>
                                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
                                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
                                     </tr>
@@ -170,7 +170,7 @@
                                 <tbody class="divide-y divide-gray-200">
                                     @foreach ($events as $event)
                                     <tr class="hover:bg-gray-50">
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">#TXN-0001</td>
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">#{{$event->id}}</td>
                                         <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{{$event->event_date}}</td>
                                         <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">Stripe</td>
                                         <td class="px-4 py-4 whitespace-nowrap">
@@ -179,7 +179,7 @@
                                             </div>
                                         </td>
                                         <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{{$event->name}}</td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-indigo-600">{{$event->total_price ?? 100}}</td>
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-indigo-600">{{$event->total_price ?? 00}}$</td>
                                         <td class="px-4 py-4 whitespace-nowrap">
                                         </td>
                                         <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">

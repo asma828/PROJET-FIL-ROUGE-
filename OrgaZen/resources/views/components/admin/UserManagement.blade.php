@@ -137,8 +137,8 @@
                         <div class="flex items-center space-x-3">
                             <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="" class="w-10 h-10 rounded-full">
                             <div>
-                                <p class="text-sm font-medium text-gray-700">Asma Lachhab</p>
-                                <p class="text-xs text-gray-500">Super Admin</p>
+                                <p class="text-sm font-medium text-gray-700">{{$profile->first_name}} {{$profile->last_name}}</p>
+                                <p class="text-xs text-gray-500">Admin</p>
                             </div>
                         </div>
                     </div>
@@ -186,11 +186,14 @@
                                         <div class="text-sm text-gray-900">{{$user->role->name}}</div>
                                     </td>
                                     <td class="px-4 py-4 whitespace-nowrap">
+                                        @if ($user->is_active)
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-green-800">Active</span>
+                                        @else
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Disable</span>
+                                        @endif
                                     </td>
                                     <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
                                         <div class="flex space-x-2">
-                                            <button class="text-green-600 hover:text-green-900"><i class="fas fa-eye"></i></button>
                                             <form action="{{ route('user.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure?')">
                                                 @csrf
                                                 @method('DELETE')
