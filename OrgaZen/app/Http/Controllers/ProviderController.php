@@ -32,5 +32,10 @@ class ProviderController extends Controller
         ]);
     }
 
-    
+    public function profile()
+{
+    $provider = $this->userRepository->getProfile();
+    return view('components.provider.profile', compact('provider'));
+}
+
 }
