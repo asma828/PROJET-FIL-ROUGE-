@@ -40,4 +40,18 @@ public function getPopularCategories()
                          ->get();
 }
 
+public function getAllWithUser(){
+    return EventCategory::with('user')->get();
+
+}
+public function searchWithPagination(?string $searchTerm)
+{
+    return EventCategory::with('user')
+        ->when($searchTerm, function ($query, $searchTerm) {
+            return $query->where('name', 'like', '%' . $searchTerm . '%');
+        })
+        ->paginate();
+}
+
+
 }
