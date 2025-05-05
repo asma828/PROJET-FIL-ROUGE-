@@ -48,5 +48,13 @@ class ReservationRepository implements ReservationInterface
     return $event;
 }
     
+public function getProviderReservationById($providerId, $reservationId)
+{
+    return Reservation::with(['category', 'client']) 
+        ->where('provider_id', $providerId)
+        ->where('id', $reservationId)
+        ->firstOrFail();
+}
+
 
 }
