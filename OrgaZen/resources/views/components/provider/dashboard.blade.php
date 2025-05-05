@@ -130,10 +130,11 @@
                             </div>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="" class="w-10 h-10 rounded-full">
+                            <img src="{{ $provider->image ? asset('storage/' . $provider->image) : 'https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg' }}"
+                                 alt="Provider Image" class="w-10 h-10 rounded-full">
                             <div>
-                                <p class="text-sm font-medium text-gray-700">Ahmed Sami</p>
-                                <p class="text-xs text-gray-500">Wedding Planner</p>
+                                <p class="text-sm font-medium text-gray-700">{{ $provider->first_name }} {{ $provider->last_name }}</p>
+                                <p class="text-xs text-gray-500">{{ $provider->service->name ?? 'Not Set' }}</p>
                             </div>
                         </div>
                     </div>
@@ -142,16 +143,7 @@
             
             <!-- Dashboard Content -->
             <div class="p-8">
-                <!-- Account Status Alert -->
-                <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-8 rounded-md" role="alert">
-                    <div class="flex items-center">
-                        <div class="py-1"><i class="fas fa-check-circle mr-2"></i></div>
-                        <div>
-                            <p class="font-bold">Account Verified</p>
-                            <p class="text-sm">Your service provider account has been verified. You can now receive booking requests.</p>
-                        </div>
-                    </div>
-                </div>
+            
                 
                 <!-- Stats Cards -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -238,7 +230,7 @@
                                         <td class="px-4 py-4 whitespace-nowrap">
                                             <div class="text-sm text-gray-900">{{ \Carbon\Carbon::parse($latestReservation->date)->format('F j, Y') }}</div>
                                         </td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">${{ $latestReservation->price }}</td>
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">${{ $latestReservation->price ?? 0  }}</td>
                                     </tr>
                                 @else
                                     <tr><td colspan="4" class="text-center text-gray-500">No recent bookings.</td></tr>
@@ -251,11 +243,6 @@
                 <!-- Recent Comments -->
                 @if($latestComment)
                 <div class="border-b pb-4">
-                    <div class="flex items-center text-xs text-yellow-400">
-                        @for($i = 0; $i < 5; $i++)
-                            <i class="fas fa-star{{ $i < $latestComment->rating ? '' : '-o' }}"></i>
-                        @endfor
-                    </div>
                     <p class="text-xs text-gray-600 mb-1">{{ $latestComment->content }}</p>
                     <p class="text-xs font-medium text-gray-900">
                         - {{ optional($latestComment->client)->first_name }} {{ optional($latestComment->client)->last_name }}

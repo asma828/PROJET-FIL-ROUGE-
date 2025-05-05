@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="//unpkg.com/alpinejs" defer></script>
+
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -90,29 +92,68 @@
             <div class="bg-white shadow-sm">
                 <div class="flex justify-between items-center px-8 py-4">
                     <div>
-                        <h2 class="text-xl font-semibold text-gray-800">My Services</h2>
+                        <h2 class="text-xl font-semibold text-gray-800">My Service</h2>
                     </div>
                     <div class="flex items-center space-x-4">
-                        <div class="relative">
-                            <button class="p-2 text-gray-500 hover:text-gray-700 relative">
-                                <i class="fas fa-bell"></i>
-                                <span class="notification-badge flex items-center justify-center w-5 h-5 bg-red-500 text-white text-xs rounded-full">3</span>
+                        <div class="relative" x-data="{ open: false }">
+                            <!-- Bell Button -->
+                            <button @click="open = !open" class="relative p-2 text-gray-500 hover:text-gray-700 focus:outline-none">
+                                <i class="fas fa-bell text-xl"></i>
+                                @php
+                                    $unreadCount = auth()->user()->unreadNotifications->count();
+                                @endphp
+                                @if ($unreadCount > 0)
+                                    <span class="absolute top-0 right-0 flex items-center justify-center w-5 h-5 bg-red-500 text-white text-xs rounded-full">
+                                        {{ $unreadCount }}
+                                    </span>
+                                @endif
                             </button>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            <img src="https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg" alt="" class="w-10 h-10 rounded-full">
-                            <div>
-                                <p class="text-sm font-medium text-gray-700">Ahmed Sami</p>
-                                <p class="text-xs text-gray-500">Wedding Planner</p>
+                            <!-- Dropdown -->
+                            <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg z-50 overflow-hidden">
+                                <div class="p-4 border-b">
+                                    <h4 class="font-semibold text-gray-700 text-sm">Notifications</h4>
+                                </div>
+                                <ul class="max-h-60 overflow-y-auto divide-y divide-gray-100">
+                                    @forelse(auth()->user()->unreadNotifications as $notification)
+                                        <li class="p-3 text-sm text-gray-700 hover:bg-gray-100">
+                                            {{ $notification->data['message'] }}
+                                        </li>
+                                    @empty
+                                        <li class="p-3 text-sm text-gray-500">No new notifications.</li>
+                                    @endforelse
+                                </ul>
+                                <div class="p-2 text-center text-xs text-gray-500">
+                                    <form action="{{ route('notifications.markAllRead') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="text-indigo-600 hover:underline">Mark all as read</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
+                        <div class="flex items-center space-x-3">
+                            <img src="{{ $provider->image ? asset('storage/' . $provider->image) : 'https://i.pinimg.com/736x/80/23/48/8023488a5b2223e0744e8e8a4a9f2060.jpg' }}"
+                                 alt="Provider Image" class="w-10 h-10 rounded-full">
+                            <div>
+                                <p class="text-sm font-medium text-gray-700">{{ $provider->first_name }} {{ $provider->last_name }}</p>
+                                <p class="text-xs text-gray-500">{{ $provider->service->name ?? 'Not Set' }}</p>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
+            </div>  
+            @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
             </div>
-            
+        @endif
+        
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
          
-                
-                
 <!-- Service Information Form -->
 <div class="card bg-white rounded-xl shadow-sm overflow-hidden">
     <div class="border-b border-gray-200">
