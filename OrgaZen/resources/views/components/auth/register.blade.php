@@ -14,9 +14,14 @@
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f8f9fc;
+            background-image: url('https://img.freepik.com/free-photo/pine-leaves-bouquet-classy-decorated-table_8353-10195.jpg?t=st=1746382313~exp=1746385913~hmac=365b18433f680fad8b763c2084296ed13bd788a6221f62699695fbb0e669b39f&w=1380');
+            background-position: center center; 
+            background-repeat: no-repeat; 
+            background-size: cover; 
+
         }
         .register-container {
-            background-image: url('/api/placeholder/1200/800');
+            /* background-image: url(''); */
             background-size: cover;
             background-position: center;
         }
@@ -26,7 +31,6 @@
             -webkit-text-fill-color: transparent;
         }
         .auth-form {
-            backdrop-filter: blur(10px);
             background-color: rgba(255, 255, 255, 0.85);
         }
         .btn-primary {
@@ -79,7 +83,7 @@
     <div class="min-h-screen flex flex-col justify-center py-8 sm:px-6 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-md mb-4">
             <h1 class="text-4xl font-extrabold text-center logo-text">Orgazen</h1>
-            <h2 class="mt-2 text-center text-lg font-medium text-gray-600">Create your account</h2>
+            <h2 class="mt-2 text-center text-lg font-medium text-white">Create your account</h2>
         </div>
 
         <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-xl">
