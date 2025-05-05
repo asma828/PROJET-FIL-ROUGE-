@@ -70,6 +70,8 @@ Route::post('/profile', [ProfileController::class, 'update'])->name('editProfile
 Route::post('/profile/update-image', [ProfileController::class, 'updateProfileImage'])->name('updateProfileImage');
 Route::post('/notifications/mark-all-read', [NotificationController::class, 'markAllRead'])
     ->name('notifications.markAllRead');
+Route::get('/provider/reservations/{id}', [ReservationController::class, 'showReservationDetail'])->name('provider.reservations.detail');
+
 
 });
 //authentification route
@@ -91,6 +93,7 @@ Route::post('/reservations', [ReservationController::class, 'store'])->name('res
 Route::get('/reservation/{reservationId}/providers',[ClientController::class,'showProviders'])->name('components.client.serviceProviderSelect');
 Route::post('/reservation/{reservationId}/assign-provider', [ReservationController::class, 'assignProvider'])->name('client.assignProvider');
 Route::get('/reservation/{reservationId}/invitations',[ClientController::class,'invitation'])->name('components.client.invitation');
+Route::get('/reservations/{id}/skip-invitations', [ReservationController::class, 'skipInvitations'])->name('client.invitations.skip');
 Route::get('/payement/{reservationId}',[ClientController::class,'payement'])->name('components.client.payement');
 Route::get('/history/{id}',[ClientController::class,'History'])->name('components.client.EventHistory');
 Route::post('/reservation/{reservationId}/send-invitations', [ReservationController::class, 'sendInvitations'])->name('client.sendInvitations');
