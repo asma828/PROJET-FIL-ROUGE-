@@ -169,9 +169,10 @@
         
         /* Hero Section */
         .hero {
-            background: url('https://i.pinimg.com/736x/c0/df/64/c0df64863569524d4af9445a9f423130.jpg') center/cover;
+            background: url('https://images.pexels.com/photos/14608968/pexels-photo-14608968.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
             background-attachment: fixed;
-            background-size: contain;
+            background-size: cover;
+            background-repeat: no-repeat;
             position: relative;
             height: 100vh;
             display: flex;
@@ -388,11 +389,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
         }
-        
-        /* .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-        } */
+  
         
         .service-icon {
             width: 80px;
@@ -407,12 +404,7 @@
             margin: 0 auto 24px;
             transition: all 0.3s ease;
         }
-        
-        /* .service-card:hover .service-icon {
-            background-color: var(--secondary);
-            color: white;
-            transform: rotateY(180deg);
-        } */
+
         
         .service-card h3 {
             font-size: 22px;
@@ -832,7 +824,7 @@
         <div class="container">
             <div class="flex-row">
                 <div class="why-img">
-                    <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="Why Choose Orgazen">
+                    <img src="https://images.pexels.com/photos/2085519/pexels-photo-2085519.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Why Choose Orgazen">
                 </div>
                 <div class="why-content">
                     <h2>Why Choose Orgazen?</h2>
@@ -943,80 +935,6 @@
                     <h3>Digital Memories</h3>
                     <p>Capture and share your event with professional photographers, videographers, and digital memory solutions.</p>
                     <a href="#" class="btn btn-primary">Learn More</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-
-    
-    <!-- Testimonials Section -->
-    <section class="testimonials" id="testimonials">
-        <div class="container">
-            <div class="section-title">
-                <h2>What Our Clients Say</h2>
-                <p>Hear from people who have transformed their events with Orgazen</p>
-            </div>
-            
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-text">Orgazen made planning my daughter's wedding completely stress-free. The platform connected us with the perfect vendors, and the event dashboard kept everything organized. It was the magical day we'd always dreamed of!</p>
-                    <div class="testimonial-author">
-                        <div class="author-img">
-                            <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="Sarah Johnson">
-                        </div>
-                        <div class="author-info">
-                            <h4>Sarah Johnson</h4>
-                            <p>Wedding Client</p>
-                            <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <p class="testimonial-text">As a corporate event manager, I've tried many platforms, but Orgazen stands out for its professional vendors and streamlined process. Our annual conference was flawless thanks to their attention to detail.</p>
-                    <div class="testimonial-author">
-                        <div class="author-img">
-                            <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="Michael Chen">
-                        </div>
-                        <div class="author-info">
-                            <h4>Michael Chen</h4>
-                            <p>Corporate Client</p>
-                            <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <p class="testimonial-text">I planned my mom's 60th birthday celebration through Orgazen and it exceeded all expectations. The customized touches and professional service made her feel truly special on her big day.</p>
-                    <div class="testimonial-author">
-                        <div class="author-img">
-                            <img src="https://i.pinimg.com/736x/ce/ff/3d/ceff3d1743ad3e000234e87f217085e4.jpg" alt="Jessica Martinez">
-                        </div>
-                        <div class="author-info">
-                            <h4>Jessica Martinez</h4>
-                            <p>Birthday Event</p>
-                            <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
