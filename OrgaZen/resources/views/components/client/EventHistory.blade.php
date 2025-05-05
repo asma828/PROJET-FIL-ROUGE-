@@ -204,26 +204,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
         
-       
-        .search-box {
-            display: flex;
-            align-items: center;
-            position: relative;
-        }
-        
-        .search-box input {
-            padding: 10px 16px 10px 42px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 15px;
-            width: 500px;
-        }
-        
-        .search-box i {
-            position: absolute;
-            left: 15px;
-            color: var(--gray);
-        }
+     
         
         /* Event Cards */
         .events-grid {
@@ -422,16 +403,6 @@
                 <h1>Your Event History</h1>
                 <p>View and manage all your past, current, and upcoming events in one place.</p>
             </div>
-            
-            <!-- Filter Options -->
-        <div class="filter-options"> 
-            <div class="search-box">
-                {{-- <form method="GET" action="{{ route('client.events') }}"> --}}
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Search events..." value="{{ request()->input('search') }}">
-                </form>
-            </div>
-        </div>
             
             <!-- Events Grid -->
             <div class="events-grid">

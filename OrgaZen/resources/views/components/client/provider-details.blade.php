@@ -255,22 +255,7 @@
             min-height: 120px;
         }
         
-        .star-rating {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        
-        .star-rating i {
-            font-size: 24px;
-            color: #e2e2e2;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        
-        .star-rating i.active {
-            color: #FFC107;
-        }
+     
         
         .reviews-list {
             display: grid;
@@ -367,14 +352,10 @@
 
         <div class="provider-info">
             <h1>{{ $provider->first_name}} {{$provider->last_name}}</h1>
-            <div class="provider-rating">
-                <i class="fas fa-star"></i>
-                <span>{{ $provider->rating }}</span>
-            </div>
 
             <div class="provider-meta">
                 <div class="meta-block">
-                    <div class="meta-value">{{ $provider->events ? $provider->events->count() : 0 }}</div>
+                    <div class="meta-value">{{ $provider->providerBookings ? $provider->providerBookings->count() : 0 }}</div>
                     <div class="meta-label">Events</div>
                 </div>
                 <div class="meta-block">

@@ -228,71 +228,6 @@
             color: var(--gray);
         }
         
-        .filter-dropdown {
-            position: relative;
-        }
-        
-        .dropdown-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 20px;
-            border: 1px solid #e2e2e2;
-            border-radius: 50px;
-            font-size: 16px;
-            background-color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .dropdown-btn:hover {
-            border-color: var(--primary);
-        }
-        
-        .dropdown-btn i {
-            font-size: 14px;
-        }
-        
-        .dropdown-menu {
-            position: absolute;
-            top: calc(100% + 10px);
-            left: 0;
-            min-width: 200px;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            padding: 12px 0;
-            z-index: 10;
-            display: none;
-        }
-        
-        .dropdown-menu.show {
-            display: block;
-        }
-        
-        .dropdown-item {
-            padding: 10px 20px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        
-        .dropdown-item:hover {
-            background-color: rgba(255, 56, 92, 0.05);
-            color: var(--primary);
-        }
-        
-        .filter-dropdown .dropdown-menu {
-    display: none; 
-    position: absolute; 
-    background-color: #fff; 
-    border: 1px solid #ccc; 
-    width: 200px; 
-    z-index: 1000; 
-}
-
-.filter-dropdown:hover .dropdown-menu {
-    display: block; 
-}
 
         /* Providers Grid */
         .providers-section {
@@ -717,54 +652,14 @@
     <section class="filter-section">
         <div class="container">
             <div class="filter-container">
-                <div class="search-box">
+                <form action="{{ route('components.client.providers') }}" method="GET" class="search-box">
                     <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Search providers by name or keyword...">
-                </div>
-                
-                <div class="filter-dropdown">
-                    <button class="dropdown-btn">
-                        <i class="fas fa-filter"></i>
-                        <span>Event Category</span>
-                    </button>
-                    <div class="dropdown-menu">
-                        <div class="dropdown-item">All Categories</div>
-                        <div class="dropdown-item">Wedding</div>
-                        <div class="dropdown-item">Birthday</div>
-                        <div class="dropdown-item">Corporate</div>
-                        <div class="dropdown-item">Festival</div>
-                        <div class="dropdown-item">Social</div>
-                    </div>
-                </div>
-                
-                <div class="filter-dropdown">
-                    
-                    <div class="dropdown-menu">
-                        <div class="dropdown-item">Top Rated</div>
-                        <div class="dropdown-item">Most Popular</div>
-                        <div class="dropdown-item">Price: Low to High</div>
-                        <div class="dropdown-item">Price: High to Low</div>
-                        <div class="dropdown-item">Newest First</div>
-                    </div>
-                </div>
-                
-                <div class="filter-dropdown">
-                    <button class="dropdown-btn">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Location</span>
-                    </button>
-                    <div class="dropdown-menu">
-                        <div class="dropdown-item">All Locations</div>
-                        <div class="dropdown-item">New York</div>
-                        <div class="dropdown-item">Los Angeles</div>
-                        <div class="dropdown-item">Chicago</div>
-                        <div class="dropdown-item">Miami</div>
-                        <div class="dropdown-item">Dallas</div>
-                    </div>
-                </div>
+                    <input type="text" name="search" placeholder="Search providers by event category..." value="{{ request('search') }}">
+                </form>
             </div>
         </div>
     </section>
+    
     
     <!-- Providers Section -->
     <section class="providers-section">
@@ -786,9 +681,6 @@
                                 <span class="provider-category absolute top-2 left-2 bg-indigo-600 text-white text-xs px-3 py-1 rounded-full">
                                     {{ $provider->eventCategory->name ?? 'Unknown Category' }}
                                 </span>
-                                <div class="provider-rating absolute top-2 right-2 bg-white text-yellow-500 px-2 py-1 rounded-full text-sm flex items-center">
-                                    <i class="fas fa-star mr-1"></i> 4.9
-                                </div>
                             </div>
                 
                             <!-- Provider Profile -->
@@ -812,12 +704,12 @@
                                 <!-- Meta -->
                                 <div class="provider-meta flex justify-between text-center text-sm text-gray-700 mb-3">
                                     <div class="meta-item">
-                                        <div class="meta-value font-semibold">126</div>
+                                        <div class="meta-value font-semibold">{{ $provider->providerBookings ? $provider->providerBookings->count() : 0 }}</div>
                                         <div class="meta-label">Events</div>
                                     </div>
                                     <div class="meta-item">
-                                        <div class="meta-value font-semibold">4.9</div>
-                                        <div class="meta-label">Rating</div>
+                                        <div class="meta-value font-semibold">{{ $provider->comments ? $provider->comments->count() : 0 }}</div>
+                                        <div class="meta-label">comment</div>
                                     </div>
                                 </div>
                 
