@@ -37,30 +37,38 @@ class UserRepository implements UserInterface{
         return $user->load(['tags', 'service']);
      }
 
-     public function getAllProviders()
+     public function getAllProviders($search = null)
      {
-        $providers = User::where('role_id', 3)
-             ->with(['tags', 'service','eventCategory'])
-             ->get();
-
-             foreach ($providers as $provider) {
-                $totalEvents = DB::table('reservation')
-                    ->where('provider_id', $provider->id)
-                    ->where('is_paid', true)
-                    ->count();
-        
-                $totalRevenue = DB::table('reservation')
-                    ->join('service', 'reservation.provider_id', '=', 'service.provider_id')
-                    ->where('reservation.provider_id', $provider->id)
-                    ->where('reservation.is_paid', true)
-                    ->sum(DB::raw('(service.price / service.guest_count) * reservation.guest_count'));
-        
-                $provider->total_events = $totalEvents;
-                $provider->total_revenue = $totalRevenue;
-            }
-        
-            return $providers;
+         $query = User::where('role_id', 3)
+             ->with(['tags', 'service', 'eventCategory', 'providerBookings', 'comments']);
+     
+         if ($search) {
+             $query->whereHas('eventCategory', function ($q) use ($search) {
+                 $q->where('name', 'like', '%' . $search . '%');
+             });
+         }
+     
+         $providers = $query->get();
+     
+         foreach ($providers as $provider) {
+             $totalEvents = DB::table('reservation')
+                 ->where('provider_id', $provider->id)
+                 ->where('is_paid', true)
+                 ->count();
+     
+             $totalRevenue = DB::table('reservation')
+                 ->join('service', 'reservation.provider_id', '=', 'service.provider_id')
+                 ->where('reservation.provider_id', $provider->id)
+                 ->where('reservation.is_paid', true)
+                 ->sum(DB::raw('(service.price / service.guest_count) * reservation.guest_count'));
+     
+             $provider->total_events = $totalEvents;
+             $provider->total_revenue = $totalRevenue;
+         }
+     
+         return $providers;
      }
+     
      
      public function getProvidersByEventCategory($categoryId,$eventDate)
      {
@@ -89,7 +97,7 @@ class UserRepository implements UserInterface{
 
     public function getProviderDetails($providerId)
     {
-        $provider = User::with(['service.images', 'tags', 'eventCategory'])->findOrFail($providerId);
+        $provider = User::with(['service.images', 'tags', 'eventCategory','providerBookings'])->findOrFail($providerId);
 
         $comments = Comment::where('provider_id', $providerId)->with('user')->get();
 
@@ -101,7 +109,7 @@ class UserRepository implements UserInterface{
                                       ->first();
             if ($reservation) {
                 $canComment = true;
-            }
+            }   
         }
 
         return compact('provider', 'comments', 'canComment');
