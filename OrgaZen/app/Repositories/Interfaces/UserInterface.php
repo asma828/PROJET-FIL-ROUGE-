@@ -4,7 +4,7 @@ namespace App\Repositories\Interfaces;
 interface UserInterface{
     public function getAuthenticatedUserProfile();
     public function updateProfile(array $data);
-    public function getAllProviders();
+    public function getAllProviders($search = null);
     public function getProvidersByEventCategory($categoryId,$eventDate);
     public function getAllUsers();
     public function destroy($id);
