@@ -501,9 +501,13 @@
                     <p class="skip-text">This step is optional. You can skip to proceed to payment.</p>
                     
                     <div class="form-actions">
-                        <a href="event-creation-step2.html" class="btn-back">Back</a>
+                        <a href="{{ route('components.client.serviceProviderSelect', $reservation) }}" class="btn-back">Back</a>
                         <button type="submit" class="btn-next">Next: Payment</button>
+                        <a href="{{ route('client.invitations.skip', $reservation->id) }}" class="btn-back">
+                            Skip
+                        </a>
                     </div>
+                  
                 </form>
             </div>
         </div>
