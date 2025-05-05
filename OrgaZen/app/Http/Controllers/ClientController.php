@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\EventCategory;
 use App\Models\reservation;
 use App\Models\Service;
+use App\Repositories\Interfaces\EventCategoryInterface;
 use App\Repositories\Interfaces\ReservationInterface;
 use App\Repositories\Interfaces\UserInterface;
 use Illuminate\Http\Request;
@@ -13,28 +14,38 @@ class ClientController extends Controller
 {
     protected $userRepo;
     protected $reservationRepo;
-     public function __construct(UserInterface $userRepo, ReservationInterface $reservationRepo) {
+    protected $evenCategoryRepo;
+
+     public function __construct(UserInterface $userRepo, ReservationInterface $reservationRepo,EventCategoryInterface $evenCategoryRepo) {
         $this->userRepo= $userRepo;
         $this->reservationRepo=$reservationRepo;
+        $this->evenCategoryRepo= $evenCategoryRepo;
+
     }
     public function home(){
         return view('components.client.home');
     }
 
-    public function listingProviders(){  
-        $providers= $this->userRepo->getAllProviders(); 
-        return view('components.client.providers',compact('providers'));
+    public function listingProviders(Request $request)
+    {
+        $search = $request->input('search');
+        $providers = $this->userRepo->getAllProviders($search); 
+        return view('components.client.providers', compact('providers'));
     }
+    
 
     public function details($providerId){
         $data = $this->userRepo->getProviderDetails($providerId);
         return view('components.client.provider-details',$data);
     }
 
-    public function categories(){
-        $categories=EventCategory::with('user')->get();
-        return view('components.client.categories',compact('categories'));
+    public function categories(Request $request)
+    {
+        $search = $request->query('search');
+        $categories = $this->evenCategoryRepo->searchWithPagination($search);
+        return view('components.client.categories', compact('categories', 'search'));
     }
+    
 
     public function createvent($category_id){
         return view('components.client.eventdetails', compact('category_id'));
