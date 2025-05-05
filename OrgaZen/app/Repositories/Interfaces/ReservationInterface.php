@@ -11,4 +11,6 @@ interface ReservationInterface
     public function getProviderEvents($providerId);
     public function reservationDetail($id);
     public function getLastetEvent();
+    public function getProviderReservationById($providerId, $reservationId);
+
 }
